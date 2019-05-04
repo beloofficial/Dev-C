@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<problem revision="24" short-name="char" url="https://polygon.codeforces.com/p/Yerzhan/char">
+    <names>
+        <name language="kazakh" value="Әріптер"/>
+        <name language="russian" value="Буквы"/>
+    </names>
+    <statements>
+        <statement charset="UTF-8" language="kazakh" path="statements/kazakh/problem.tex" type="application/x-tex"/>
+        <statement language="kazakh" path="statements/.pdf/kazakh/problem.pdf" type="application/pdf"/>
+        <statement charset="UTF-8" language="russian" path="statements/russian/problem.tex" type="application/x-tex"/>
+        <statement language="russian" path="statements/.pdf/russian/problem.pdf" type="application/pdf"/>
+    </statements>
+    <judging cpu-name="Intel(R) Core(TM) i5-3470 CPU @ 3.20GHz" cpu-speed="3600" input-file="B.in" output-file="B.out">
+        <testset name="preliminary">
+            <time-limit>500</time-limit>
+            <memory-limit>268435456</memory-limit>
+            <test-count>1</test-count>
+            <input-path-pattern>preliminary/%02d</input-path-pattern>
+            <answer-path-pattern>preliminary/%02d.a</answer-path-pattern>
+            <tests>
+                <test method="manual" sample="true"/>
+            </tests>
+        </testset>
+        <testset name="tests">
+            <time-limit>500</time-limit>
+            <memory-limit>268435456</memory-limit>
+            <test-count>25</test-count>
+            <input-path-pattern>tests/%02d</input-path-pattern>
+            <answer-path-pattern>tests/%02d.a</answer-path-pattern>
+            <tests>
+                <test cmd="gen 10 5 3 1 26 31" method="generated"/>
+                <test cmd="gen 10 3 3 1 26 331" method="generated"/>
+                <test cmd="gen 50 5 10 1 26 331" method="generated"/>
+                <test cmd="gen 100 5 20 1 26 331" method="generated"/>
+                <test cmd="gen 5000 25 3 1 26 3361" method="generated"/>
+                <test cmd="gen 5000 10 100 1 26 1131" method="generated"/>
+                <test cmd="gen 5000 5 1000 1 26 3311" method="generated"/>
+                <test cmd="gen2 5000 5 200 1 26 3631" method="generated"/>
+                <test cmd="gen 5000 5 2000 1 26 1331" method="generated"/>
+                <test cmd="gen2 5000 3 998 1 26 1131" method="generated"/>
+                <test cmd="gen 100000 10 10000 10 26 6921" method="generated"/>
+                <test cmd="gen 100000 4 10000 12 19 1921" method="generated"/>
+                <test cmd="gen 100000 15 100 10 15 621" method="generated"/>
+                <test cmd="gen 100000 3 100000 1 26 1321" method="generated"/>
+                <test cmd="gen 100000 26 100 1 26 131" method="generated"/>
+                <test cmd="gen 100000 5 100000 1 10 893" method="generated"/>
+                <test cmd="gen 100000 26 5000 1 26 331" method="generated"/>
+                <test cmd="gen2 100000 3 99998 1 26 361" method="generated"/>
+                <test cmd="gen 100000 5 100000 1 26 3231" method="generated"/>
+                <test cmd="gen 100000 1 100 1 26 6131" method="generated"/>
+                <test cmd="gen 100000 10 10000 1 26 33231" method="generated"/>
+                <test cmd="gen2 100000 5 40000 1 26 3611" method="generated"/>
+                <test cmd="gen 100000 5 100000 1 26 34231" method="generated"/>
+                <test cmd="gen2 100000 3 99998 1 26 3161" method="generated"/>
+                <test cmd="gen2 100000 5 20000 1 26 3631" method="generated"/>
+            </tests>
+        </testset>
+    </judging>
+    <files>
+        <resources>
+            <file path="files/olymp.sty"/>
+            <file path="files/problem.tex"/>
+            <file path="files/statements.ftl"/>
+            <file path="files/testlib.h" type="h.g++"/>
+        </resources>
+        <attachments>
+            <file path="files/cms_conf.py" type="python.2"/>
+        </attachments>
+        <executables>
+            <executable>
+                <source path="files/gen.cpp" type="cpp.g++"/>
+                <binary path="files/gen.exe" type="exe.win32"/>
+            </executable>
+            <executable>
+                <source path="files/gen2.cpp" type="cpp.g++"/>
+                <binary path="files/gen2.exe" type="exe.win32"/>
+            </executable>
+            <executable>
+                <source path="files/val.cpp" type="cpp.g++"/>
+                <binary path="files/val.exe" type="exe.win32"/>
+            </executable>
+        </executables>
+    </files>
+    <assets>
+        <checker name="std::hcmp.cpp" type="testlib">
+            <source path="files/check.cpp" type="cpp.g++"/>
+            <binary path="check.exe" type="exe.win32"/>
+            <copy path="check.cpp"/>
+            <testset>
+                <test-count>0</test-count>
+                <input-path-pattern>files/tests/checker-tests/%02d</input-path-pattern>
+                <output-path-pattern>files/tests/checker-tests/%02d.o</output-path-pattern>
+                <answer-path-pattern>files/tests/checker-tests/%02d.a</answer-path-pattern>
+                <tests/>
+            </testset>
+        </checker>
+        <validators>
+            <validator>
+                <source path="files/val.cpp" type="cpp.g++"/>
+                <binary path="files/val.exe" type="exe.win32"/>
+                <testset>
+                    <test-count>0</test-count>
+                    <input-path-pattern>files/tests/validator-tests/%02d</input-path-pattern>
+                    <tests/>
+                </testset>
+            </validator>
+        </validators>
+        <solutions>
+            <solution tag="time-limit-exceeded">
+                <source path="solutions/a.cpp" type="cpp.g++"/>
+                <binary path="solutions/a.exe" type="exe.win32"/>
+            </solution>
+            <solution tag="main">
+                <source path="solutions/char_yu.cpp" type="cpp.g++"/>
+                <binary path="solutions/char_yu.exe" type="exe.win32"/>
+            </solution>
+            <solution tag="time-limit-exceeded">
+                <source path="solutions/char_yu_slow.cpp" type="cpp.g++"/>
+                <binary path="solutions/char_yu_slow.exe" type="exe.win32"/>
+            </solution>
+            <solution tag="time-limit-exceeded">
+                <source path="solutions/char_yu_super_slow.cpp" type="cpp.g++"/>
+                <binary path="solutions/char_yu_super_slow.exe" type="exe.win32"/>
+            </solution>
+            <solution tag="accepted">
+                <source path="solutions/correct_mk.cpp" type="cpp.g++"/>
+                <binary path="solutions/correct_mk.exe" type="exe.win32"/>
+            </solution>
+        </solutions>
+    </assets>
+    <properties>
+        <property name="tests-wellformed" value="true"/>
+    </properties>
+    <stresses>
+        <stress-count>0</stress-count>
+        <stress-path-pattern>stresses/%03d</stress-path-pattern>
+        <list/>
+    </stresses>
+    <tags>
+        <tag value="easy"/>
+        <tag value="strings"/>
+        <tag value="two pointers"/>
+    </tags>
+</problem>

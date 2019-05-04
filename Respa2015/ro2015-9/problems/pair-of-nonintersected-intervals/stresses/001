@@ -1,0 +1,1 @@
+{"id":"8ae413b4a4e5d3bc5c872a6ab0586425","index":1,"scriptPattern":"gen 500 0 500","inputFile":"stdin","outputFile":"stdout","memoryLimit":256,"timeLimit":500,"totalTimeLimit":120000,"solutionNames":["sol50.cpp","sol5000.cpp"],"description":"Finding second group of test"}

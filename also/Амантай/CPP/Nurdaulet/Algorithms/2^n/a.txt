@@ -1,0 +1,27 @@
+Uses Math;
+{$O-}
+var
+i,m,n,j        :       longint;
+c           :       array[0..1000000] of longint;
+begin
+        reset(input,'input.txt');
+        rewrite(output,'output.txt');
+        read(n);
+        c[1]:=1;
+        for i:=1 to n do
+        begin
+         for j:=1 to i + 1 do
+          begin
+           c[j]:=c[j] * 2;
+           c[j]:=c[j] + m;
+           m:=c[j] div 10;
+           c[j]:=c[j] mod 10;
+          end;
+          m:=0;
+        end;
+          j:=100000;
+          while 0 = c[j] do
+           dec(j);
+         for j:=j downto 1 do
+           write(c[j]);
+end.

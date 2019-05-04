@@ -1,0 +1,2697 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0043)http://habrahabr.ru/blogs/algorithm/102006/ -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	
+	
+	<title>Декартово дерево: Часть 2. Ценная информация в дереве и множественные операции с ней / Алгоритмы / Хабрахабр</title>
+
+	<link href="http://habrahabr.ru/css/1314886767/all.css" rel="stylesheet" media="all">
+
+<!-- ie9 -->
+    <meta name="application-name" content="Хабрахабр"> 
+    <meta name="msapplication-tooltip" content="Хабрахабр"> 
+    <meta name="msapplication-starturl" content="http://habrahabr.ru/"> 
+
+    <meta name="msapplication-task" content="name=посты;action-uri=http://habrahabr.ru/;icon-uri=http://habrahabr.ru/favicon.ico">
+    <meta name="msapplication-task" content="name=q&amp;a;action-uri=http://habrahabr.ru/qa/;icon-uri=http://habrahabr.ru/favicon.ico">
+    <meta name="msapplication-task" content="name=блоги;action-uri=http://habrahabr.ru/bloglist/;icon-uri=http://habrahabr.ru/favicon.ico">
+    <meta name="msapplication-task" content="name=люди;action-uri=http://habrahabr.ru/people/;icon-uri=http://habrahabr.ru/favicon.ico">
+    <meta name="msapplication-task" content="name=компании;action-uri=http://habrahabr.ru/companies/;icon-uri=http://habrahabr.ru/favicon.ico">
+<!-- /ie9 -->
+
+	
+	
+	
+	
+	<link rel="shortcut icon" href="http://habrahabr.ru/i/favicon.ico">
+	<link rel="image_src" href="http://habrahabr.ru/i/logo.gif">
+	
+	
+		<meta name="description" content="Оглавление (на данный момент) Часть 1. Описание, операции, применения. Часть 2. Ценная информация в дереве и множественные операции с ней. Часть 3. Декартово..."> 
+	
+
+	
+	<link title="" type="application/rss+xml" rel="alternate" href="http://habrahabr.ru/rss/blogs/algorithm/102006/">
+
+	<!--[if IE 6]><link rel="stylesheet" href="http://habrahabr.ru/css/1314886767/ie6.css" media="all" /><![endif]-->
+	<!--[if IE 7]><link rel="stylesheet" href="http://habrahabr.ru/css/1314886767/ie7.css" media="all" /><![endif]-->
+	<!--[if IE ]><link rel="stylesheet" href="http://habrahabr.ru/css/1314886767/ie.css" media="all" /><![endif]-->
+	
+	
+	<link href="http://habrahabr.ru/css/1314886767/karma.css" rel="stylesheet" media="all">
+	<link href="http://habrahabr.ru/css/1314886767/profile.css" rel="stylesheet" media="all">
+	
+	<link href="http://habrahabr.ru/css/1314886767/sidebar/category_blogs.css" rel="stylesheet" media="all">
+	<link href="http://habrahabr.ru/css/1314886767/sidebar/similar_events.css" rel="stylesheet" media="all">
+	<link href="http://habrahabr.ru/css/1314886767/sidebar/best_company.css" rel="stylesheet" media="all">
+
+	<link rel="help" href="http://habrahabr.ru/info/help/">
+	<link rel="search" href="http://habrahabr.ru/search/">
+	<link rel="home" href="http://habrahabr.ru/">
+	<script type="text/javascript" src="./Декартово дерево  Часть 2. Ценная информация в дереве и множественные операции с ней   Алгоритмы   Хабрахабр_files/mootools-1.2-core-yc.js"></script>
+  <!--<script type="text/javascript" src="http://habrahabr.ru/js/1314886767/mootools-core-1.3.2-full-compat-yc.js"></script>//-->
+  
+	<script type="text/javascript" src="./Декартово дерево  Часть 2. Ценная информация в дереве и множественные операции с ней   Алгоритмы   Хабрахабр_files/system.js"></script>
+	<script type="text/javascript" src="./Декартово дерево  Часть 2. Ценная информация в дереве и множественные операции с ней   Алгоритмы   Хабрахабр_files/init.js"></script>
+	<script type="text/javascript" src="./Декартово дерево  Часть 2. Ценная информация в дереве и множественные операции с ней   Алгоритмы   Хабрахабр_files/common.js"></script>
+	<script type="text/javascript" src="./Декартово дерево  Часть 2. Ценная информация в дереве и множественные операции с ней   Алгоритмы   Хабрахабр_files/global.js"></script>
+	
+	<!--script type="text/javascript" src="http://habrahabr.ru/js/1314886767/old-stuff-v-1.js"></script-->
+	<script type="text/javascript" src="./Декартово дерево  Часть 2. Ценная информация в дереве и множественные операции с ней   Алгоритмы   Хабрахабр_files/all.js"></script>
+	
+		
+
+	<script type="text/javascript" src="./Декартово дерево  Часть 2. Ценная информация в дереве и множественные операции с ней   Алгоритмы   Хабрахабр_files/validation.js"></script>
+	<script type="text/javascript" src="./Декартово дерево  Часть 2. Ценная информация в дереве и множественные операции с ней   Алгоритмы   Хабрахабр_files/xmlhandler.js"></script>
+	<script type="text/javascript" src="./Декартово дерево  Часть 2. Ценная информация в дереве и множественные операции с ней   Алгоритмы   Хабрахабр_files/control.js"></script>
+	<script type="text/javascript" src="./Декартово дерево  Часть 2. Ценная информация в дереве и множественные операции с ней   Алгоритмы   Хабрахабр_files/favourites_add.js"></script>
+	<script type="text/javascript" src="./Декартово дерево  Часть 2. Ценная информация в дереве и множественные операции с ней   Алгоритмы   Хабрахабр_files/button.js"></script>
+	<script type="text/javascript" src="./Декартово дерево  Часть 2. Ценная информация в дереве и множественные операции с ней   Алгоритмы   Хабрахабр_files/form.js"></script>
+	<script type="text/javascript" src="./Декартово дерево  Часть 2. Ценная информация в дереве и множественные операции с ней   Алгоритмы   Хабрахабр_files/autosuggest.js"></script>
+	<script type="text/javascript" src="./Декартово дерево  Часть 2. Ценная информация в дереве и множественные операции с ней   Алгоритмы   Хабрахабр_files/highlight.js"></script>
+	
+	<script type="text/javascript">
+	/*<![CDATA[*/
+	var ya = document.createElement('script');
+		ya.src = 'http://an.yandex.ru/system/context.js';
+	/* ]]>*/
+	</script>
+	<script type="text/javascript">
+	/*<![CDATA[*/
+	var ga = document.createElement('script');
+		ga.setAttribute('async', 'true');
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	/* ]]>*/
+	</script>
+	
+	<script type="text/javascript">
+	/*<![CDATA[*/
+		var temp=temp||{};
+		window.temp=temp;
+		temp.base = (window.base_full_url = 'http://habrahabr.ru/');
+		temp.base_short = 'habrahabr.ru';
+		hljs.initHighlightingOnLoad();
+	/* ]]>*/
+	</script> 
+	
+	<script type="text/javascript" src="./Декартово дерево  Часть 2. Ценная информация в дереве и множественные операции с ней   Алгоритмы   Хабрахабр_files/commentForm.js"></script>
+	<script type="text/javascript" src="./Декартово дерево  Часть 2. Ценная информация в дереве и множественные операции с ней   Алгоритмы   Хабрахабр_files/voting.js"></script>
+	<script type="text/javascript" src="./Декартово дерево  Часть 2. Ценная информация в дереве и множественные операции с ней   Алгоритмы   Хабрахабр_files/swfobject.js"></script>
+	<script type="text/javascript" src="./Декартово дерево  Часть 2. Ценная информация в дереве и множественные операции с ней   Алгоритмы   Хабрахабр_files/postsHandler.js"></script>
+	<script type="text/javascript" src="./Декартово дерево  Часть 2. Ценная информация в дереве и множественные операции с ней   Алгоритмы   Хабрахабр_files/habraWYG.js"></script>
+	<script type="text/javascript" src="./Декартово дерево  Часть 2. Ценная информация в дереве и множественные операции с ней   Алгоритмы   Хабрахабр_files/friending.js"></script>
+	
+
+		
+<script async="true" src="./Декартово дерево  Часть 2. Ценная информация в дереве и множественные операции с ней   Алгоритмы   Хабрахабр_files/ga.js"></script><script type="text/javascript" src="chrome-extension://bfbmjmiodbnnpllbbbfblcplfjjepjdn/js/injected.js"></script></head><style type="text/css" style="display: none !important; ">/*This block of style rules is inserted by AdBlock*/#RadAd_Skyscraper,#bbccom_leaderboard,#center_banner,#footer_adcode,#hbBHeaderSpon,#hiddenHeaderSpon,#navbar_adcode,#rightAds,#rightcolumn_adcode,#top-advertising,#topMPU,#tracker_advertorial,.ad-now,.dfpad,.prWrap,[id^="ad_block"],[id^="adbrite"],[id^="dclkAds"],[id^="ew"][id$="_bannerDiv"],[id^="konaLayer"],[src*="sixsigmatraffic.com"],a.kLink span[id^="preLoadWrap"].preLoadWrap,a[href^="http://ad."][href*=".doubleclick.net/"],a[href^="http://adserver.adpredictive.com"],div#adxLeaderboard,div#dir_ads_site,div#FFN_Banner_Holder,div#FFN_imBox_Container,div#p360-format-box,div#rhs div#rhs_block table#mbEnd,div#rm_container,div#tads table[align="center"][width="100%"],div#tooltipbox[class^="itxt"],div[class^="dms_ad_IDS"],div[id^="adKontekst_"],div[id^="google_ads_div"],div[id^="kona_"][id$="_wrapper"],div[id^="sponsorads"],div[id^="y5_direct"],embed[flashvars*="AdID"],iframe.chitikaAdBlock,iframe[id^="dapIfM"],iframe[id^="etarget"][id$="banner"],iframe[name^="AdBrite"],iframe[name^="google_ads_"],img[src^="http://cdn.adnxs.com"],ispan#ab_pointer,object#flashad,object#ve_threesixty_swf[name="ve_threesixty_swf"],script[src="//pagead2.googleadservices.com/pagead/show_ads.js"] + ins > ins > iframe,script[src="http://pagead2.googlesyndication.com/pagead/show_ads.js"] + ins > ins > iframe,table[cellpadding="0"][width="100%"] > * > * > * > div[id^="tpa"],#A9AdsMiddleBoxTop,#A9AdsOutOfStockWidgetTop,#A9AdsServicesWidgetTop,#ADSLOT_1,#ADSLOT_2,#ADSLOT_3,#ADSLOT_4,#ADSLOT_SKYSCRAPER,#ADVERTISE_HERE_ROW,#AD_CONTROL_22,#AD_ROW,#AD_newsblock,#ADgoogle_newsblock,#ADsmallWrapper,#Ad1,#Ad160x600,#Ad2,#Ad300x250,#Ad3Left,#Ad3Right,#Ad3TextAd,#AdA,#AdArea,#AdBanner_F1,#AdBar,#AdBar1,#AdBox2,#AdC,#AdContainer,#AdContainerTop,#AdContentModule_F,#AdDetails_GoogleLinksBottom,#AdDetails_InsureWith,#AdE,#AdF,#AdFrame4,#AdG,#AdH,#AdHeader,#AdI,#AdJ,#AdLeaderboardBottom,#AdLeaderboardTop,#AdMiddle,#AdMobileLink,#AdPopUp,#AdRectangle,#AdSenseDiv,#AdServer,#AdShowcase_F1,#AdSky23,#AdSkyscraper,#AdSpacing,#AdSponsor_SF,#AdSubsectionShowcase_F1,#AdTargetControl1_iframe,#AdText,#AdTop,#AdTopLeader,#Ad_BelowContent,#Ad_Block,#Ad_Center1,#Ad_Right1,#Ad_RightBottom,#Ad_RightTop,#Ad_Top,#Adbanner,#Adrectangle,#Ads,#AdsContent,#AdsRight,#AdsWrap,#Ads_BA_CAD,#Ads_BA_CAD2,#Ads_BA_CAD_box,#Ads_BA_SKY,#Ads_CAD,#Ads_OV_BS,#Ads_Special,#AdvertMPU23b,#AdvertPanel,#AdvertiseFrame,#Advertisement,#Advertisements,#Advertorial,#Advertorials,#AdvertsBottom,#AdvertsBottomR,#BANNER_160x600,#BANNER_300x250,#BANNER_728x90,#BannerAd,#BannerAdvert,#BigBoxAd,#BodyAd,#BotAd,#Bottom468x60AD,#ButtonAd,#CompanyDetailsNarrowGoogleAdsPresentationControl,#CompanyDetailsWideGoogleAdsPresentationControl,#ContentAd,#ContentAd1,#ContentAd2,#ContentAdPlaceHolder1,#ContentAdPlaceHolder2,#ContentAdXXL,#ContentPolepositionAds_Result,#DartAd300x250,#DivAdEggHeadCafeTopBanner,#FIN_videoplayer_300x250ad,#FooterAd,#FooterAdContainer,#GoogleAd1,#GoogleAd2,#GoogleAd3,#GoogleAdsPlaceHolder,#GoogleAdsPresentationControl,#GoogleAdsense,#Google_Adsense_Main,#HEADERAD,#HOME_TOP_RIGHT_BOXAD,#HeaderAD,#HeaderAdsBlock,#HeaderAdsBlockFront,#HeaderBannerAdSpacer,#HeaderTextAd,#HeroAd,#HomeAd1,#HouseAd,#ID_Ad_Sky,#JobsearchResultsAds,#Journal_Ad_125,#Journal_Ad_300,#JuxtapozAds,#KH-contentAd,#LargeRectangleAd,#LeftAd,#LeftAd1,#LeftAdF1,#LeftAdF2,#LftAd,#LoungeAdsDiv,#LowerContentAd,#MainSponsoredLinks,#Nightly_adContainer,#NormalAdModule,#OpenXAds,#OverrideAdArea,#PREFOOTER_LEFT_BOXAD,#PREFOOTER_RIGHT_BOXAD,#PageLeaderAd,#RelevantAds,#RgtAd1,#RightAd,#RightBottom300x250AD,#RightNavTopAdSpot,#RightSponsoredAd,#SectionAd300-250,#SectionSponsorAd,#SideAdMpu,#SidebarAdContainer,#SkyAd,#SpecialAds,#SponsoredAd,#SponsoredLinks,#TL_footer_advertisement,#TOP_ADROW,#TOP_RIGHT_BOXAD,#Tadspacefoot,#Tadspacehead,#Tadspacemrec,#TextLinkAds,#ThreadAd,#Top468x60AD,#TopAd,#TopAdBox,#TopAdContainer,#TopAdDiv,#TopAdPos,#VM-MPU-adspace,#VM-footer-adspace,#VM-header-adspace,#VM-header-adwrap,#XEadLeaderboard,#XEadSkyscraper,#YahooAdParentContainer,#_ads,#abHeaderAdStreamer,#about_adsbottom,#abovepostads,#ad-120x600-sidebar,#ad-120x60Div,#ad-160x600,#ad-160x600-sidebar,#ad-250,#ad-250x300,#ad-300,#ad-300x250,#ad-300x250-sidebar,#ad-300x250Div,#ad-300x60-1,#ad-376x280,#ad-728,#ad-728x90,#ad-728x90-leaderboard-top,#ad-728x90-top0,#ad-ads,#ad-article,#ad-banner,#ad-banner-1,#ad-bigbox,#ad-billboard-bottom,#ad-block-125,#ad-bottom,#ad-bottom-wrapper,#ad-box,#ad-box-first,#ad-box-second,#ad-boxes,#ad-bs,#ad-buttons,#ad-colB-1,#ad-column,#ad-container,#ad-content,#ad-contentad,#ad-first-post,#ad-flex-first,#ad-footer,#ad-footprint-160x600,#ad-frame,#ad-front-footer,#ad-front-sponsoredlinks,#ad-fullbanner2,#ad-globalleaderboard,#ad-halfpage,#ad-header,#ad-header-728x90,#ad-horizontal-header,#ad-img,#ad-inner,#ad-label,#ad-leaderboard,#ad-leaderboard-bottom,#ad-leaderboard-container,#ad-leaderboard-spot,#ad-leaderboard-top,#ad-left,#ad-left-sidebar-ad-1,#ad-left-sidebar-ad-2,#ad-left-sidebar-ad-3,#ad-links-content,#ad-list-row,#ad-lrec,#ad-medium,#ad-medium-rectangle,#ad-medrec,#ad-middlethree,#ad-middletwo,#ad-module,#ad-mpu,#ad-mpu1-spot,#ad-mpu2,#ad-mpu2-spot,#ad-north,#ad-one,#ad-placard,#ad-placeholder,#ad-rectangle,#ad-right,#ad-right-sidebar-ad-1,#ad-right-sidebar-ad-2,#ad-righttop,#ad-row,#ad-side,#ad-side-text,#ad-sidebar,#ad-sky,#ad-skyscraper,#ad-slug-wrapper,#ad-small-banner,#ad-space,#ad-special,#ad-splash,#ad-sponsors,#ad-spot,#ad-squares,#ad-target,#ad-target-Leaderbord,#ad-teaser,#ad-text,#ad-top,#ad-top-banner,#ad-top-text-low,#ad-top-wrap,#ad-tower,#ad-trailerboard-spot,#ad-two,#ad-typ1,#ad-unit,#ad-west,#ad-wrap,#ad-wrap-right,#ad-wrapper,#ad-wrapper1,#ad-yahoo-simple,#ad-zone-1,#ad-zone-2,#ad-zone-inline,#ad01,#ad02,#ad1006,#ad11,#ad125BL,#ad125BR,#ad125TL,#ad125TR,#ad125x125,#ad160x600,#ad160x600right,#ad1Sp,#ad2,#ad2Sp,#ad3,#ad300,#ad300-250,#ad300X250,#ad300_x_250,#ad300x100Middle,#ad300x150,#ad300x250,#ad300x250Module,#ad300x60,#ad300x600,#ad300x600_callout,#ad336,#ad336x280,#ad375x85,#ad4,#ad468,#ad468x60,#ad468x60_top,#ad526x250,#ad600,#ad7,#ad728,#ad728Mid,#ad728Top,#ad728Wrapper,#ad728top,#ad728x90,#ad728x90_1,#ad90,#adBadges,#adBanner,#adBanner10,#adBanner120x600,#adBanner160x600,#adBanner2,#adBanner3,#adBanner336x280,#adBanner4,#adBanner728,#adBanner9,#adBannerTable,#adBannerTop,#adBar,#adBelt,#adBlock125,#adBlockTop,#adBlocks,#adBottbanner,#adBox,#adBox11,#adBox16,#adBox350,#adBox390,#adCirc300X200,#adCirc_620_100,#adCol,#adColumn,#adCompanionSubstitute,#adComponentWrapper,#adContainer,#adContainer_1,#adContainer_2,#adContainer_3,#adDiv,#adDiv300,#adDiv728,#adFiller,#adFps,#adFtofrs,#adGallery,#adGoogleText,#adGroup1,#adHeader,#adHeaderTop,#adIsland,#adL,#adLB,#adLabel,#adLayer,#adLeader,#adLeaderTop,#adLeaderboard,#adMPU,#adMediumRectangle,#adMiddle0Frontpage,#adMiniPremiere,#adMonster1,#adOuter,#adP,#adPlaceHolderRight,#adPlacer,#adPosOne,#adRight,#adRight2,#adSPLITCOLUMNTOPRIGHT,#adSenseModule,#adSenseWrapper,#adServer_marginal,#adSidebar,#adSidebarSq,#adSky,#adSkyscraper,#adSlider,#adSpace,#adSpace0,#adSpace1,#adSpace10,#adSpace11,#adSpace12,#adSpace13,#adSpace14,#adSpace15,#adSpace16,#adSpace17,#adSpace18,#adSpace19,#adSpace2,#adSpace20,#adSpace21,#adSpace22,#adSpace23,#adSpace24,#adSpace25,#adSpace3,#adSpace300_ifrMain,#adSpace4,#adSpace5,#adSpace6,#adSpace7,#adSpace8,#adSpace9,#adSpace_footer,#adSpace_right,#adSpace_top,#adSpacer,#adSpecial,#adSplotlightEm,#adSpot-Leader,#adSpot-banner,#adSpot-island,#adSpot-mrec1,#adSpot-sponsoredlinks,#adSpot-textbox1,#adSpot-widestrip,#adSpotAdvertorial,#adSpotIsland,#adSpotSponsoredLinks,#adSquare,#adStaticA,#adStrip,#adSuperAd,#adSuperPremiere,#adSuperSkyscraper,#adSuperbanner,#adTableCell,#adTag1,#adTag2,#adText,#adTextCustom,#adTextLink,#adText_container,#adTile,#adTop,#adTopContent,#adTopbanner,#adTopboxright,#adTower,#adUnit,#adWrapper,#adZoneTop,#ad_1,#ad_130x250_inhouse,#ad_160x160,#ad_160x600,#ad_190x90,#ad_2,#ad_3,#ad_300,#ad_300_250,#ad_300_250_1,#ad_300a,#ad_300b,#ad_300c,#ad_300x250,#ad_300x250_content_column,#ad_300x250m,#ad_300x90,#ad_4,#ad_468_60,#ad_468x60,#ad_5,#ad_728_foot,#ad_728x90,#ad_728x90_container,#ad_940,#ad_984,#ad_A,#ad_B,#ad_Banner,#ad_C,#ad_C2,#ad_D,#ad_E,#ad_F,#ad_G,#ad_H,#ad_I,#ad_J,#ad_K,#ad_L,#ad_M,#ad_N,#ad_O,#ad_P,#ad_YieldManager-300x250,#ad_YieldManager-728x90,#ad_after_navbar,#ad_anchor,#ad_area,#ad_banner,#ad_banner_top,#ad_banners,#ad_bar,#ad_bellow_post,#ad_bigsize_wrapper,#ad_block_1,#ad_block_2,#ad_bottom,#ad_box,#ad_box_colspan,#ad_box_top,#ad_branding,#ad_bs_area,#ad_buttons,#ad_center_monster,#ad_circ300x250,#ad_cna2,#ad_cont,#ad_container,#ad_container_marginal,#ad_container_side,#ad_container_sidebar,#ad_container_top,#ad_content_top,#ad_content_wrap,#ad_feature,#ad_firstpost,#ad_footer,#ad_front_three,#ad_fullbanner,#ad_gallery,#ad_global_header,#ad_h3,#ad_haha_1,#ad_haha_4,#ad_halfpage,#ad_head,#ad_header,#ad_holder,#ad_horizontal,#ad_horseshoe_left,#ad_horseshoe_right,#ad_horseshoe_spacer,#ad_horseshoe_top,#ad_hotpots,#ad_in_arti,#ad_island,#ad_label,#ad_large_rectangular,#ad_lastpost,#ad_layer2,#ad_leader,#ad_leaderBoard,#ad_leaderboard,#ad_leaderboard728x90,#ad_leaderboard_top,#ad_left,#ad_lnk,#ad_lrec,#ad_lwr_square,#ad_main,#ad_medium_rectangle,#ad_medium_rectangular,#ad_mediumrectangle,#ad_menu_header,#ad_message,#ad_middle,#ad_most_pop_234x60_req_wrapper,#ad_mpu,#ad_mpu300x250,#ad_mpuav,#ad_mrcontent,#ad_newsletter,#ad_overlay,#ad_play_300,#ad_rect,#ad_rect_body,#ad_rect_bottom,#ad_rectangle,#ad_rectangle_medium,#ad_related_links_div,#ad_related_links_div_program,#ad_replace_div_0,#ad_replace_div_1,#ad_report_leaderboard,#ad_report_rectangle,#ad_results,#ad_right,#ad_right_main,#ad_ros_tower,#ad_rr_1,#ad_sec,#ad_sec_div,#ad_sgd,#ad_sidebar,#ad_sidebar1,#ad_sidebar2,#ad_sidebar3,#ad_sky,#ad_skyscraper,#ad_skyscraper160x600,#ad_skyscraper_text,#ad_slot_leaderboard,#ad_slot_livesky,#ad_slot_sky_top,#ad_space,#ad_square,#ad_ss,#ad_table,#ad_term_bottom_place,#ad_text:not(textarea),#ad_thread_first_post_content,#ad_top,#ad_top_holder,#ad_tp_banner_1,#ad_tp_banner_2,#ad_txt,#ad_unit,#ad_vertical,#ad_wide,#ad_wide_box,#ad_widget,#ad_window,#ad_wrap,#ad_wrapper,#adaptvcompanion,#adbForum,#adbanner,#adbar,#adbig,#adbnr,#adboard,#adbody,#adbottom,#adbox,#adbox1,#adbox2,#adbutton,#adclear,#adcode,#adcode1,#adcode2,#adcode3,#adcode4,#adcolumnwrapper,#adcontainer,#adcontainer1,#adcontainerRight,#adcontainsm,#adcontent,#adcontent1,#adcontrolPushSite,#add_ciao2,#addbottomleft,#addiv-bottom,#addiv-top,#adfooter,#adfooter_728x90,#adframe:not(frameset),#adhead,#adhead_g,#adheader,#adhome,#adiframe1_iframe,#adiframe2_iframe,#adiframe3_iframe,#adimg,#adition_content_ad,#adlabel,#adlabelFooter,#adlayerContainer,#adlayerad,#adleaderboard,#adleaderboard_flex,#adleaderboardb,#adleaderboardb_flex,#adleft,#adlinks,#adlinkws,#adlrec,#admanager_leaderboard,#admid,#admiddle3center,#admiddle3left,#adposition,#adposition-C,#adposition-FPMM,#adposition1,#adposition2,#adposition3,#adposition4,#adrectangle,#adrectanglea,#adrectanglea_flex,#adrectangleb,#adrectangleb_flex,#adrig,#adright,#adright2,#adrighthome,#ads-468,#ads-area,#ads-block,#ads-bot,#ads-bottom,#ads-col,#ads-dell,#ads-horizontal,#ads-indextext,#ads-leaderboard1,#ads-lrec,#ads-menu,#ads-middle,#ads-prices,#ads-rhs,#ads-right,#ads-sponsored-boxes,#ads-top,#ads-vers7,#ads-wrapper,#ads120,#ads160left,#ads2,#ads300,#ads300-250,#ads300Bottom,#ads300Top,#ads315,#ads336x280,#ads7,#ads728bottom,#ads728top,#ads790,#adsDisplay,#adsID,#ads_160,#ads_300,#ads_728,#ads_banner,#ads_belowforumlist,#ads_belownav,#ads_bottom,#ads_bottom_inner,#ads_bottom_outer,#ads_box,#ads_button,#ads_catDiv,#ads_container,#ads_footer,#ads_fullsize,#ads_header,#ads_html1,#ads_html2,#ads_inner,#ads_lb,#ads_medrect,#ads_notice,#ads_right,#ads_right_sidebar,#ads_sidebar_roadblock,#ads_space,#ads_text,#ads_top,#ads_watch_top_square,#ads_zone27,#adsbottom,#adsbox,#adsbox-left,#adsbox-right,#adscolumn,#adsd_contentad_r1,#adsd_contentad_r2,#adsd_contentad_r3,#adsd_topbanner,#adsd_txt_sky,#adsdiv,#adsense,#adsense-2,#adsense-header,#adsense-tag,#adsense-text,#adsense03,#adsense04,#adsense05,#adsense1,#adsenseLeft,#adsenseOne,#adsenseWrap,#adsense_article_left,#adsense_box,#adsense_box_video,#adsense_inline,#adsense_leaderboard,#adsense_overlay,#adsense_placeholder_2,#adsenseheader,#adsensetopplay,#adsensewidget-3,#adserv,#adshometop,#adsimage,#adskinlink,#adsky,#adskyscraper,#adslider,#adslot,#adsmiddle,#adsonar,#adspace,#adspace-1,#adspace-300x250,#adspace300x250,#adspaceBox,#adspaceBox300,#adspace_header,#adspace_leaderboard,#adspacer,#adsponsorImg,#adspot,#adspot-1,#adspot-149x170,#adspot-1x4,#adspot-2,#adspot-295x60,#adspot-2a,#adspot-2b,#adspot-300x110-pos-1,#adspot-300x125,#adspot-300x250-pos-1,#adspot-300x250-pos-2,#adspot-468x60-pos-2,#adspot-a,#adspot300x250,#adspot_220x90,#adspot_300x250,#adspot_468x60,#adspot_728x90,#adsquare,#adsright,#adst,#adstop,#adt,#adtab,#adtag_right_side,#adtagfooter,#adtagheader,#adtagrightcol,#adtaily-widget-light,#adtech_googleslot_03c,#adtech_takeover,#adtext,#adtop,#adtophp,#adtxt,#adv-masthead,#adv_google_300,#adv_google_728,#adv_top_banner_wrapper,#adver1,#adver2,#adver3,#adver4,#adver5,#adver6,#adver7,#advert-1,#advert-120,#advert-boomer,#advert-display,#advert-header,#advert-leaderboard,#advert-links-bottom,#advert-skyscraper,#advert-top,#advert1,#advertBanner,#advertContainer,#advertDB,#advertRight,#advertSection,#advert_125x125,#advert_250x250,#advert_box,#advert_home01,#advert_leaderboard,#advert_lrec_format,#advert_mid,#advert_mpu,#advert_mpu_1,#advert_right_skyscraper,#advert_sky,#advertbox,#advertbox2,#advertbox3,#advertbox4,#adverthome,#advertise,#advertise-here-sidebar,#advertise-now,#advertise1,#advertiseHere,#advertisement160x600,#advertisement728x90,#advertisementLigatus { display:none !important; } #advertisementPrio2,#advertisementRight,#advertisementRightcolumn0,#advertisementRightcolumn1,#advertisementsarticle,#advertiser-container,#advertiserLinks,#advertisers,#advertising,#advertising-banner,#advertising-caption,#advertising-container,#advertising-control,#advertising-skyscraper,#advertising-top,#advertising2,#advertisingModule160x600,#advertisingModule728x90,#advertisingTopWrapper,#advertising_btm,#advertising_contentad,#advertising_horiz_cont,#advertisment,#advertismentElementInUniversalbox,#advertorial,#advertorial_red_listblock,#adverts,#adverts-top-container,#adverts-top-left,#adverts-top-middle,#adverts-top-right,#advertsingle,#advertspace,#advt,#adwhitepaperwidget,#adwin_rec,#adwith,#adwords-4-container,#adwrapper,#adxBigAd,#adxMiddle5,#adxSponLink,#adxSponLinkA,#adxtop,#adz,#adzbanner,#adzerk,#adzerk1,#adzone,#adzoneBANNER,#adzoneheader,#affinityBannerAd,#after-content-ads,#after-header-ad-left,#after-header-ad-right,#after-header-ads,#agi-ad300x250,#agi-ad300x250overlay,#agi-sponsored,#alert_ads,#anchorAd,#annoying_ad,#ap_adframe,#ap_cu_overlay,#ap_cu_wrapper,#apiBackgroundAd,#apiTopAdWrap,#apmNADiv,#apolload,#araHealthSponsorAd,#area-adcenter,#area1ads,#article-ad,#article-ad-container,#article-box-ad,#articleAdReplacement,#articleLeftAdColumn,#articleSideAd,#article_ad,#article_ad_container,#article_box_ad,#articlead1,#articlead2,#asinglead,#atlasAdDivGame,#awds-nt1-ad,#babAdTop,#banner-300x250,#banner-ad,#banner-ad-container,#banner-ads,#banner250x250,#banner300x250,#banner468x60,#banner728x90,#bannerAd,#bannerAdTop,#bannerAdWrapper,#bannerAd_ctr,#banner_300_250,#banner_ad,#banner_ad_footer,#banner_ad_module,#banner_admicro,#banner_ads,#banner_content_ad,#banner_topad,#bannerad,#bannerad2,#baseAdvertising,#basket-adContainer,#bbccom_mpu,#bbo_ad1,#bg-footer-ads,#bg-footer-ads2,#bg_YieldManager-160x600,#bg_YieldManager-300x250,#bg_YieldManager-728x90,#bigAd,#bigBoxAd,#bigad300outer,#bigadbox,#bigadframe,#bigadspot,#billboard_ad,#block-ad_cube-1,#block-openads-0,#block-openads-1,#block-openads-2,#block-openads-3,#block-openads-4,#block-openads-5,#block-thewrap_ads_250x300-0,#block_advert,#blog-ad,#blog_ad_content,#blog_ad_opa,#blog_ad_right,#blog_ad_top,#blox-big-ad,#blox-big-ad-bottom,#blox-big-ad-top,#blox-halfpage-ad,#blox-tile-ad,#blox-tower-ad,#body_728_ad,#book-ad,#botad,#bott_ad2,#bott_ad2_300,#bottom-ad,#bottom-ad-container,#bottom-ad-wrapper,#bottom-ads,#bottomAd,#bottomAdCCBucket,#bottomAdContainer,#bottomAdSense,#bottomAdSenseDiv,#bottomAds,#bottomContentAd,#bottomRightAd,#bottomRightAdSpace,#bottom_ad,#bottom_ad_area,#bottom_ad_unit,#bottom_ads,#bottom_banner_ad,#bottom_overture,#bottom_sponsor_ads,#bottom_sponsored_links,#bottom_text_ad,#bottomad,#bottomads,#bottomadsense,#bottomadwrapper,#bottomleaderboardad,#box-ad-section,#box-content-ad,#box-googleadsense-1,#box-googleadsense-r,#box1ad,#boxAd300,#boxAdContainer,#boxAdvert,#box_ad,#box_advertisment,#box_mod_googleadsense,#boxad1,#boxad2,#boxad3,#boxad4,#boxad5,#bpAd,#bps-header-ad-container,#btnAds,#btnads,#btr_horiz_ad,#burn_header_ad,#button-ads-horizontal,#button-ads-vertical,#buttonAdWrapper1,#buttonAdWrapper2,#buttonAds,#buttonAdsContainer,#button_ad_container,#button_ad_wrap,#button_ads,#buttonad,#buy-sell-ads,#c4ad-Middle1,#c_ad_sb,#c_ad_sky,#caAdLarger,#catad,#category-ad,#cellAd,#channel_ad,#channel_ads,#ciHomeRHSAdslot,#circ_ad,#closeable-ad,#cmn_ad_box,#cmn_toolbar_ad,#cnnAboveFoldBelowAd,#cnnRR336ad,#cnnSponsoredPods,#cnnTopAd,#cnnVPAd,#col3_advertising,#colAd,#colRightAd,#collapseobj_adsection,#column4-google-ads,#comments-ad-container,#commercial_ads,#common_right_ad_wrapper,#common_right_lower_ad_wrapper,#common_right_lower_adspace,#common_right_lower_player_ad_wrapper,#common_right_lower_player_adspace,#common_right_player_ad_wrapper,#common_right_player_adspace,#common_right_right_adspace,#common_top_adspace,#comp_AdsLeaderboardTop,#companion-ad,#companionAdDiv,#companionad,#container-righttopads,#container-topleftads,#containerLocalAds,#containerLocalAdsInner,#containerMrecAd,#containerSqAd,#content-ad-header,#content-header-ad,#content-left-ad,#content-right-ad,#contentAd,#contentBoxad,#contentTopAds2,#content_ad,#content_ad_square,#content_ad_top,#content_ads_content,#content_box_300body_sponsoredoffers,#content_box_adright300_google,#content_mpu,#contentad,#contentad_imtext,#contentad_right,#contentads,#contentinlineAd,#contents_post_ad,#contextad,#contextual-ads,#contextual-ads-block,#contextualad,#coverADS,#coverads,#ctl00_Adspace_Top_Height,#ctl00_BottomAd,#ctl00_ContentMain_BanManAd468_BanManAd,#ctl00_ContentPlaceHolder1_blockAdd_divAdvert,#ctl00_ContentRightColumn_RightColumn_Ad1_BanManAd,#ctl00_ContentRightColumn_RightColumn_Ad2_BanManAd,#ctl00_ContentRightColumn_RightColumn_PremiumAd1_ucBanMan_BanManAd,#ctl00_LHTowerAd,#ctl00_LeftHandAd,#ctl00_MasterHolder_IBanner_adHolder,#ctl00_TopAd,#ctl00_TowerAd,#ctl00_VBanner_adHolder,#ctl00__Content__RepeaterReplies_ctl03__AdReply,#ctl00_abot_bb,#ctl00_adFooter,#ctl00_advert_LargeMPU_div_AdPlaceHolder,#ctl00_atop_bt,#ctl00_cphMain_hlAd1,#ctl00_cphMain_hlAd2,#ctl00_cphMain_hlAd3,#ctl00_ctl00_MainPlaceHolder_itvAdSkyscraper,#ctl00_ctl00_ctl00_Main_Main_PlaceHolderGoogleTopBanner_MPTopBannerAd,#ctl00_ctl00_ctl00_Main_Main_SideBar_MPSideAd,#ctl00_dlTilesAds,#ctl00_m_skinTracker_m_adLBL,#ctl00_phCrackerMain_ucAffiliateAdvertDisplayMiddle_pnlAffiliateAdvert,#ctl00_phCrackerMain_ucAffiliateAdvertDisplayRight_pnlAffiliateAdvert,#ctl00_topAd,#ctrlsponsored,#cubeAd,#cube_ads,#cube_ads_inner,#cubead,#cubead-2,#currencies-sponsored-by,#dAdverts,#dItemBox_ads,#dart_160x600,#dc-display-right-ad-1,#dcadSpot-Leader,#dcadSpot-LeaderFooter,#dcol-sponsored,#defer-adright,#detail_page_vid_topads,#div-gpt-ad-1,#div-gpt-ad-2,#div-gpt-ad-3,#div-gpt-ad-4,#divAd,#divAdBox,#divAdWrapper,#divAdvertisement,#divBottomad1,#divBottomad2,#divDoubleAd,#divLeftAd12,#divLeftRecAd,#divMenuAds,#divWNAdHeader,#divWrapper_Ad,#div_ad_leaderboard,#div_video_ads,#dlads,#dni-header-ad,#dnn_adLeaderBoard2008,#dnn_ad_banner,#download_ads,#dp_ads1,#ds-mpu,#ds_ad_north_leaderboard,#editorsmpu,#em_ad_superbanner,#embedded-ad,#evotopTen_advert,#ex-ligatus,#exads,#extra-search-ads,#fb_adbox,#fb_rightadpanel,#featAds,#featuread,#featured-advertisements,#featuredAdContainer2,#featuredAds,#featured_ad_links,#feed_links_ad_container,#file_sponsored_link,#first-300-ad,#first-adlayer,#first_ad_unit,#firstad,#fl_hdrAd,#flash_ads_1,#flexiad,#floatingAd,#floating_ad_container,#foot-ad-1,#footad,#footer-ad,#footer-ads,#footer-advert,#footer-adverts,#footer-sponsored,#footerAd,#footerAdDiv,#footerAds,#footerAdvertisement,#footerAdverts,#footer_ad,#footer_ad_01,#footer_ad_block,#footer_ad_container,#footer_ad_modules,#footer_ads,#footer_adspace,#footer_text_ad,#footerad,#footerads,#footeradsbox,#forum_top_ad,#four_ads,#fpad1,#fpad2,#fpv_companionad,#fr_ad_center,#frame_admain,#frnAdSky,#frnBannerAd,#frnContentAd,#front_advert,#front_mpu,#ft-ad,#ft-ad-1,#ft-ad-container,#ft_mpu,#fullsizebanner_468x60,#fusionad,#fw-advertisement,#g_ad,#g_adsense,#ga_300x250,#gad,#gad2,#gad3,#gad5,#galleries-tower-ad,#gallery-ad,#gallery-ad-m0,#gallery-random-ad,#gallery_ads,#game-info-ad,#gamead,#gameads,#gasense,#gglads,#global_header_ad_area,#gm-ad-lrec,#gmi-ResourcePageAd,#gmi-ResourcePageLowerAd,#goad1,#goads,#gooadtop,#google-ad,#google-ad-art,#google-ad-table-right,#google-ad-tower,#google-ads,#google-ads-bottom,#google-ads-header,#google-ads-left-side,#google-adsense-mpusize,#googleAd,#googleAdArea,#googleAds,#googleAdsSml,#googleAdsense,#googleAdsenseBanner,#googleAdsenseBannerBlog,#googleAdwordsModule,#googleAfcContainer,#googleSearchAds,#googleShoppingAdsRight,#googleShoppingAdsTop,#googleSubAds,#google_ad,#google_ad_container,#google_ad_inline,#google_ad_test,#google_ads,#google_ads_aCol,#google_ads_frame1,#google_ads_frame1_anchor,#google_ads_frame2,#google_ads_frame2_anchor,#google_ads_frame3,#google_ads_frame3_anchor,#google_ads_test,#google_ads_top,#google_adsense_home_468x60_1,#googlead,#googlead-sidebar-middle,#googlead-sidebar-top,#googlead2,#googleadbox,#googleads,#googleads_mpu_injection,#googleadsense,#googlesponsor,#gpt-ad-halfpage,#gpt-ad-rectangle1,#gpt-ad-rectangle2,#gpt-ad-skyscraper,#gpt-ad-story_rectangle3,#grid_ad,#gsyadrectangleload,#gsyadrightload,#gsyadtop,#gsyadtopload,#gtopadvts,#half-page-ad,#halfPageAd,#halfe-page-ad-box,#hd-ads,#hd-banner-ad,#hdtv_ad_ss,#head-ad,#head-ad-1,#headAd,#head_ad,#head_advert,#headad,#header-ad,#header-ad-left,#header-ad-rectangle-container,#header-ad-right,#header-ad2010,#header-ads,#header-adspace,#header-advert,#header-advertisement,#header-advertising,#header-adverts,#headerAd,#headerAdBackground,#headerAdContainer,#headerAdWrap,#headerAds,#headerAdsWrapper,#headerTopAd,#header_ad,#header_ad_728_90,#header_ad_container,#header_adcode,#header_ads,#header_advertisement_top,#header_leaderboard_ad_container,#header_publicidad,#headerad,#headeradbox,#headerads,#headeradsbox,#headeradvertholder,#headeradwrap,#headline_ad,#headlinesAdBlock,#hiddenadAC,#hideads,#hl-sponsored-results,#hly_ad_side_bar_tower_left,#hly_inner_page_google_ad,#home-advert-module,#home-rectangle-ad,#home-top-ads,#homeMPU,#homeTopRightAd,#home_ad,#home_bottom_ad,#home_contentad,#home_feature_ad,#home_mpu,#home_spensoredlinks,#homead,#homepage-ad,#homepageAdsTop,#homepageFooterAd,#homepage_right_ad,#homepage_right_ad_container,#homepage_top_ads,#hometop_234x60ad,#hor_ad,#horizad,#horizontal-banner-ad,#horizontal_ad,#horizontal_ad_top,#horizontalads,#hot-deals-ad,#houseAd,#hp-header-ad,#hp-mpu,#hp-right-ad,#hp-store-ad,#hpV2_300x250Ad,#hpV2_googAds,#hp_ad300x250,#ibt_local_ad728,#icePage_SearchLinks_AdRightDiv,#icePage_SearchLinks_DownloadToolbarAdRightDiv,#icePage_SearchResults_ads0_SponsoredLink,#icePage_SearchResults_ads1_SponsoredLink,#icePage_SearchResults_ads2_SponsoredLink,#icePage_SearchResults_ads3_SponsoredLink,#icePage_SearchResults_ads4_SponsoredLink,#idSponsoredresultend,#idSponsoredresultstart,#imu_ad_module,#in_serp_ad,#inadspace,#indexad,#inline-story-ad,#inlineAd,#inlinead,#inlinegoogleads,#inlist-ad-block,#inner-advert-row,#inner-top-ads,#innerpage-ad,#inside-page-ad,#insider_ad_wrapper,#instoryad,#instoryadtext,#instoryadwrap,#int-ad,#interstitial_ad_wrapper,#iqadtile8,#islandAd,#j_ad,#ji_medShowAdBox,#jmp-ad-buttons,#joead,#joead2,#ka_adRightSkyscraperWide,#kaufDA-widget,#kdz_ad1,#kdz_ad2,#keyadvertcontainer,#landing-adserver,#lapho-top-ad-1,#largead,#lateAd,#layerAds_layerDiv,#layerTLDADSERV,#layer_ad_content,#layer_ad_main,#layerad,#leader-board-ad,#leaderAd,#leaderAdContainer,#leader_ad,#leader_board_ad,#leaderad,#leaderad_section,#leaderboard-ad,#leaderboard-bottom-ad,#leaderboard_ad,#left-ad-1,#left-ad-2,#left-ad-col,#left-ad-skin,#left-bottom-ad,#left-lower-adverts,#left-lower-adverts-container,#leftAdContainer,#leftAd_rdr,#leftAdvert,#leftSectionAd300-100,#left_ad,#left_adspace,#leftad,#leftads,#leftcolAd,#lg-banner-ad,#ligatus,#linkAds,#linkads,#live-ad,#logoAd,#longAdSpace,#lowerAdvertisementImg,#lowerads,#lowerthirdad,#lowertop-adverts,#lowertop-adverts-container,#lpAdPanel,#lrecad,#lsadvert-left_menu_1,#lsadvert-left_menu_2,#lsadvert-top,#mBannerAd,#main-ad,#main-ad160x600,#main-ad160x600-img,#main-ad728x90,#main-advert1,#main-advert2,#main-advert3,#main-bottom-ad,#main-tj-ad,#mainAd,#mainAdUnit,#mainAdvert,#main_ad,#main_rec_ad,#main_top_ad_container,#marketing-promo,#mastAd,#mastAdvert,#mastad,#mastercardAd,#masthead_ad,#masthead_topad,#medRecAd,#media_ad,#mediaplayer_adburner,#mediumAdvertisement,#medrectad,#menuAds,#mi_story_assets_ad,#mid-ad300x250,#mid-table-ad,#midRightTextAds,#mid_ad_div,#mid_ad_title,#mid_mpu,#midadd,#midadspace,#middle-ad,#middle_ad,#middle_body_advertising,#middlead,#middleads,#midrect_ad,#midstrip_ad,#mini-ad,#mochila-column-right-ad-300x250,#mochila-column-right-ad-300x250-1,#module-google_ads,#module_ad,#module_box_ad,#module_sky_scraper,#monsterAd,#moogleAd,#moreads,#most_popular_ad,#motionAd,#mpu,#mpu-advert,#mpu-cont,#mpu300250,#mpuAd,#mpuDiv,#mpuSlot,#mpuWrapper,#mpuWrapperAd,#mpu_banner,#mpu_firstpost,#mpu_holder,#mpu_text_ad,#mpuad,#mpubox,#mr_banner_topad,#mrecAdContainer,#msAds,#ms_ad,#msad,#multiLinkAdContainer,#multi_ad,#my-ads,#myads_HeaderButton,#n_sponsor_ads,#namecom_ad_hosting_main,#narrow_ad_unit,#natadad300x250,#national_microlink_ads,#nationalad,#navi_banner_ad_780,#nba160PromoAd,#nba300Ad,#nbaGI300ad,#nbaHouseAnd600Ad,#nbaLeft600Ad,#nbaMidAds,#nbaVid300Ad,#nbcAd300x250,#new_topad,#newads,#news_advertorial_content,#news_advertorial_top,#ng_rtcol_ad,#noresults_ad_container,#noresultsads,#northad,#northbanner-advert,#northbanner-advert-container,#ns_ad1,#ns_ad2,#ns_ad3,#oanda_ads,#onespot-ads,#online_ad,#ovadsense,#p-googleadsense,#page-header-ad,#page-top-ad,#pageAds,#pageAdsDiv,#pageBannerAd,#page_ad,#page_content_top_ad,#pagelet_adbox,#pagelet_netego_ads,#pagelet_search_ads2,#panelAd,#pb_report_ad,#pcworldAdBottom,#pcworldAdTop,#pinball_ad,#player-below-advert,#player_ad,#player_ads,#pmad-in1,#pod-ad-video-page,#populate_ad_bottom,#populate_ad_left,#portlet-advertisement-left,#portlet-advertisement-right,#post-promo-ad,#post5_adbox,#post_ad,#premium_ad,#priceGrabberAd,#prime-ad-space,#print_ads,#printads,#product-adsense,#promo-ad,#promoAds,#ps-vertical-ads,#pub468x60,#publicidad,#pushdown_ad,#qm-ad-big-box,#qm-ad-sky,#qm-dvdad,#quigo_ad,#r1SoftAd,#rail_ad1,#rail_ad2,#realEstateAds,#rectAd,#rect_ad,#rectangle-ad,#rectangle_ad,#refine-300-ad,#region-node-advert,#region-top-ad,#relocation_ad_container,#rh-ad-container,#rh_tower_ad,#rhapsodyAd,#rhs_ads,#rhsadvert,#right-ad,#right-ad-col,#right-ad-skin,#right-ad-title,#right-ad1,#right-ads-3,#right-advert,#right-box-ad,#right-featured-ad,#right-mpu-1-ad-container,#right-uppder-adverts,#right-uppder-adverts-container,#rightAd,#rightAd300x250,#rightAd300x250Lower,#rightAdBar,#rightAdColumn,#rightAd_rdr,#rightAdsDiv,#rightColAd,#rightColumnMpuAd,#rightColumnSkyAd,#right_ad,#right_ad_wrapper,#right_ads,#right_advertisement,#right_advertising,#right_column_ad_container,#right_column_ads,#right_column_adverts,#right_column_internal_ad_container,#right_column_top_ad_unit,#rightad,#rightadContainer,#rightads,#rightadvertbar-doubleclickads,#rightbar-ad,#rightcolhouseads,#rightcolumn_300x250ad,#rightgoogleads,#rightinfoad,#rightside-ads,#rightside_ad,#righttop-adverts,#righttop-adverts-container,#rm_ad_text,#ros_ad,#rotatingads,#row2AdContainer,#rprightHeaderAd,#rr_MSads,#rt-ad,#rt-ad-top,#rt-ad468,#rtMod_ad,#rtmod_ad,#sAdsBox,#sb-ad-sq,#sb_ad_links,#sb_advert,#search-google-ads,#search-sponsored-links,#search-sponsored-links-top,#searchAdSenseBox,#searchAdSenseBoxAd,#searchAdSkyscraperBox,#search_ads,#search_result_ad,#sec_adspace,#second-adlayer,#secondBoxAdContainer,#secondrowads,#sect-ad-300x100,#sect-ad-300x250-2,#section-ad-1-728,#section-ad-300-250,#section-ad-4-160,#section-blog-ad,#section-container-ddc_ads,#section_advertisements,#section_advertorial_feature,#servfail-ads,#sew-ad1,#shoppingads,#show-ad,#showAd,#showad,#side-ad,#side-ad-container,#side-ads,#sideAd,#sideAd1,#sideAd2,#sideAdSub,#sideBarAd,#side_ad,#side_ad_wrapper,#side_ads_by_google,#side_sky_ad,#sidead,#sideads,#sideadtop-to,#sidebar-125x125-ads,#sidebar-125x125-ads-below-index,#sidebar-ad,#sidebar-ad-boxes,#sidebar-ad-space,#sidebar-ad-wrap,#sidebar-ad3,#sidebar-ads,#sidebar2ads,#sidebar_ad,#sidebar_ad_widget,#sidebar_ads,#sidebar_ads_180,#sidebar_sponsoredresult_body,#sidebar_txt_ad_links,#sidebarad,#sidebaradpane,#sidebarads,#sidebaradver_advertistxt,#sideline-ad,#single-mpu,#singlead,#site-ad-container,#site-leaderboard-ads,#site_top_ad,#sitead,#sky-ad,#skyAd,#skyAdContainer,#skyScrapperAd,#skyWrapperAds,#sky_ad,#sky_advert,#skyads,#skyadwrap,#skyline_ad,#skyscrapeAd,#skyscraper-ad,#skyscraperAd,#skyscraperAdContainer,#skyscraper_ad,#skyscraper_advert,#skyscraperad,#slide_ad,#sliderAdHolder { display:none !important; } #slideshow_ad_300x250,#sm-banner-ad,#small_ad,#small_ad_banners_vertical,#small_ads,#smallerAd,#some-ads,#some-more-ads,#specialAd_one,#specialAd_two,#specialadvertisingreport_container,#specials_ads,#speeds_ads,#speeds_ads_fstitem,#speedtest_mrec_ad,#sphereAd,#sponlink,#sponlinks,#sponsAds,#sponsLinks,#sponseredlinks,#sponsorAd1,#sponsorAd2,#sponsorAdDiv,#sponsorLinks,#sponsorTextLink,#sponsor_banderole,#sponsor_deals,#sponsored,#sponsored-ads,#sponsored-features,#sponsored-links,#sponsored-listings,#sponsored-resources,#sponsored1,#sponsoredBox1,#sponsoredBox2,#sponsoredLinks,#sponsoredList,#sponsoredResults,#sponsoredResultsWide,#sponsoredSiteMainline,#sponsoredSiteSidebar,#sponsored_ads_v4,#sponsored_container,#sponsored_content,#sponsored_game_row_listing,#sponsored_head,#sponsored_links,#sponsored_v12,#sponsoredads,#sponsoredlinks,#sponsoredlinks_cntr,#sponsoredlinkslabel,#sponsoredresults_top,#sponsoredwellcontainerbottom,#sponsoredwellcontainertop,#sponsorlink,#spotlightAds,#spotlightad,#sqAd,#squareAd,#squareAdSpace,#squareAds,#square_ad,#start_middle_container_advertisment,#sticky-ad,#stickyBottomAd,#story-90-728-area,#story-ad-a,#story-ad-b,#story-leaderboard-ad,#story-sponsoredlinks,#storyAd,#storyAdWrap,#storyad2,#subpage-ad-right,#subpage-ad-top,#swads,#synch-ad,#systemad_background,#tabAdvertising,#takeoverad,#tblAd,#tbl_googlead,#tcwAd,#td-GblHdrAds,#template_ad_leaderboard,#tertiary_advertising,#test_adunit_160_article,#text-ad,#text-ads,#text-link-ads,#textAd,#textAds,#text_ad,#text_ads,#text_advert,#textad,#textad3,#textad_block,#the-last-ad-standing,#thefooterad,#themis-ads,#tile-ad,#tmglBannerAd,#tmp2_promo_ad,#toolbarSlideUpAd,#top-ad,#top-ad-container,#top-ad-menu,#top-ads,#top-ads-tabs,#top-advertisement,#top-banner-ad,#top-search-ad-wrapper,#topAd,#topAd728x90,#topAdBanner,#topAdBox,#topAdContainer,#topAdSenseDiv,#topAdcontainer,#topAds,#topAdsContainer,#topAdvert,#topBannerAd,#topBannerAdContainer,#topContentAdTeaser,#topNavLeaderboardAdHolder,#topOverallAdArea,#topRightBlockAdSense,#topSponsoredLinks,#top_ad,#top_ad_area,#top_ad_banner,#top_ad_game,#top_ad_unit,#top_ad_wrapper,#top_ad_zone,#top_ads,#top_advertise,#top_advertising,#top_rectangle_ad,#top_right_ad,#top_wide_ad,#topad,#topad1,#topad2,#topad_left,#topad_right,#topadbar,#topadblock,#topaddwide,#topads,#topadsense,#topadspace,#topadwrap,#topadzone,#topbanner_ad,#topbannerad,#topbar-ad,#topcustomad,#topleaderboardad,#topnav-ad-shell,#topnavad,#toprightAdvert,#toprightad,#topsponsored,#toptextad,#tour300Ad,#tourSponsoredLinksContainer,#towerad,#ts-ad_module,#ttp_ad_slot1,#ttp_ad_slot2,#twogamesAd,#txfPageMediaAdvertVideo,#txt_link_ads,#txtads,#undergameAd,#upperAdvertisementImg,#upperMpu,#upperad,#urban_contentad_1,#urban_contentad_2,#urban_contentad_article,#v_ad,#vert-ads,#vert_ad,#vert_ad_placeholder,#vertical_ad,#vertical_ads,#videoAd,#videoAdvert,#video_ads_overdiv,#video_advert2,#video_advert3,#video_cnv_ad,#video_overlay_ad,#videoadlogo,#viewads,#viewportAds,#viewvid_ad300x250,#wXcds12-ad,#wall_advert,#wallpaper-ad-link,#wallpaperAd_left,#wallpaperAd_right,#walltopad,#weblink_ads_container,#welcomeAdsContainer,#welcome_ad_mrec,#welcome_advertisement,#wf_ContentAd,#wf_FrontSingleAd,#wf_SingleAd,#wf_bottomContentAd,#wgtAd,#whatsnews_top_ad,#whitepaper-ad,#whoisRightAdContainer,#wide_ad_unit_top,#wideskyscraper_160x600_left,#wideskyscraper_160x600_right,#widget_Adverts,#widget_advertisement,#widgetwidget_adserve2,#wrapAdRight,#wrapAdTop,#wrapperAdsTopLeft,#wrapperAdsTopRight,#xColAds,#y-ad-units,#y708-ad-expedia,#y708-ad-lrec,#y708-ad-partners,#y708-ad-ysm,#y708-advertorial-marketplace,#yahoo-ads,#yahoo-sponsors,#yahooSponsored,#yahoo_ads,#yahoo_ads_2010,#yahoo_text_ad,#yahooad-tbl,#yan-sponsored,#yatadsky,#ybf-ads,#yfi_fp_ad_mort,#yfi_fp_ad_nns,#yfi_pf_ad_mort,#ygrp-sponsored-links,#ymap_adbanner,#yn-gmy-ad-lrec,#yreSponsoredLinks,#ysm_ad_iframe,#zoneAdserverMrec,#zoneAdserverSuper,.ADBAR,.ADPod,.AD_ALBUM_ITEMLIST,.AD_MOVIE_ITEM,.AD_MOVIE_ITEMLIST,.AD_MOVIE_ITEMROW,.Ad-300x100,.Ad-Container-976x166,.Ad-Header,.Ad-MPU,.Ad-Wrapper-300x100,.Ad1,.Ad120x600,.Ad160x600,.Ad160x600left,.Ad160x600right,.Ad2,.Ad247x90,.Ad300x,.Ad300x250,.Ad300x250L,.Ad728x90,.AdBorder,.AdBox,.AdBox7,.AdContainerBox308,.AdContainerModule,.AdHeader,.AdHere,.AdInfo,.AdInline,.AdMedium,.AdPlaceHolder,.AdProS728x90Container,.AdProduct,.AdRingtone,.AdSense,.AdSenseLeft,.AdSlot,.AdSpace,.AdTextSmallFont,.AdTitle,.AdUnit,.AdUnit300,.Ad_C,.Ad_D_Wrapper,.Ad_E_Wrapper,.Ad_Right,.Ads,.AdsBottom,.AdsBoxBottom,.AdsBoxSection,.AdsBoxTop,.AdsLinks1,.AdsLinks2,.AdsRec,.Advert,.Advert300x250,.AdvertMidPage,.AdvertiseWithUs,.Advertisement,.AdvertisementTextTag,.Advman_Widget,.ArticleAd,.ArticleInlineAd,.BCA_Advertisement,.BannerAd,.BigBoxAd,.BlockAd,.BlueTxtAdvert,.BottomAdContainer,.BottomAffiliate,.BoxAd,.CG_adkit_leaderboard,.CG_details_ad_dropzone,.CWReviewsProdInfoAd,.ComAread,.CommentAd,.ContentAd,.ContentAds,.DAWRadvertisement,.DeptAd,.DisplayAd,.FT_Ad,.FeaturedAdIndexAd,.FlatAds,.GOOGLE_AD,.GoogleAd,.GoogleAdSenseBottomModule,.GoogleAdSenseRightModule,.HPG_Ad_B,.HPNewAdsBannerDiv,.HPRoundedAd,.HomeContentAd,.IABAdSpace,.InArticleAd,.IndexRightAd,.LazyLoadAd,.LeftAd,.LeftButtonAdSlot,.LeftTowerAd,.M2Advertisement,.MD_adZone,.MOS-ad-hack,.MPU,.MPUHolder,.MPUTitleWrapperClass,.MREC_ads,.MiddleAd,.MiddleAdContainer,.MiddleAdvert,.NewsAds,.OAS,.OpaqueAdBanner,.OpenXad,.PU_DoubleClickAdsContent,.Post5ad,.Post8ad,.Post9ad,.RBboxAd,.RW_ad300,.RectangleAd,.RelatedAds,.Right300x250AD,.RightAd1,.RightAdvertiseArea,.RightAdvertisement,.RightGoogleAFC,.RightRailAd,.RightRailTop300x250Ad,.RightSponsoredAdTitle,.RightTowerAd,.STR_AdBlock,.SectionSponsor,.SideAdCol,.SidebarAd,.SidebarAdvert,.SitesGoogleAdsModule,.SkyAdContainer,.SponsoredAdTitle,.SponsoredContent,.SponsoredLinkItemTD,.SponsoredLinks,.SponsoredLinksGrayBox,.SponsoredLinksModule,.SponsoredLinksPadding,.SponsoredLinksPanel,.Sponsored_link,.SquareAd,.StandardAdLeft,.StandardAdRight,.TRU-onsite-ads-leaderboard,.TextAd,.TheEagleGoogleAdSense300x250,.TopAd,.TopAdContainer,.TopAdL,.TopAdR,.TopBannerAd,.UIWashFrame_SidebarAds,.UnderAd,.VerticalAd,.Video-Ad,.VideoAd,.WidgetAdvertiser,.a160x600,.a728x90,.ad-120x60,.ad-120x600,.ad-160,.ad-160x600,.ad-160x600x1,.ad-160x600x2,.ad-160x600x3,.ad-250,.ad-300,.ad-300-block,.ad-300-blog,.ad-300x100,.ad-300x250,.ad-300x250-first,.ad-300x250-right0,.ad-300x600,.ad-350,.ad-355x75,.ad-600,.ad-635x40,.ad-728,.ad-728x90,.ad-728x90-1,.ad-728x90-top0,.ad-728x90_forum,.ad-90x600,.ad-above-header,.ad-adlink-bottom,.ad-adlink-side,.ad-area,.ad-background,.ad-banner,.ad-banner-smaller,.ad-bigsize,.ad-block,.ad-block-square,.ad-blog2biz,.ad-body,.ad-bottom,.ad-box,.ad-break,.ad-btn,.ad-btn-heading,.ad-button,.ad-cell,.ad-column,.ad-container,.ad-container-300x250,.ad-container-728x90,.ad-container-994x282,.ad-content,.ad-context,.ad-disclaimer,.ad-display,.ad-div,.ad-enabled,.ad-feedback,.ad-filler,.ad-flex,.ad-footer,.ad-footer-leaderboard,.ad-forum,.ad-google,.ad-graphic-large,.ad-gray,.ad-hdr,.ad-head,.ad-header,.ad-heading,.ad-holder,.ad-homeleaderboard,.ad-img,.ad-in-post,.ad-index-main,.ad-inline,.ad-island,.ad-label,.ad-leaderboard,.ad-links,.ad-lrec,.ad-medium,.ad-medium-two,.ad-mpl,.ad-mpu,.ad-msn,.ad-note,.ad-notice,.ad-other,.ad-permalink,.ad-place-active,.ad-placeholder,.ad-postText,.ad-poster,.ad-priority,.ad-rect,.ad-rectangle,.ad-rectangle-text,.ad-related,.ad-rh,.ad-ri,.ad-right,.ad-right-header,.ad-right-txt,.ad-row,.ad-section,.ad-show-label,.ad-side,.ad-sidebar,.ad-sidebar-outer,.ad-sidebar300,.ad-sky,.ad-skyscr,.ad-skyscraper,.ad-slot,.ad-slot-234-60,.ad-slot-300-250,.ad-slot-728-90,.ad-source,.ad-space,.ad-space-mpu-box,.ad-space-topbanner,.ad-spot,.ad-square,.ad-square300,.ad-squares,.ad-statement,.ad-story-inject,.ad-tabs,.ad-text,.ad-text-links,.ad-tile,.ad-title,.ad-top,.ad-top-left,.ad-unit,.ad-unit-300,.ad-unit-300-wrapper,.ad-unit-anchor,.ad-unit-top,.ad-vert,.ad-vertical-container,.ad-vtu,.ad-widget-list,.ad-with-us,.ad-wrap,.ad-wrapper,.ad-zone,.ad-zone-s-q-l,.ad.super,.ad0,.ad08,.ad08sky,.ad1,.ad10,.ad100,.ad120,.ad120x240backgroundGray,.ad120x600,.ad125,.ad140,.ad160,.ad160600,.ad160x600,.ad160x600GrayBorder,.ad18,.ad19,.ad2,.ad21,.ad230,.ad250,.ad250c,.ad3,.ad300,.ad300250,.ad300_250,.ad300x100,.ad300x250,.ad300x250-hp-features,.ad300x250Module,.ad300x250Top,.ad300x250_container,.ad300x250box,.ad300x50-right,.ad300x600,.ad310,.ad336x280,.ad343x290,.ad4,.ad400right,.ad450,.ad468,.ad468_60,.ad468x60,.ad540x90,.ad6,.ad600,.ad620x70,.ad626X35,.ad7,.ad728,.ad728_90,.ad728x90,.ad728x90_container,.ad8,.ad90x780,.adAgate,.adArea674x60,.adBanner,.adBanner300x250,.adBanner728x90,.adBannerTyp1,.adBannerTypSortableList,.adBannerTypW300,.adBar,.adBgBottom,.adBgMId,.adBgTop,.adBlock,.adBottomLink,.adBottomboxright,.adBox,.adBox1,.adBox230X96,.adBox728X90,.adBoxBody,.adBoxBorder,.adBoxContainer,.adBoxContent,.adBoxInBignews,.adBoxSidebar,.adBoxSingle,.adBwrap,.adCMRight,.adCell,.adColumn,.adCont,.adContTop,.adContainer,.adContour,.adCreative,.adCube,.adDiv,.adElement,.adFender3,.adFrame,.adFtr,.adFullWidthMiddle,.adGoogle,.adHeader,.adHeadline,.adHolder,.adHome300x250,.adHorisontal,.adInNews,.adIsland,.adLabel,.adLeader,.adLeaderForum,.adLeaderboard,.adLeft,.adLoaded,.adLocal,.adMPU,.adMarker,.adMastheadLeft,.adMastheadRight,.adMegaBoard,.adMinisLR,.adMkt2Colw,.adModule,.adModuleAd,.adMpu,.adNewsChannel,.adNoOutline,.adNotice,.adNoticeOut,.adObj,.adPageBorderL,.adPageBorderR,.adPanel,.adPod,.adRect,.adResult,.adRight,.adSKY,.adSelfServiceAdvertiseLink,.adServer,.adSky,.adSky600,.adSkyscaper,.adSkyscraperHolder,.adSlot,.adSpBelow,.adSpace,.adSpacer,.adSplash,.adSponsor,.adSpot,.adSpot-brought,.adSpot-searchAd,.adSpot-textBox,.adSpot-twin,.adSpotIsland,.adSquare,.adSubColPod,.adSummary,.adSuperboard,.adSupertower,.adTD,.adTab,.adTag,.adText,.adTileWrap,.adTiler,.adTitle,.adTopLink,.adTopboxright,.adTout,.adTxt,.adUnit,.adUnitHorz,.adUnitVert,.adUnitVert_noImage,.adWebBoard,.adWidget,.adWithTab,.adWord,.adWrap,.adWrapper,.ad_0,.ad_1,.ad_120x90,.ad_125,.ad_130x90,.ad_160,.ad_160x600,.ad_2,.ad_200,.ad_200x200,.ad_250x250,.ad_250x250_w,.ad_3,.ad_300,.ad_300_250,.ad_300x250,.ad_300x250_box_right,.ad_336,.ad_336x280,.ad_350x100,.ad_350x250,.ad_400x200,.ad_468,.ad_468x60,.ad_600,.ad_728,.ad_728_90b,.ad_728x90,.ad_925x90,.ad_Left,.ad_Right,.ad_ad_300,.ad_amazon,.ad_banner,.ad_banner_border,.ad_bar,.ad_bg,.ad_bigbox,.ad_biz,.ad_block,.ad_block_338,.ad_body,.ad_border,.ad_botbanner,.ad_bottom,.ad_bottom_leaderboard,.ad_bottom_left,.ad_box,.ad_box2,.ad_box_ad,.ad_box_div,.ad_callout,.ad_caption,.ad_column,.ad_column_box,.ad_column_hl,.ad_contain,.ad_container,.ad_content,.ad_content_wide,.ad_contents,.ad_descriptor,.ad_disclaimer,.ad_eyebrow,.ad_footer,.ad_frame,.ad_framed,.ad_front_promo,.ad_head,.ad_header,.ad_heading,.ad_headline,.ad_holder,.ad_hpm,.ad_info_block,.ad_inline,.ad_island,.ad_jnaught,.ad_label,.ad_launchpad,.ad_leader,.ad_leaderboard,.ad_left,.ad_line,.ad_link,.ad_links,.ad_linkunit,.ad_loc,.ad_lrec,.ad_main,.ad_medrec,.ad_medrect,.ad_middle,.ad_mod,.ad_mpu,.ad_mr,.ad_mrec,.ad_mrec_title_article,.ad_mrect,.ad_news,.ad_note,.ad_notice,.ad_one,.ad_p360,.ad_partner,.ad_partners,.ad_plus,.ad_post,.ad_power,.ad_promo,.ad_rec,.ad_rectangle,.ad_right,.ad_right_col,.ad_row,.ad_row_bottom_item,.ad_side,.ad_sidebar,.ad_skyscraper,.ad_slug,.ad_slug_table,.ad_space,.ad_space_300_250,.ad_spacer,.ad_sponsor,.ad_sponsoredsection,.ad_spot_b,.ad_spot_c,.ad_square_r,.ad_square_top,.ad_sub,.ad_tag_middle,.ad_text,.ad_text_w,.ad_title,.ad_top,.ad_top_leaderboard,.ad_top_left,.ad_topright,.ad_tower,.ad_unit,.ad_unit_rail,.ad_url,.ad_warning,.ad_wid300,.ad_wide,.ad_wrap,.ad_wrapper,.ad_wrapper_fixed,.ad_wrapper_top,.ad_wrp,.ad_zone,.adarea,.adarea-long,.adbanner,.adbannerbox,.adbannerright,.adbar,.adboard,.adborder,.adbot,.adbottom,.adbottomright,.adbox-outer,.adbox-wrapper,.adbox_300x600,.adbox_366x280,.adbox_468X60,.adbox_bottom,.adbox_br,.adboxclass,.adbreak,.adbug,.adbutton,.adbuttons,.adcode,.adcol1,.adcol2,.adcolumn,.adcolumn_wrapper,.adcont,.adcopy,.add_300x250,.addiv,.adenquire,.adfieldbg,.adfoot,.adfootbox,.adframe,.adhead,.adhead_h,.adhead_h_wide,.adheader,.adheader100,.adhi,.adhint,.adholder,.adhoriz,.adi,.adiframe,.adinfo,.adinside,.adintro,.adits,.adjlink,.adkicker,.adkit,.adkit-advert,.adkit-lb-footer,.adlabel-horz,.adlabel-vert,.adlabelleft,.adleader,.adleaderboard,.adleft1,.adline,.adlink,.adlinks,.adlist,.adlnklst,.admarker,.admediumred,.admedrec,.admessage,.admodule,.admpu,.admpu-small,.adnation-banner,.adnotice,.adops,.adp-AdPrefix,.adpadding,.adpane,.adpic,.adprice,.adproxy,.adrec,.adright,.adroot,.adrotate_widget,.adrow,.adrow-post,.adrow1box1,.adrow1box3,.adrow1box4 { display:none !important; } .adrule,.ads-125,.ads-300,.ads-728x90-wrap,.ads-banner,.ads-below-content,.ads-categories-bsa,.ads-custom,.ads-favicon,.ads-item,.ads-links-general,.ads-mpu,.ads-outer,.ads-profile,.ads-right,.ads-section,.ads-sidebar,.ads-sky,.ads-small,.ads-sponsors,.ads-stripe,.ads-text,.ads-top,.ads-wide,.ads-widget,.ads-widget-partner-gallery,.ads03,.ads160,.ads1_250,.ads2,.ads24Block,.ads3,.ads300,.ads460,.ads460_home,.ads468,.ads728,.ads728x90,.adsArea,.adsBelowHeadingNormal,.adsBlock,.adsBottom,.adsBox,.adsCell,.adsCont,.adsDiv,.adsFull,.adsImages,.adsInsideResults_v3,.adsMPU,.adsMiddle,.adsRight,.adsTextHouse,.adsTop,.adsTower2,.adsTowerWrap,.adsWithUs,.ads_125_square,.ads_180,.ads_300,.ads_300x250,.ads_320,.ads_337x280,.ads_728x90,.ads_big,.ads_big-half,.ads_box,.ads_box_headline,.ads_brace,.ads_catDiv,.ads_container,.ads_disc_anchor,.ads_disc_leader,.ads_disc_lwr_square,.ads_disc_skyscraper,.ads_disc_square,.ads_div,.ads_footer,.ads_header,.ads_holder,.ads_horizontal,.ads_leaderboard,.ads_lr_wrapper,.ads_medrect,.ads_mpu,.ads_outer,.ads_rectangle,.ads_remove,.ads_right,.ads_rightbar_top,.ads_sc_bl_i,.ads_sc_tb,.ads_sc_tl_i,.ads_show_if,.ads_side,.ads_sidebar,.ads_singlepost,.ads_spacer,.ads_takeover,.ads_title,.ads_top,.ads_top_promo,.ads_tr,.ads_verticalSpace,.ads_vtlLink,.ads_widesky,.ads_wrapperads_top,.adsafp,.adsbg300,.adsblockvert,.adsborder,.adsbottom,.adsbox,.adsboxitem,.adsbyyahoo,.adsc,.adscaleAdvert,.adsclick,.adscontainer,.adscreen,.adsd_shift100,.adsection_a2,.adsection_c2,.adsense-468,.adsense-ad,.adsense-category,.adsense-category-bottom,.adsense-googleAds,.adsense-heading,.adsense-overlay,.adsense-post,.adsense-right,.adsense-title,.adsense3,.adsense300,.adsenseAds,.adsenseBlock,.adsenseContainer,.adsenseGreenBox,.adsenseList,.adsense_bdc_v2,.adsense_mpu,.adsensebig,.adsenseblock,.adsenseblock_bottom,.adsenseblock_top,.adsenselr,.adsensem_widget,.adsensesq,.adsenvelope,.adset,.adsforums,.adsghori,.adsgvert,.adshome,.adside,.adsidebox,.adsider,.adsingle,.adsleft,.adsleftblock,.adslink,.adslogan,.adsmalltext,.adsmessage,.adsnippet_widget,.adsp,.adspace,.adspace-MR,.adspace-widget,.adspace180,.adspace_bottom,.adspace_buysell,.adspace_rotate,.adspace_skyscraper,.adspacer,.adspot,.adspot728x90,.adstextpad,.adstitle,.adstop,.adstory,.adstrip,.adtab,.adtable,.adtag,.adtech,.adtext,.adtext_gray,.adtext_horizontal,.adtext_onwhite,.adtext_vertical,.adtile,.adtips,.adtips1,.adtop,.adtravel,.adtxt,.adtxtlinks,.adunit,.adv-mpu,.adver,.adverTag,.adver_cont_below,.advert-300-side,.advert-300x100-side,.advert-728x90,.advert-article-bottom,.advert-bannerad,.advert-bg-250,.advert-box,.advert-btm,.advert-head,.advert-horizontal,.advert-iab-300-250,.advert-iab-468-60,.advert-mpu,.advert-skyscraper,.advert-text,.advert-title,.advert-txt,.advert120,.advert300,.advert300x250,.advert300x300,.advert300x440,.advert4,.advert5,.advert8,.advertColumn,.advertCont,.advertContainer,.advertContent,.advertHeadline,.advertIslandWrapper,.advertRight,.advertSuperBanner,.advertText,.advertTitleSky,.advert_336,.advert_468x60,.advert_box,.advert_cont,.advert_container,.advert_djad,.advert_google_content,.advert_google_title,.advert_home_300,.advert_label,.advert_leaderboard,.advert_list,.advert_note,.advert_surr,.advert_top,.advertheader-red,.advertise,.advertise-here,.advertise-homestrip,.advertise-horz,.advertise-inquiry,.advertise-leaderboard,.advertise-list,.advertise-top,.advertise-vert,.advertiseContainer,.advertiseText,.advertise_ads,.advertise_here,.advertise_link,.advertise_link_sidebar,.advertisement,.advertisement-728x90,.advertisement-block,.advertisement-sidebar,.advertisement-space,.advertisement-sponsor,.advertisement-swimlane,.advertisement-text,.advertisement-top,.advertisement468,.advertisementBox,.advertisementColumnGroup,.advertisementContainer,.advertisementHeader,.advertisementLabel,.advertisementPanel,.advertisementText,.advertisement_300x250,.advertisement_btm,.advertisement_caption,.advertisement_g,.advertisement_header,.advertisement_horizontal,.advertisement_top,.advertiser,.advertiser-links,.advertisespace_div,.advertising-banner,.advertising-header,.advertising-leaderboard,.advertising-local-links,.advertising2,.advertisingTable,.advertising_block,.advertising_images,.advertisment,.advertisment_bar,.advertisment_caption,.advertisment_two,.advertize,.advertize_here,.advertorial,.advertorial-2,.advertorial-promo-box,.advertorial_red,.advertorialtitle,.adverts,.adverts-125,.adverts_RHS,.advt,.advt-banner-3,.advt-block,.advt-sec,.advt300,.advt720,.adwhitespace,.adwordListings,.adwords,.adwordsHeader,.adwrap,.adwrapper,.adwrapper-lrec,.adwrapper948,.adzone-footer,.adzone-sidebar,.affiliate-link,.affiliate-sidebar,.affiliateAdvertText,.affinityAdHeader,.afsAdvertising,.after_ad,.agi-adsaleslinks,.alb-content-ad,.alignads,.alt_ad,.anchorAd,.another_text_ad,.answer_ad_content,.aolSponsoredLinks,.aopsadvert,.apiAdMarkerAbove,.apiAds,.app_advertising_skyscraper,.archive-ads,.art_ads,.article-ad-box,.article-ads,.article-content-adwrap,.articleAd,.articleAd300x250,.articleAds,.articleAdsL,.articleEmbeddedAdBox,.article_ad,.article_adbox,.article_mpu_box,.article_page_ads_bottom,.articleads,.aseadn,.aux-ad-widget-1,.aux-ad-widget-2,.b-astro-sponsored-links_horizontal,.b-astro-sponsored-links_vertical,.b_ads_cont,.b_ads_top,.banmanad,.banner-468x60,.banner-ad,.banner-ads,.banner-advert,.banner-adverts,.banner-buysellads,.banner160x600,.banner300by250,.banner300x100,.banner300x250,.banner468,.banner468by60,.banner728x90,.bannerAd,.bannerAdWrapper300x250,.bannerAdWrapper730x86,.bannerAdvert,.bannerRightAd,.banner_300x250,.banner_728x90,.banner_ad,.banner_ad_footer,.banner_ad_leaderboard,.bannerad,.bannerad-125tower,.bannerad-468x60,.barkerAd,.base-ad-mpu,.base_ad,.base_printer_widgets_AdBreak,.bg-ad-link,.bgnavad,.big-ads,.bigAd,.big_ad,.big_ads,.bigad,.bigad2,.bigbox_ad,.bigboxad,.billboard300x250,.billboard_ad,.biz-ad,.biz-ads,.biz-adtext,.blk_advert,.block-ad,.block-ad300,.block-admanager,.block-ads-bottom,.block-ads-top,.block-adsense,.block-adsense-managed,.block-adspace-full,.block-deca_advertising,.block-google_admanager,.block-openads,.block-openadstream,.block-openx,.block-thirdage-ads,.block-wtg_adtech,.blockAd,.blockAds,.block_ad,.block_ad_sb_text,.block_ad_sponsored_links,.block_ad_sponsored_links-wrapper,.block_ad_sponsored_links_localized,.blockad,.blocked-ads,.blog-ad-leader-inner,.blog-ads-container,.blogAd,.blogAdvertisement,.blogArtAd,.blogBigAd,.blog_ad,.blogads,.blox3featuredAd,.body_ad,.body_sponsoredresults_bottom,.body_sponsoredresults_middle,.body_sponsoredresults_top,.bodyads,.bodyads2,.bookseller-header-advt,.bottom-ad,.bottom-ad-fr,.bottomAd,.bottomAds,.bottom_ad,.bottom_ad_block,.bottom_ads,.bottom_adsense,.bottomad,.bottomads,.bottomadvert,.bottombarad,.bottomrightrailAd,.bottomvidad,.box-ad,.box-ad-grey,.box-ads,.box-adsense,.boxAd,.boxAds,.boxAdsInclude,.box_ad,.box_ad_container,.box_ad_content,.box_ad_spacer,.box_ad_wrap,.box_ads,.box_advertising,.box_advertisment_62_border,.box_content_ad,.box_content_ads,.box_textads,.boxad,.boxads,.boxyads,.bps-ad-wrapper,.bps-advertisement,.bps-advertisement-inline-ads,.br-ad,.breakad_container,.brokerad,.bsa_ads,.btm_ad,.btn-ad,.bullet-sponsored-links,.bullet-sponsored-links-gray,.burstContentAdIndex,.busrep_poll_and_ad_container,.buttonAd,.buttonAds,.button_ads,.button_advert,.buttonadbox,.buttonads,.bx_ad,.bx_ad_right,.cA-adStrap,.cColumn-TextAdsBox,.c_ligatus_nxn,.calloutAd,.carbonad,.carbonad-tag,.care2_adspace,.catalog_ads,.category-ad,.categorySponsorAd,.category__big_game_container_body_games_advertising,.cb-ad-banner,.cb-ad-container,.cb_ads,.cb_navigation_ad,.cbstv_ad_label,.cbzadvert,.cbzadvert_block,.cdAdTitle,.cdmainlineSearchAdParent,.cdsidebarSearchAdParent,.centerAd,.center_ad,.centerad,.centered-ad,.chitikaAdCopy,.cinemabotad,.classifiedAdThree,.clearerad,.cmAdFind,.cm_ads,.cms-Advert,.cnbc_badge_banner_ad_area,.cnbc_banner_ad_area,.cnn160AdFooter,.cnnAd,.cnnMosaic160Container,.cnnStoreAd,.cnnStoryElementBoxAd,.cnnWCAdBox,.cnnWireAdLtgBox,.cnn_728adbin,.cnn_adcntr300x100,.cnn_adcntr728x90,.cnn_adspc336cntr,.cnn_adtitle,.cntrad,.column2-ad,.columnBoxAd,.columnRightAdvert,.com-ad-server,.comment-advertisement,.comment_ad_box,.common_advertisement_title,.communityAd,.conTSponsored,.conductor_ad,.confirm_ad_left,.confirm_ad_right,.confirm_leader_ad,.consoleAd,.container-adwords,.containerSqAd,.container_serendipity_plugin_google_adsense,.content-ad,.content-ads,.content-advert,.contentAd,.contentAdFoot,.contentAdsWrapper,.content_ad,.content_ad_728,.content_adsense,.content_adsq,.content_tagsAdTech,.contentad,.contentad300x250,.contentad_right_col,.contentadcontainer,.contentadfloatl,.contentadleft,.contentads,.contentadstartpage,.contenttextad,.contest_ad,.cp_ad,.cpmstarHeadline,.cpmstarText,.create_ad,.cs-mpu,.cscTextAd,.cse_ads,.cspAd,.ct_ad,.ctnAdSkyscraper,.ctnAdSquare300,.cube-ad,.cubeAd,.cube_ads,.currency_ad,.custom_ads,.cwAdvert,.cxAdvertisement,.darla_ad,.dart-ad,.dartAdImage,.dart_ad,.dart_tag,.dartadvert,.dartiframe,.dc-ad,.dcAdvertHeader,.deckAd,.deckads,.detail-ads,.detailMpu,.detail_ad,.detail_top_advert,.dfrads,.displayAdSlot,.divAd,.divAdright,.divad1,.divad2,.divad3,.divads,.divider_ad,.dlSponsoredLinks,.dmco_advert_iabrighttitle,.downloadAds,.download_ad,.downloadad,.dsq_ad,.dualAds,.dynamic-ads,.dynamic_ad,.e-ad,.ec-ads,.ec-ads-remove-if-empty,.em-ad,.em_ads_box_dynamic_remove,.embed-ad,.embeddedAd,.entry-body-ad,.entry-injected-ad,.entry_sidebar_ads,.entryad,.ez-clientAd,.f_Ads,.feature_ad,.featuredAds,.featuredadvertising,.fireplaceadleft,.fireplaceadright,.fireplaceadtop,.firstpost_advert_container,.flagads,.flash-advertisement,.flash_ad,.flash_advert,.flashad,.flexiad,.flipbook_v2_sponsor_ad,.floatad,.floated_right_ad,.floatingAds,.fm-badge-ad,.fns_td_wrap,.fold-ads,.footad,.footer-ad,.footerAd,.footerAdModule,.footerAds,.footerAdslot,.footerAdverts,.footerTextAd,.footer_ad,.footer_ad336,.footer_ads,.footer_block_ad,.footer_bottomad,.footer_line_ad,.footer_text_ad,.footerad,.forumtopad,.freedownload_ads,.frn_adbox,.frn_cont_adbox,.frontads,.ft-ad,.ftdAdBar,.ftdContentAd,.full_ad_box,.fullbannerad,.g3rtn-ad-site,.gAdRows,.gAdSky,.gAdvertising,.g_ggl_ad,.ga-ads,.ga-textads-bottom,.ga-textads-top,.gaTeaserAds,.gaTeaserAdsBox,.gads,.gads_cb,.gads_container,.gallery_ad,.gam_ad_slot,.gameAd,.gamesPage_ad_content,.gbl_advertisement,.gen_side_ad,.gglAds,.global_banner_ad,.googad,.googads,.google-ad,.google-ad-container,.google-ads,.google-ads-boxout,.google-ads-slim,.google-right-ad,.google-sponsored-ads,.google-sponsored-link,.google468,.google468_60,.googleAd,.googleAd-content,.googleAd-list,.googleAd300x250_wrapper,.googleAdBox,.googleAdSense,.googleAdSenseModule,.googleAd_body,.googleAds,.googleAds_article_page_above_comments,.googleAdsense,.googleContentAds,.googleProfileAd,.googleSearchAd_content,.googleSearchAd_sidebar,.google_ad,.google_ad_wide,.google_add_container,.google_ads,.google_ads_bom_title,.google_ads_content,.google_adsense_footer,.googlead,.googleaddiv,.googleaddiv2,.googleads,.googleads_300x250,.googleads_title,.googleadsense,.googleafc,.googley_ads,.gpAdBox,.gpAds,.gradientAd,.grey-ad-line,.group_ad,.gsAd,.gsfAd,.gt_ad,.gt_ad_300x250,.gt_ad_728x90,.gt_adlabel,.gutter-ad-left,.gutter-ad-right,.gx_ad,.h-ad-728x90-bottom,.h_Ads,.h_ad,.half-ad,.half_ad_box,.hcf-ad-rectangle,.hcf-cms-ad,.hd_advert,.hdr-ads,.header-ad,.header-advert,.header-taxonomy-image-sponsor,.headerAd,.headerAdCode,.headerAds,.headerAdvert,.headerTextAd,.header_ad,.header_ad_center,.header_ad_div,.header_ads,.header_advertisement,.header_advertisment,.headerad,.headerad-720,.hi5-ad,.highlightsAd,.hm_advertisment,.hn-ads,.home-ad-links,.homeAd,.homeAd1,.homeAd2,.homeAdBoxA,.homeAdBoxBetweenBlocks,.homeAdBoxInBignews,.homeAdSection,.homeMediumAdGroup,.home_ad_bottom,.home_advertisement,.home_mrec_ad,.homead,.homepage-ad,.homepage300ad,.homepageFlexAdOuter,.homepageMPU,.homepage_middle_right_ad,.homepageinline_adverts,.hor_ad,.horiz_adspace,.horizontalAd,.horizontal_ad,.horizontal_ads,.horizontaltextadbox,.horizsponsoredlinks,.hortad,.houseAd1,.houseAdsStyle,.housead,.hoverad,.hp-col4-ads,.hp2-adtag,.hp_ad_cont,.hp_ad_text,.hp_t_ad,.hp_w_ad,.hpa-ad1,.html-advertisement,.ic-ads,.ico-adv,.idMultiAd,.image-advertisement,.imageAd,.imageads,.imgad,.in-page-ad,.in-story-ads,.in-story-text-ad,.inStoryAd-news2,.indEntrySquareAd,.indie-sidead,.indy_googleads,.inhousead,.inline-ad,.inline-mpu,.inline-mpu-left,.inlineSideAd,.inline_ad,.inline_ad_title,.inlinead,.inlineadsense,.inlineadtitle,.inlist-ad,.inlistAd,.inner-advt-banner-3,.innerAds,.innerad,.inpostad,.insert_advertisement,.insertad,.insideStoryAd,.inteliusAd_image,.interest-based-ad,.internalAdsContainer,.iprom-ad,.is24-adplace,.isAd,.islandAd,.islandAdvert,.islandad,.itemAdvertise,.jimdoAdDisclaimer,.jp-advertisment-promotional,.js-advert,.kdads-empty,.kdads-link,.kw_advert,.kw_advert_pair,.l_ad_sub,.l_banner.ads_show_if,.label-ad,.labelads,.largeRecAdNewsContainerRight,.largeRectangleAd,.largeUnitAd,.large_ad,.lastRowAd,.lcontentbox_ad,.leadAd,.leaderAdSlot,.leaderAdTop,.leaderAdvert,.leaderBoardAdHolder,.leaderOverallAdArea,.leader_ad,.leaderboardAd,.leaderboardAdContainer,.leaderboardAdContainerInner,.leaderboard_ad,.leaderboardad,.leaderboardadtop,.left-ad,.leftAd,.leftAdColumn,.leftAds,.left_ad,.left_ad_box,.left_adlink,.left_ads,.left_adsense,.leftad,.leftadtag,.leftbar_ad_160_600,.leftbarads,.leftbottomads,.leftnavad,.lgRecAd,.lg_ad,.ligatus,.linead,.link_adslider,.link_advertise,.live-search-list-ad-container,.ljad,.local-ads,.log_ads,.logoAds,.logoad,.logoutAd,.longAd,.longAdBox,.lowerAds,.m-ad-tvguide-box,.m4-adsbygoogle,.m_banner_ads,.macAd,.macad,.main-ad,.main-advert,.main-tabs-ad-block,.mainAd,.mainLinkAd,.main_ad,.main_ad_bg_div,.main_adbox,.main_ads,.main_intro_ad,.map_media_banner_ad,.marginadsthin,.marketing-ad,.masthead_topad,.matador_sidebar_ad_600,.mdl-ad,.media-advert,.mediaAd,.mediaAdContainer,.mediaResult_sponsoredSearch,.medium-rectangle-ad,.mediumRectangleAdvert,.medium_ad,.medrect_ad,.member-ads,.menuItemBannerAd,.menueadimg,.messageBoardAd,.mf-ad300-container,.micro_ad,.mid_ad,.mid_page_ad { display:none !important; } .midad,.middleAds,.middleads,.min_navi_ad,.mini-ad,.miniad,.mmc-ad,.mmcAd_Iframe,.mod-ad-lrec,.mod-ad-n,.mod-adopenx,.mod-vertical-ad,.mod_admodule,.module-ad,.module-ad-small,.module-ads,.moduleAd,.moduleAdvertContent,.module_ad,.module_box_ad,.modulegad,.moduletable-advert,.moduletable-googleads,.moduletablesquaread,.mpu,.mpu-ad,.mpu-advert,.mpu-footer,.mpu-fp,.mpu-title,.mpu-top-left,.mpu-top-left-banner,.mpu-top-right,.mpu01,.mpuAd,.mpuAdSlot,.mpuAdvert,.mpuArea,.mpuBox,.mpuContainer,.mpuHolder,.mpuTextAd,.mpu_ad,.mpu_advert,.mpu_container,.mpu_gold,.mpu_holder,.mpu_platinum,.mpu_side,.mpu_text_ad,.mpuad,.mpuholderportalpage,.mrec_advert,.ms-ads-link,.msfg-shopping-mpu,.mvw_onPageAd1,.mwaads,.my-ad250x300,.nSponsoredLcContent,.nSponsoredLcTopic,.nadvt300,.narrow_ad_unit,.narrow_ads,.navAdsBanner,.navBads,.nav_ad,.navadbox,.navcommercial,.navi_ad300,.naviad,.nba300Ad,.nbaT3Ad160,.nbaTVPodAd,.nbaTwo130Ads,.nbc_ad_carousel_wrp,.newPex_forumads,.newTopAdContainer,.newad,.newsAd,.news_article_ad_google,.newsviewAdBoxInNews,.nf-adbox,.nn-mpu,.noAdForLead,.normalAds,.nrAds,.nsAdRow,.nu2ad,.oas-ad,.oas-bottom-ads,.oas_ad,.oas_advertisement,.offer_sponsoredlinks,.oio-banner-zone,.oio-link-sidebar,.oio-zone-position,.on_single_ad_box,.onethirdadholder,.openads,.openadstext_after,.openx,.openx-ad,.openx_ad,.osan-ads,.other_adv2,.outermainadtd1,.ovAdPromo,.ovAdSky,.ovAdartikel,.ov_spns,.ovadsenselabel,.pageAds,.pageBottomGoogleAd,.pageGoogleAd,.pageGoogleAdFlat,.pageGoogleAdSubcontent,.pageGoogleAds,.pageGoogleAdsContainer,.pageLeaderAd,.page_content_right_ad,.pagead,.pageads,.pagenavindexcontentad,.paneladvert,.partner-ad,.partner-ads-container,.partnersTextLinks,.pencil_ad,.player_ad_box,.player_hover_ad,.player_page_ad_box,.plista_inimg_box,.pm-ad,.pmad-in2,.pnp_ad,.pod-ad-300,.podRelatedAdLinksWidget,.podSponsoredLink,.portalCenterContentAdBottom,.portalCenterContentAdMiddle,.portalCenterContentAdTop,.portal_searchresultssponsoredlist,.portalcontentad,.post-ad,.postAd,.post_ad,.post_ads,.post_sponsor_unit,.postbit_adbit_register,.postbit_adcode,.postgroup-ads,.postgroup-ads-middle,.prebodyads,.premium_ad_container,.promoAd,.promoAds,.promo_ad,.ps-ligatus_placeholder,.pub_300x250,.pub_300x250m,.pub_728x90,.publication-ad,.publicidad,.puff-advertorials,.qa_ad_left,.qm-ad-content,.qm-ad-content-news,.quigo-ad,.qzvAdDiv,.r_ad_1,.r_ad_box,.r_ads,.rad_container,.rect_ad_module,.rectad,.rectangle-ad,.rectangleAd,.rectanglead,.redads_cont,.regular_728_ad,.regularad,.relatedAds,.related_post_google_ad,.remads,.resourceImagetAd,.result_ad,.reviewMidAdvertAlign,.rght300x250,.rhads,.rhs-ad,.rhs-ads-panel,.rhs-advert-container,.rhs-advert-link,.rhs-advert-title,.right-ad,.right-ad-holder,.right-ad2,.right-ads,.right-ads2,.right-sidebar-box-ad,.rightAd,.rightAdBox,.rightAdverts,.rightColAd,.rightColumnRectAd,.rightRailAd,.right_ad,.right_ad_160,.right_ad_box,.right_ad_common_block,.right_ad_text,.right_ad_top,.right_ads,.right_ads_column,.right_box_ad_rotating_container,.right_col_ad,.right_hand_advert_column,.right_side-partyad,.rightad,.rightad_1,.rightad_2,.rightadbox1,.rightads,.rightadunit,.rightcol_boxad,.rightcoladvert,.rightcoltowerad,.rnav_ad,.rngtAd,.rot_ads,.roundedCornersAd,.roundingrayboxads,.rt_ad1_300x90,.rt_ad_300x250,.rt_ad_call,.s2k_ad,.savvyad_unit,.sb-ad-sq-bg,.sbAd,.sbAdUnitContainer,.sb_ad_holder,.sb_adsN,.sb_adsNv2,.sb_adsW,.sb_adsWv2,.scanAd,.scc_advert,.sci-ad-main,.sci-ad-sub,.search-ad,.search-results-ad,.search-sponsor,.search-sponsored,.searchAd,.searchAdTop,.searchAds,.searchSponsoredResultsBox,.searchSponsoredResultsList,.search_column_results_sponsored,.search_results_sponsored_top,.section-ad2,.section_mpu_wrapper,.section_mpu_wrapper_wrapper,.selfServeAds,.sepContentAd,.serp_sponsored,.servsponserLinks,.shoppingGoogleAdSense,.showAd_No,.showAd_Yes,.showcaseAd,.sidbaread,.side-ad,.side-ads,.side-sky-banner-160,.sideAd,.sideBoxAd,.side_ad,.side_ad2,.side_ad_1,.side_ad_2,.side_ad_3,.sidead,.sideads,.sideadsbox,.sideadvert,.sidebar-ad,.sidebar-ads,.sidebar-content-ad,.sidebar-text-ad,.sidebarAd,.sidebarAdUnit,.sidebarAdvert,.sidebar_ad,.sidebar_ad_300_250,.sidebar_ads,.sidebar_ads_336,.sidebar_adsense,.sidebar_box_ad,.sidebarad,.sidebarad_bottom,.sidebaradbox,.sidebarads,.sidebarboxad,.sideheadnarrowad,.sideheadsponsorsad,.single-google-ad,.singleAd,.singleAdsContainer,.single_ad,.singlead,.singleadstopcstm2,.site_ad_120_600,.site_ad_300x250,.sitesponsor,.skinAd,.skin_ad_638,.sky-ad,.skyAd,.skyAdd,.skyAdvert,.skyAdvert2,.sky_ad,.sky_scraper_ad,.skyad,.skyjobsadtext,.skyscraper-ad,.skyscraper_ad,.skyscraper_bannerAdHome,.sleekadbubble,.slideshow-ad,.slpBigSlimAdUnit,.slpSquareAdUnit,.sm_ad,.smallSkyAd1,.smallSkyAd2,.small_ad,.small_ads,.smallad-left,.smallads,.smallsponsorad,.smart_ads_bom_title,.spLinks,.specialAd175x90,.speedyads,.sphereAdContainer,.spl-ads,.spl_ad,.spl_ad2,.spl_ad_plus,.splitAd,.splitAdResultsPane,.sponlinkbox,.spons-link,.spons_links,.sponslink,.sponsor-ad,.sponsor-link,.sponsor-links,.sponsor-services,.sponsorPanel,.sponsorPost,.sponsorPostWrap,.sponsorStrip,.sponsor_ad_area,.sponsor_area,.sponsor_columns,.sponsor_footer,.sponsor_line,.sponsor_links,.sponsor_logo,.sponsoradtitle,.sponsored-ads,.sponsored-chunk,.sponsored-editorial,.sponsored-features,.sponsored-links,.sponsored-links-alt-b,.sponsored-links-holder,.sponsored-links-right,.sponsored-post,.sponsored-post_ad,.sponsored-results,.sponsored-right-border,.sponsored-text,.sponsoredBox,.sponsoredInfo,.sponsoredInner,.sponsoredLabel,.sponsoredLink,.sponsoredLinks,.sponsoredLinks2,.sponsoredLinksHeader,.sponsoredProduct,.sponsoredResults,.sponsoredSideInner,.sponsored_ads,.sponsored_box,.sponsored_box_search,.sponsored_by,.sponsored_link,.sponsored_links,.sponsored_links_title_container,.sponsored_links_title_container_top,.sponsored_links_top,.sponsored_result,.sponsored_results,.sponsored_well,.sponsoredibbox,.sponsoredlink,.sponsoredlinks,.sponsoredlinkscontainer,.sponsoredresults,.sponsoredtextlink_container_ovt,.sponsoring_link,.sponsorlink,.sponsorlink2,.sponsormsg,.sport-mpu-box,.spotlightAd,.squareAd,.square_ad,.square_banner_ad,.squared_ad,.ss-ad-mpu,.standard-ad,.start__newest__big_game_container_body_games_advertising,.staticAd,.stickyAdLink,.stock-ticker-ad-tag,.stocks-ad-tag,.store-ads,.story_AD,.story_ad_div,.story_right_adv,.storyad,.subad,.subadimg,.subcontent-ad,.subtitle-ad-container,.sugarad,.super-ad,.supercommentad_left,.supercommentad_right,.supp-ads,.supportAdItem,.surveyad,.t10ad,.tab_ad,.tab_ad_area,.tablebordersponsor,.tadsanzeige,.tadsbanner,.tadselement,.tallad,.tblTopAds,.tbl_ad,.tbox_ad,.td-Adholder,.td-TrafficWeatherWidgetAdGreyBrd,.teaser-sponsor,.teaserAdContainer,.teaser_adtiles,.text-ad,.text-ad-links,.text-ads,.text-advertisement,.text-g-advertisement,.text-g-group-short-rec-ad,.text-g-net-grp-google-ads-article-page,.textAd,.textAdBox,.textAds,.text_ad,.text_ads,.textad,.textadContainer,.textad_headline,.textadbox,.textadheadline,.textadlink,.textads,.textads_left,.textads_right,.textadsds,.textadsfoot,.textadtext,.textlink-ads,.textlinkads,.tf_page_ad_search,.thirdage_ads_300x250,.thirdage_ads_728x90,.thisIsAd,.thisIsAnAd,.ticket-ad,.tileAds,.tips_advertisement,.title-ad,.title_adbig,.tncms-region-ads,.toolad,.toolbar-ad,.top-ad,.top-ad-space,.top-ads,.top-banner-ad,.top-menu-ads,.topAd,.topAdWrap,.topAds,.topAdvertisement,.topAdverts,.topBannerAd,.topLeaderboardAd,.top_Ad,.top_ad,.top_ad_728,.top_ad_728_90,.top_ad_disclaimer,.top_ad_div,.top_ad_post,.top_ad_wrapper,.top_ads,.top_advert,.top_advertisement,.top_advertising_lb,.top_bar_ad,.top_container_ad,.topad,.topad-bar,.topadbox,.topads,.topadspot,.topadvertisementsegment,.topboardads,.topcontentadvertisement,.topic_inad,.topstoriesad,.toptenAdBoxA,.tourFeatureAd,.tower-ad,.towerAd,.towerAdLeft,.towerAds,.tower_ad,.tower_ad_disclaimer,.towerad,.tr-ad-adtech-placement,.tribal-ad,.ts-ad_unit_bigbox,.ts-banner_ad,.ttlAdsensel,.tto-sponsored-element,.tucadtext,.tvs-mpu,.twoColumnAd,.twoadcoll,.twoadcolr,.tx_smartadserver_pi1,.txt-ads,.txtAd,.txtAds,.txt_ads,.txtadvertise,.type_adscontainer,.type_miniad,.type_promoads,.ukAds,.ukn-banner-ads,.under_ads,.undertimyads,.unit-ad,.universalboxADVBOX01,.universalboxADVBOX03,.universalboxADVBOX04a,.usenext,.v5rc_336x280ad,.vert-ads,.vert-adsBlock,.vertad,.vertical-adsense,.vidadtext,.videoAd,.videoBoxAd,.video_ad,.view-promo-mpu-right,.view_rig_ad,.virgin-mpu,.wa_adsbottom,.wantads,.weather_ad,.wide-ad,.wide-skyscraper-ad,.wideAd,.wideAdTable,.wide_ad,.wide_ad_unit_top,.wide_ads,.wide_google_ads,.widget-ad,.widget-ad-codes,.widget-ad300x250,.widget-entry-ads-160,.widgetYahooAds,.widget_ad,.widget_ad_boxes_widget,.widget_ad_rotator,.widget_advert_widget,.widget_econaabachoadswidget,.widget_island_ad,.widget_maxbannerads,.widget_sdac_bottom_ad_widget,.widget_sdac_footer_ads_widget,.widget_sdac_skyscraper_ad_widget,.wikia-ad,.wikia_ad_placeholder,.wingadblock,.withAds,.wl-ad,.wnMultiAd,.wp125_write_ads_widget,.wp125ad,.wp125ad_2,.wpn_ad_content,.wrap-ads,.wrapper-ad,.wrapper-ad-sidecol,.wsSponsoredLinksRight,.wsTopSposoredLinks,.x03-adunit,.x04-adunit,.x81_ad_detail,.xads-blk-top-hld,.xads-blk2,.xads-ojedn,.y-ads,.y-ads-wide,.y7-advertisement,.yahoo-sponsored,.yahoo-sponsored-links,.yahooAds,.yahoo_ads,.yahooad,.yahooad-image,.yahooad-urlline,.yan-sponsored,.ygrp-ad,.yom-ad,.youradhere,.yrail_ad_wrap,.yrail_ads,.ysmsponsor,.ysponsor,.yw-ad,.zRightAdNote,a[href^="http://ad-emea.doubleclick.net/"],a[href^="http://ad.doubleclick.net/"],a[href^="http://adserving.liveuniversenetwork.com/"],a[href^="http://galleries.pinballpublishernetwork.com/"],a[href^="http://galleries.securewebsiteaccess.com/"],a[href^="http://install.securewebsiteaccess.com/"],a[href^="http://latestdownloads.net/download.php?"],a[href^="http://secure.signup-page.com/"],a[href^="http://secure.signup-way.com/"],a[href^="http://www.FriendlyDuck.com/AF_"],a[href^="http://www.adbrite.com/mb/commerce/purchase_form.php?"],a[href^="http://www.firstload.de/affiliate/"],a[href^="http://www.friendlyduck.com/AF_"],a[href^="http://www.google.com/aclk?"],a[href^="http://www.liutilities.com/aff"],a[href^="http://www.liutilities.com/products/campaigns/adv/"],a[href^="http://www.my-dirty-hobby.com/?sub="],a[href^="http://www.ringtonematcher.com/"],#mclip_container:last-child,#ssmiwdiv[jsdisplay],#tads.c,#tadsb.c,.ch[onclick="ga(this,event)"],.ra[align="left"][width="30%"],.ra[align="right"][width="30%"] { display:none !important; }</style>
+
+<body id="main-page" class="blogs blog-panel  guest" lang="ru">
+		
+			
+
+			
+
+			
+			
+			
+			
+			
+			
+			
+			
+			
+
+			
+
+			
+
+			
+				<script>
+// <!--
+var mb_login = "HABRAHABR_INNER_100x90.HABRAHABR_INNER_100x90";
+var mb_options = "options=T";
+var mb_random = Math.round(Math.random() * 100000);
+document.write('<iframe src="http://pink.habralab.ru/cgi-bin/iframe/'+mb_login+'?'+mb_random+'&'+mb_options+'" width="100%" height="90" marginwidth="0" marginheight="0" scrolling="no" frameborder="0"><a href="http://pink.habralab.ru/cgi-bin/href/'+mb_login+'?'+mb_random +'" target="_top"><img src="http://pink.habralab.ru/cgi-bin/banner/'+mb_login+'?'+mb_random +'&'+mb_options+'" alt="" width="100%" height="90" border="0" ismap="ismap"></a></iframe>');
+// -->
+</script><iframe src="./Декартово дерево  Часть 2. Ценная информация в дереве и множественные операции с ней   Алгоритмы   Хабрахабр_files/HABRAHABR_INNER_100x90.htm" width="100%" height="90" marginwidth="0" marginheight="0" scrolling="no" frameborder="0">&lt;a href="http://pink.habralab.ru/cgi-bin/href/HABRAHABR_INNER_100x90.HABRAHABR_INNER_100x90?30535" target="_top"&gt;&lt;img src="http://pink.habralab.ru/cgi-bin/banner/HABRAHABR_INNER_100x90.HABRAHABR_INNER_100x90?30535&amp;options=T" alt="" width="100%" height="90" border="0" ismap="ismap"&gt;&lt;/a&gt;</iframe>
+<noscript>
+&lt;iframe src="http://pink.habralab.ru/cgi-bin/iframe/HABRAHABR_INNER_100x90.HABRAHABR_INNER_100x90?options=T" width="100%" height="90" marginwidth="0" marginheight="0" scrolling="no" frameborder="0"&gt;&lt;a href="http://pink.habralab.ru/cgi-bin/href/HABRAHABR_INNER_100x90.HABRAHABR_INNER_100x90" target="_top"&gt;&lt;img src="http://pink.habralab.ru/cgi-bin/banner/HABRAHABR_INNER_100x90.HABRAHABR_INNER_100x90?options=T" alt="" width="100%" height="90" border="0" ismap="ismap"&gt;&lt;/a&gt;&lt;/iframe&gt;
+</noscript>
+
+<div style="height:0;overflow: hidden;">
+	<script>
+		// <!--
+		var mb_login = "STATISTIC_INNER.STATISTIC_INNER";
+		var mb_options = "options=T";
+		var mb_random = Math.round(Math.random() * 100000);
+		document.write('<iframe src="http://pink.habralab.ru/cgi-bin/iframe/'+mb_login+'?'+mb_random+'&'+mb_options+'" width="1" height="1" marginwidth="0" marginheight="0" scrolling="no" frameborder="0"><a href="http://pink.habralab.ru/cgi-bin/href/'+mb_login+'?'+mb_random +'" target="_top"><img src="http://pink.habralab.ru/cgi-bin/banner/'+mb_login+'?'+mb_random +'&'+mb_options+'" alt="" width="1" height="1" border="0" ismap="ismap"></a></iframe>');
+		// -->
+	</script><iframe src="./Декартово дерево  Часть 2. Ценная информация в дереве и множественные операции с ней   Алгоритмы   Хабрахабр_files/STATISTIC_INNER.htm" width="1" height="1" marginwidth="0" marginheight="0" scrolling="no" frameborder="0">&lt;a href="http://pink.habralab.ru/cgi-bin/href/STATISTIC_INNER.STATISTIC_INNER?40134" target="_top"&gt;&lt;img src="http://pink.habralab.ru/cgi-bin/banner/STATISTIC_INNER.STATISTIC_INNER?40134&amp;options=T" alt="" width="1" height="1" border="0" ismap="ismap"&gt;&lt;/a&gt;</iframe>
+	<noscript>
+		&lt;iframe src="http://pink.habralab.ru/cgi-bin/iframe/STATISTIC_INNER.STATISTIC_INNER?options=T" width="1" height="1" marginwidth="0" marginheight="0" scrolling="no" frameborder="0"&gt;&lt;a href="http://pink.habralab.ru/cgi-bin/href/STATISTIC_INNER.STATISTIC_INNER" target="_top"&gt;&lt;img src="http://pink.habralab.ru/cgi-bin/banner/STATISTIC_INNER.STATISTIC_INNER?options=T" alt="" width="1" height="1" border="0" ismap="ismap"&gt;&lt;/a&gt;&lt;/iframe&gt;
+	</noscript>
+</div>
+			
+
+			
+
+			
+
+								
+
+		
+
+
+
+<div class="header">
+	
+		<dl class="panel-personal">
+	<dt><!-- Мы впишем сюда твой %username% --></dt>
+	<dd><a href="http://habrahabr.ru/login/">войти</a> <a href="http://habrahabr.ru/register/">зарегистрироваться</a></dd>
+</dl>
+	
+	 
+	<div class="panel-tools">
+		 
+		<form class="panel-search js-autosuggest-holder " action="http://habrahabr.ru/search/" method="get" accept-charset="utf-8">
+			<p>
+				<label class="panel-search-label input-placeholding" for="search">
+					<input id="search" class="in-text js-autosuggest-field " title="поиск по сайту" type="text" name="q" value="" autocomplete="off"> 
+					<span>поиск по сайту</span>
+				</label>
+				<input class="in-submit" type="submit" id="do" value="" title="Enter!">
+			</p>
+			<div class="js-autosuggest-output-container"><div class="js-autosuggest-output hidden"></div></div>
+		</form>
+	</div>
+	<a class="logo " href="http://habrahabr.ru/" title="На главную страницу"></a>
+	
+
+	<ul class="panel-nav-top">
+	
+		
+			
+			
+				<li class="current"><a href="http://habrahabr.ru/">Посты</a></li>
+			
+		
+		
+		
+	
+		
+		
+		
+			<li><a href="http://habrahabr.ru/qa/">Q&amp;A</a></li>
+		
+	
+		
+		
+		
+			<li><a href="http://habrahabr.ru/bloglist/">Блоги</a></li>
+		
+	
+		
+		
+		
+			<li><a href="http://habrahabr.ru/events/">События</a></li>
+		
+	
+		
+		
+		
+			<li><a href="http://habrahabr.ru/companies/">Компании</a></li>
+		
+	
+	
+	
+	
+	
+	
+	<li style="margin-bottom: 0"><div class="banner_special">
+  <script>
+  // <!--
+  var mb_login = "habr_special_135_35";
+  var mb_options = "options=T";
+  var mb_random = Math.round(Math.random() * 100000);
+  document.write('<iframe src="http://pink.habralab.ru/cgi-bin/iframe/'+mb_login+'?'+mb_random+'&'+mb_options+'" width="135" height="35" marginwidth="0" marginheight="0" scrolling="no" frameborder="0"><a href="http://pink.habralab.ru/cgi-bin/href/'+mb_login+'?'+mb_random +'" target="_top"><img src="http://pink.habralab.ru/cgi-bin/banner/'+mb_login+'?'+mb_random +'&'+mb_options+'" alt="" width="135" height="35" border="0" ismap="ismap"></a></iframe>');
+  // -->
+  </script><iframe src="./Декартово дерево  Часть 2. Ценная информация в дереве и множественные операции с ней   Алгоритмы   Хабрахабр_files/habr_special_135_35.htm" width="135" height="35" marginwidth="0" marginheight="0" scrolling="no" frameborder="0">&lt;a href="http://pink.habralab.ru/cgi-bin/href/habr_special_135_35?62349" target="_top"&gt;&lt;img src="http://pink.habralab.ru/cgi-bin/banner/habr_special_135_35?62349&amp;options=T" alt="" width="135" height="35" border="0" ismap="ismap"&gt;&lt;/a&gt;</iframe>
+  <noscript>
+  &lt;iframe src="http://pink.habralab.ru/cgi-bin/iframe/habr_special_135_35?options=T" width="135" height="35" marginwidth="0" marginheight="0" scrolling="no" frameborder="0"&gt;&lt;a href="http://pink.habralab.ru/cgi-bin/href/habr_special_135_35" target="_top"&gt;&lt;img src="http://pink.habralab.ru/cgi-bin/banner/habr_special_135_35?options=T" alt="" width="135" height="35" border="0" ismap="ismap"&gt;&lt;/a&gt;&lt;/iframe&gt;
+  </noscript>
+</div></li>
+	</ul>
+
+</div>
+
+
+<div id="wrapper">
+<div id="inner">
+
+
+	<div id="main-content">
+	  
+	  <script type="text/javascript" src="./Декартово дерево  Часть 2. Ценная информация в дереве и множественные операции с ней   Алгоритмы   Хабрахабр_files/mootools.slide.js"></script>
+		
+	  
+		
+
+	
+			<div id="viva-la-w3c">
+		<div class="blog-title">
+			<h2 class="blog-header">
+				<a href="http://habrahabr.ru/blogs/algorithm/" class="silentlink">Алгоритмы</a>
+				<span class="profiled_blog" title="Профильный блог"></span>
+				
+			</h2>
+			 <dl class="blog-index">
+			 	<dt>индекс</dt>
+				<dd>316,52</dd>
+			 </dl>
+		</div>
+	</div>
+	
+	
+
+	
+<div class="page-navigation">
+	<table class="page-menu">
+		<tbody><tr>
+			<td id="write" width="20">
+				
+				
+			</td>
+			
+				
+					<td class=" current"><div><a href="http://habrahabr.ru/blogs/algorithm/" title="">Захабренные</a></div></td>
+				
+				
+			
+				
+				
+					<td class=""><div><a href="http://habrahabr.ru/blogs/algorithm/new/" title="">Новые</a> <span class="new">+1</span></div></td>
+				
+			
+				
+				
+					<td class=""><div><a href="http://habrahabr.ru/blogs/algorithm/unhabred/" title="">Отхабренные</a></div></td>
+				
+			
+		</tr>
+	</tbody></table>
+	
+</div>
+
+	
+	
+
+
+
+
+	
+
+	
+		<div class="hentry ">
+
+		  
+				
+					<a href="http://m.habrahabr.ru/post/102006/?hp_print=1" id="hp_print">версия для печати</a>
+					<img src="./Декартово дерево  Часть 2. Ценная информация в дереве и множественные операции с ней   Алгоритмы   Хабрахабр_files/rle.cgi" width="0" height="0" alt="" style="display: none !important; visibility: hidden !important; opacity: 0 !important; ">
+				
+			
+			
+			<h2 class="entry-title single-entry-title">
+				
+				
+				
+				
+
+				
+
+				
+					
+					
+						<span title="http://habrahabr.ru/blogs/algorithm/102006/" class="topic">Декартово дерево: Часть 2. Ценная информация в дереве и множественные операции с ней</span>
+					
+				
+
+				
+				
+				
+
+				
+				
+			</h2>
+
+			
+
+<div class="content">
+	<h4>Оглавление (на данный момент)</h4><br>
+<a href="http://habrahabr.ru/blogs/algorithm/101818/">Часть 1. Описание, операции, применения.</a><br>
+<strong>Часть 2. Ценная информация в дереве и множественные операции с ней.</strong><br>
+<a href="http://habrahabr.ru/blogs/algorithm/102364/">Часть 3. Декартово дерево по неявному ключу.</a><br>
+<em>To be continued...</em><br>
+<br>
+<h4>Тема сегодняшней лекции</h4><br>
+В прошлый раз мы с вами познакомились — скажем прямо, очень обширно познакомились — с понятием декартового дерева и основным его функционалом. Только до сих мы с вами использовали его одним-единственным образом: как «квази-сбалансированное» дерево поиска. То есть пускай нам дан массив ключей, добавим к ним случайно сгенерированные приоритеты, и получим дерево, в котором каждый ключ можно искать, добавлять и удалять за логарифмическое время и минимум усилий. Звучит неплохо, но мало.<br>
+<br>
+К счастью (или к сожалению?), реальная жизнь такими пустяковыми задачами не ограничивается. О чем сегодня и пойдет речь. Первый вопрос на повестке дня — это так называемая K-я порядковая статистика, или индекс в дереве, которая плавно подведет нас к хранению пользовательской информации в вершинах, и наконец — к бесчисленному множеству манипуляций, которые с этой информацией может потребоваться выполнять. Поехали.<br>
+<br>
+<h4>Ищем индекс</h4><br>
+В математике, <i>K-я порядковая статистика</i> — это случайная величина, которая соответствует K-му по величине элементу случайной выборки из вероятностного пространства. Слишком умно. Вернемся к дереву: в каждый момент времени у нас есть декартово дерево, которое с момента его начального построения могло уже значительно измениться. От нас требуется очень быстро находить в этом дереве K-й по порядку возрастания ключ — фактически, если представить наше дерево как постоянно поддерживающийся отсортированным массив, то это просто доступ к элементу под индексом K. На первый взгляд не очень понятно, как это организовать: ключей-то у нас в дереве N, и раскиданы они по структуре как попало.<br>
+<img src="./Декартово дерево  Часть 2. Ценная информация в дереве и множественные операции с ней   Алгоритмы   Хабрахабр_files/d3f9076dbe0cdfaae3f3b26f57fb2010.png" align="center"><br>
+<a name="habracut"></a><br>
+Хотя, скажем прямо, не как попало. Нам известно свойство дерева поиска — для каждой вершины её ключ больше всех ключей её левого поддерева, и меньше всех ключей правого поддерева. Стало быть, для выстраивания ключей дерева в отсортированном порядке достаточно провести по нему так называемый In-Order обход, то есть пройтись по всему дереву, выполняя принцип «сначала рекурсивно обойдем левое поддерево, потом ключ самого корня, а потом рекурсивно правое поддерево». Если каждый встреченный по пути таким образом ключ записывать в какой-нибудь список, то в конце концов мы получим полностью отсортированный список всех вершин дерева. Кто не верит, может провести указанную процедуру на дерамиде с рисунка чуть выше — получит массив с того же рисунка.<br>
+<blockquote>Проведенные рассуждения позволяют написать нам для декартова дерева итератор, чтобы стандартными средствами языка (<code>foreach</code> и т.п.) пройтись по его элементам в возрастающем порядке. В языке C# для этого можно написать просто функцию in-order обхода и задействовать оператор <code>yield return</code>, а в тех, где нет подобного мощного функционала, придется пойти одним из двух путей. Либо хранить в каждой вершине ссылку на «следующий» элемент в дереве, что дает дополнительный расход ценной памяти. Либо писать нерекурсивный обход дерева через собственный стек, что несколько сложнее, но зато улучшит как скорость работы программы, так и затраты на память.<br>
+</blockquote><br>
+Конечно, как полноценное решение задачи расценивать такой подход не стоит, ведь он требует O(N) времени, а это недопустимо. Зато можно попытаться его улучшить, если бы мы сразу знали, в какие части дерева заходить не стоит, ибо там гарантированно большие либо меньшие по порядку элементы. А это уже вполне реально реализовать, если запомнить для каждой вершины дерева, сколько элементов нам придется обойти при рекурсивном заходе в нее. То есть будем хранить в каждой вершине её <em>размер поддерева</em>.<br>
+<br>
+На рисунке показано все то же дерево с размерами поддеревьев, проставленными у каждой вершины.<br>
+<img src="./Декартово дерево  Часть 2. Ценная информация в дереве и множественные операции с ней   Алгоритмы   Хабрахабр_files/a8c3e13b491502518ddcadd25d5d22d4.png" align="center"><br>
+Тогда предположим, что положенное количество вершин в каждом поддереве мы честно подсчитали. Найдем теперь <strong>K</strong>-й элемент в индексации, начинающейся с нуля (!).<br>
+<br>
+Алгоритм ясен: смотрим в корень дерева и на размер его левого поддерева <strong>S<sub>L</sub></strong>, размер правого даже не понадобится.<br>
+Если S<sub>L</sub> = K, то искомый элемент мы нашли, и это — корень.<br>
+Если S<sub>L</sub> &gt; K, то искомый элемент находится где-то в левом поддереве, спускаемся туда и повторяем процесс.<br>
+Если S<sub>L</sub> &lt; K, то искомый элемент находится где-то в правом поддереве. Уменьшим K на число S<sub>L</sub>+1, чтобы корректно реагировать на размеры поддеревьев справа, и повторим процесс для правого поддерева.<br>
+<br>
+Промоделирую этот поиск для K = 6 на все том же дереве:<br>
+Вершина (10; 8), S<sub>L</sub> = 4, K = 6. Идем вправо, уменьшая K на 4+1=5.<br>
+Вершина (14; 6), S<sub>L</sub> = 2, K = 1. Идем влево, не меняя K.<br>
+Вершина (11; 4), S<sub>L</sub> = 0 (нет левого сына), K = 1. Идем вправо, уменьшая K на 0+1=1.<br>
+Вершина (13; 1), S<sub>L</sub> = 0 (нет левого сына), K = 0. Ключ найден.<br>
+Ответ: ключ под индексом 6 в декартовом дереве равен 13.<br>
+<br>
+Весь этот проход в принципе очень напоминает простой поиск ключа в двоичном дереве поиска — все так же просто спускаемся по дереву, сравнивая искомый параметр с параметром в текущей вершине, и в зависимости от ситуации поворачиваем влево либо вправо. Скажу наперед — мы еще не раз встретимся с подобной ситуацией в разных алгоритмах, она совершенно типична для различных бинарных деревьев. Алгоритм обхода настолько типичен, что легко шаблонизируется. Как видно, здесь даже не нужна рекурсия, мы можем обойтись простым циклом с парочкой изменяющихся с каждой итерацией переменных. <blockquote>В функциональном языке можно написать решение и через рекурсию, и оно будет выглядеть и читаться гораздо красивее, при этом не теряя ни капли в производительности: рекурсия-то хвостовая, и компилятор ее тут же соптимизирует в тот же обычный цикл. Для тех, кто знает функциональное программирование, но сомневается в моих словах — код на Haskell:<br>
+<code><font color="black"><br>
+<font color="#06c"><b>data</b></font> <font color="#cccc00"><b>Ord</b></font> a <font color="#339933"><b>=&gt;</b></font> Treap a <font color="#339933"><b>=</b></font> Null<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color="#339933"><b>|</b></font> Node { key<font color="#339933"><b>::</b></font>a<font color="#339933"><b>,</b></font> priority<font color="#339933"><b>::</b></font><font color="#cccc00"><b>Int</b></font><font color="#339933"><b>,</b></font> size<font color="#339933"><b>::</b></font><font color="#cccc00"><b>Int</b></font><font color="#339933"><b>,</b></font> left<font color="#339933"><b>::</b></font>(Treap a)<font color="#339933"><b>,</b></font> right<font color="#339933"><b>::</b></font>(Treap a) }<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<br>
+sizeOf <font color="#339933"><b>::</b></font> (<font color="#cccc00"><b>Ord</b></font> a) <font color="#339933"><b>=&gt;</b></font> Treap a <font color="#339933"><b>-&gt;</b></font> <font color="#cccc00"><b>Int</b></font><br>
+sizeOf Null &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<font color="#339933"><b>=</b></font> 0<br>
+sizeOf Node {size<font color="#339933"><b>=</b></font>s} <font color="#339933"><b>=</b></font> s<br>
+<br>
+kthElement <font color="#339933"><b>::</b></font> (<font color="#cccc00"><b>Ord</b></font> a) <font color="#339933"><b>=&gt;</b></font> (Treap a) <font color="#339933"><b>-&gt;</b></font> <font color="#cccc00"><b>Int</b></font> <font color="#339933"><b>-&gt;</b></font> <font color="#cccc00"><b>Maybe</b></font> a<br>
+kthElement &nbsp;Null <font color="#339933"><b>_</b></font> &nbsp;<font color="#339933"><b>=</b></font> Nothing<br>
+kthElement (Node key <font color="#339933"><b>_</b></font> <font color="#339933"><b>_</b></font> left right) k<br>
+&nbsp; &nbsp; <font color="#339933"><b>|</b></font> sizeLeft <font color="#339933"><b>==</b></font> k <font color="#339933"><b>=</b></font> Just key<br>
+&nbsp; &nbsp; <font color="#339933"><b>|</b></font> sizeLeft <font color="#339933"><b>&lt;</b></font> &nbsp;k <font color="#339933"><b>=</b></font> kthElement left k<br>
+&nbsp; &nbsp; <font color="#339933"><b>|</b></font> sizeLeft <font color="#339933"><b>&gt;</b></font> &nbsp;k <font color="#339933"><b>=</b></font> kthElement right (k <font color="#339933"><b>-</b></font> sizeLeft <font color="#339933"><b>-</b></font> 1)<br>
+&nbsp; &nbsp; &nbsp; &nbsp; <font color="#06c"><b>where</b></font> sizeLeft <font color="#339933"><b>=</b></font> sizeOf left<br>
+&nbsp;</font></code><br>
+</blockquote>Кстати, о производительности. Время выполнения поиска K-го элемента, очевидно, O(log<sub>2</sub> N), мы ведь просто спустились сверху вниз до глубины дерева.<br>
+<br>
+Чтобы не обижать читателей, кроме функционального приведу также и традиционный исходник на C#. В нем в стандартную заготовку класса <code>Treap</code>, приведенную в первой части, добавлено еще одно целочисленное поле <code>Size</code> — размер поддерева, а также полезную функцию <code>SizeOf</code> для его получения.<br>
+<blockquote><code><font color="black"><font color="#0000ff">public</font> <font color="#0000ff">static</font> <font color="#0000ff">int</font> SizeOf(Treap treap)<br>
+{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#0000ff">return</font> treap == <font color="#0000ff">null</font> ? 0 : treap.Size;<br>
+}<br>
+<br>
+<font color="#0000ff">public</font> <font color="#0000ff">int</font>? KthElement(<font color="#0000ff">int</font> K)<br>
+{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Treap cur = <font color="#0000ff">this</font>;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#0000ff">while</font> (cur != <font color="#0000ff">null</font>)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#0000ff">int</font> sizeLeft = SizeOf(cur.Left);<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#0000ff">if</font> (sizeLeft == K)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#0000ff">return</font> cur.x;<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cur = sizeLeft &gt; K ? cur.Left : cur.Right;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#0000ff">if</font> (sizeLeft &lt; K)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;K -= sizeLeft + 1;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#0000ff">return</font> <font color="#0000ff">null</font>;<br>
+}</font></code></blockquote><br>
+Ключевым вопросом все так же остается тот факт, что мы до сих пор не знаем, как поддерживать в дереве корректные значения <code>size</code>. Ведь после первого же добавления в дерево нового ключа все эти числа пойдут прахом, а пересчитывать их каждый раз заново — O(N)! Впрочем, нет. O(N) это заняло бы после какой-нибудь операции, которая полностью перекособочила дерево в структуру непонятной конструкции. А здесь добавление ключа, которое действует аккуратнее и не задевает все дерево, а только его маленькую часть. Значит, можно обойтись меньшей кровью.<br>
+<br>
+Как вы помните, у нас с вами все делается, так сказать, через Split и Merge. Если приспособить эти две основные функции под поддержку дополнительной информации в дереве — в данном случае размеров поддеревьев — то все остальные операции автоматически станут выполняться корректно, ведь своих изменений в дерево они не вносят (за исключением создания элементарных деревьев из одной вершины, в которых <code>Size</code> нужно не забыть установить по дефолту в 1!).<br>
+Я начну с модификации операции Merge.<br>
+<img src="./Декартово дерево  Часть 2. Ценная информация в дереве и множественные операции с ней   Алгоритмы   Хабрахабр_files/a98f52fd388745ea9be4b4681f780880.png"><br>
+Вспомним процедуру выполнения Merge. Она выбирала сначала корень для нового дерева, а потом рекурсивно сливала одно из его поддеревьев с другим деревом и записывала результат на место убранного поддерева. Я разберу случай, когда сливать нужно было правое поддерево, второй симметричен. Как и в прошлый раз, нам сильно поможет рекурсия.<br>
+<br>
+Сделаем индукционное предположение: пускай после выполнения Merge на поддеревьях в них все уже подсчитано верно. Тогда имеем следующее положение вещей: в левом поддереве размеры подсчитаны верно, т.к. его никто не трогал; в правом тоже подсчитаны верно, т.к. это результат работы Merge. Восстановить справедливость осталось лишь в самом корне нового дерева! Ну так просто пересчитаем его перед завершением <nobr>(<code>size = left.size + right.size + 1</code>)</nobr>, и теперь Merge полностью создала все новое дерево, в каждой вершине которого — правильный размер поддерева.<br>
+<br>
+Исходный код Merge изменится незначительно: на строку пересчета размеров перед возвращением ответа. Она отмечена комментарием.<br>
+<blockquote><code><font color="black"><font color="#0000ff">public</font> <font color="#0000ff">void</font> Recalc()<br>
+{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Size = SizeOf(Left) + SizeOf(Right) + 1;<br>
+}<br>
+<br>
+<font color="#0000ff">public</font> <font color="#0000ff">static</font> Treap Merge(Treap L, Treap R)<br>
+{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#0000ff">if</font> (L == <font color="#0000ff">null</font>) <font color="#0000ff">return</font> R;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#0000ff">if</font> (R == <font color="#0000ff">null</font>) <font color="#0000ff">return</font> L;<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Treap answer;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#0000ff">if</font> (L.y &gt; R.y)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#0000ff">var</font> newR = Merge(L.Right, R);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;answer = <font color="#0000ff">new</font> Treap(L.x, L.y, L.Left, newR);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#0000ff">else</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#0000ff">var</font> newL = Merge(L, R.Left);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;answer = <font color="#0000ff">new</font> Treap(R.x, R.y, newL, R.Right);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;answer.Recalc(); <font color="#008000">// пересчёт!</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#0000ff">return</font> answer;<br>
+}</font></code></blockquote><br>
+Точно та же ситуация нас ожидает и с операцией Split, которая тоже основа на рекурсивном вызове. Напомню: здесь в зависимости от значения ключа в корне дерева мы рекурсивно делили по указанному ключу либо левое, либо правое поддерево исходного, и один из результатов подвешивали обратно, а второй возвращали отдельно. Опять-таки, пускай для однозначности мы рекурсивно делим T.Right.<br>
+<img src="./Декартово дерево  Часть 2. Ценная информация в дереве и множественные операции с ней   Алгоритмы   Хабрахабр_files/35277f3277ac1bf837b7735f18066f58.png"><br>
+Знакомое индукционное предположение — пускай рекурсивные вызовы Split все подсчитали верно — поможет нам и в этот раз. Тогда размеры в T.Left корректны — их никто не трогал; размеры в L' корректны — это левый результат Split; размеры в R' корректны — это правый результат Split. Перед завершением нужно восстановить справедливость в корне <nobr>(x; y)</nobr> будущего дерева L — и ответ готов.<br>
+<br>
+Исходный код нового Split, в котором две добавленные строчки пересчитывают значение <code>Size</code> в корне L либо R — в зависимости от варианта.<br>
+<blockquote><code><font color="black"><font color="#0000ff">public</font> <font color="#0000ff">void</font> Recalc()<br>
+{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Size = SizeOf(Left) + SizeOf(Right) + 1;<br>
+}<br>
+<br>
+<font color="#0000ff">public</font> <font color="#0000ff">void</font> Split(<font color="#0000ff">int</font> x, <font color="#0000ff">out</font> Treap L, <font color="#0000ff">out</font> Treap R)<br>
+{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Treap newTree = <font color="#0000ff">null</font>;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#0000ff">if</font> (<font color="#0000ff">this</font>.x &lt;= x)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#0000ff">if</font> (Right == <font color="#0000ff">null</font>)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;R = <font color="#0000ff">null</font>;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#0000ff">else</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Right.Split(x, <font color="#0000ff">out</font> newTree, <font color="#0000ff">out</font> R);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;L = <font color="#0000ff">new</font> Treap(<font color="#0000ff">this</font>.x, y, Left, newTree);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;L.Recalc(); <font color="#008000">// пересчёт в L!</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#0000ff">else</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#0000ff">if</font> (Left == <font color="#0000ff">null</font>)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;L = <font color="#0000ff">null</font>;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#0000ff">else</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Left.Split(x, <font color="#0000ff">out</font> L, <font color="#0000ff">out</font> newTree);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;R = <font color="#0000ff">new</font> Treap(<font color="#0000ff">this</font>.x, y, newTree, Right);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;R.Recalc(); <font color="#008000">// пересчёт в R!</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+}</font></code></blockquote><br>
+Обсуждаемое «восстановление справедливости» — пересчет величины в вершине — я выделил в отдельную функцию. Это базовая строчка, на которой держится функционал всего декартова дерева. И когда во второй половине статьи у нас пойдут многочисленные множественные операции, каждая со своим «восстановлением», гораздо удобнее будет его менять в одном-единственном месте, чем по всему коду класса. Такая функция обладает одним общим свойством: она предполагает, что все справедливо в левом сыне, все справедливо в правом сыне, и на основании этих данных пересчитывает параметр в корне. Таким образом можно поддержать любые дополнительные параметры, которые высчитываются из потомков, размеры поддеревьев — это лишь частный пример.<br>
+<br>
+<h4>Welcome to the real world</h4><br>
+Давайте вернемся в настоящую жизнь. В ней данные, которые приходится хранить в дереве, не ограничиваются одним только ключом. И с этими данными постоянно приходится производить какие-то манипуляции. Я для примера в данной статье назову такое новое поле дучи <code>Cost</code>.<br>
+<br>
+Итак, пусть нам на вход постоянно поступают (а порою удаляются) ключи <code>x</code>, и с каждым из них связана соответствующая цена — <code>Cost</code>. И вам нужно поддерживать во всей этой каше быстрые запросы на <em>максимум</em> цены. Можно спрашивать максимум во всей структуре, а можно только на каком-то её подотрезке: скажем, пользователя может интересовать максимальная цена за 2007 год (если ключи связаны со временем, то это можно интерпретировать как запрос максимума цены на множестве таких элементов, где <nobr><b>A</b> ≤ x &lt; <b>B</b></nobr>).<br>
+<br>
+Это не представляет никакого труда, потому что максимум тоже прекрасно подходит как кандидат на функцию «восстановления справедливости». Достаточно написать вот так:<br>
+<blockquote><code><font color="black"><font color="#0000ff">public</font> <font color="#0000ff">double</font> Cost;<br>
+<br>
+<font color="#008000">// Максимум</font><br>
+<font color="#0000ff">public</font> <font color="#0000ff">double</font> MaxTreeCost;<br>
+<font color="#0000ff">public</font> <font color="#0000ff">static</font> <font color="#0000ff">double</font> CostOf(Treap treap)<br>
+{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#0000ff">return</font> treap == <font color="#0000ff">null</font> ? <font color="#0000ff">double</font>.NegativeInfinity : treap.MaxTreeCost;<br>
+}<br>
+<br>
+<font color="#0000ff">public</font> <font color="#0000ff">void</font> Recalc()<br>
+{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;MaxTreeCost = <font color="#2B91AF">Math</font>.Max(Cost, <font color="#2B91AF">Math</font>.Max(CostOf(Left), CostOf(Right)));<br>
+}</font></code></blockquote><br>
+Та же ситуация и с минимумом, и с суммой, и с какими-то булевыми характеристиками элемента (так называемой «окрашенностью» или «помеченностью»). Например:<br>
+<blockquote><code><font color="black"><font color="#008000">// Сумма</font><br>
+<font color="#0000ff">public</font> <font color="#0000ff">double</font> SumTreeCost;<br>
+<font color="#0000ff">public</font> <font color="#0000ff">static</font> <font color="#0000ff">double</font> CostOf(Treap treap)<br>
+{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#0000ff">return</font> treap == <font color="#0000ff">null</font> ? 0 : treap.SumTreeCost;<br>
+}<br>
+<br>
+<font color="#0000ff">public</font> <font color="#0000ff">void</font> Recalc()<br>
+{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;SumTreeCost = Cost + CostOf(Left) + CostOf(Right);<br>
+}</font></code></blockquote>Или:<blockquote><code><font color="black"><font color="#0000ff">public</font> <font color="#0000ff">bool</font> Marked;<br>
+<br>
+<font color="#008000">// Помеченность</font><br>
+<font color="#0000ff">public</font> <font color="#0000ff">bool</font> TreeHasMarked;<br>
+<font color="#0000ff">public</font> <font color="#0000ff">static</font> <font color="#0000ff">bool</font> MarkedOf(Treap treap)<br>
+{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#0000ff">return</font> treap == <font color="#0000ff">null</font> ? <font color="#0000ff">false</font> : treap.TreeHasMarked;<br>
+}<br>
+<br>
+<font color="#0000ff">public</font> <font color="#0000ff">void</font> Recalc()<br>
+{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;TreeHasMarked = Marked || MarkedOf(Left) || MarkedOf(Right);<br>
+}</font></code></blockquote>Единственное, что в таких случаях надо не забывать — инициализировать эти параметры в конструкторе при создании новых отдельных вершин.<br>
+<blockquote>Как сказали бы в функциональном мире, мы с вами выполняем в какой-то мере <em>свертку</em> дерева.<br>
+</blockquote><br>
+Таким образом мы умеем запрашивать значение параметра для всего дерева — оно хранится в корне. Запросы на подотрезках тоже не представляют труда, если опять вспомнить свойство бинарного дерева поиска. Ключ каждой вершины больше всех ключей левого поддерева и меньше всех ключей правого поддерева. Поэтому можно виртуально считать, что с каждой вершиной ассоциирован какой-то интервал ключей, которые могут в теории встретиться в ней и в её поддереве. Так, у корня это интервал <nobr>(-∞; +∞)</nobr>, у его левого сына <nobr>(-∞; x)</nobr>, правого — <nobr>(x; +∞)</nobr>, где x — значение ключа в корне. Все интервалы открытые с обоих сторон, икс среди ключей правого поддерева встретиться не может. Если позволить в дереве одинаковые ключи и, как в первой части, заставить компаратор бросать их все в одно и то же поддерево — скажем, в левое, — то интервалом для левого сына станет <nobr>(-∞; x]</nobr>.<br>
+<br>
+Для ясности я покажу на рисунке соответствующий интервал для каждой вершины уже исследованного декартового дерева.<br>
+<img src="./Декартово дерево  Часть 2. Ценная информация в дереве и множественные операции с ней   Алгоритмы   Хабрахабр_files/013e94bf791902cfb622b93f01c137e3.png" align="center"><br>
+Теперь ясно, что параметр, хранящийся в вершине, отвечает за значение соответствующей характеристики (максимума, суммы и т.д.) для всей ключей на интервале этой вершины.<br>
+<br>
+И мы можем отвечать на запросы по интервалам <nobr><b>[A; B)</b></nobr> (в С++ и ему подобных языках вообще удобнее оперировать полуоткрытыми интервалами, которые включают левый конец, и не включают правый; в дальнейшем я так и буду поступать).<br>
+Кто-то, знакомый с деревом отрезков, может подумать, что здесь стоит применить тот же рекурсивный спуск, локализируя постепенно текущую вершину до такой, которая полностью соответствует нужному интервалу или его кусочку. Но мы поступим проще и быстрее, сведя задачу к предыдущей.<br>
+<br>
+Мастерски владея ножницами, разделим дерево сначала по ключу A-1. Правый результат Split, хранящий все ключи, большие либо равные A, снова разделим — на этот раз по ключу B. В середине мы получим дерево со всеми элементами, у которых ключи принадлежат искомому интервалу. Для выяснения параметра достаточно посмотреть на его значение в корне — ведь всю чёрную работу по восстановлению справедливости для каждого дерева функция Split уже сделала за нас :)<br>
+<br>
+Время работы запроса, очевидно, O(log<sub>2</sub> N): два выполнения Split. Исходный код для максимума:<br>
+<blockquote><code><font color="black"><font color="#0000ff">public</font> <font color="#0000ff">double</font> MaxCostOn(<font color="#0000ff">int</font> A, <font color="#0000ff">int</font> B)<br>
+{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Treap l, m, r;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#0000ff">this</font>.Split(A - 1, <font color="#0000ff">out</font> l, <font color="#0000ff">out</font> r);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;r.Split(B, <font color="#0000ff">out</font> m, <font color="#0000ff">out</font> r);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#0000ff">return</font> CostOf(m);<br>
+}</font></code></blockquote><br>
+<br>
+<h4>Сила отложенных вычислений</h4><br>
+Высший пилотаж сегодняшнего дня — это возможность изменения пользовательской информации по ходу жизни дерева. Понятно, что после изменения значения <code>Cost</code> в какой-то вершине все наши прежние параметры, накопившие ответы для величин в своих поддеревьях, уже недействительны. Можно, конечно, пройтись по всему дереву и пересчитать их заново, но это снова O(N), и не лезет ни в какие ворота. Что делать?<br>
+<br>
+Если речь идет о простом изменении <code>Cost</code> в одной-единственной вершине, то это не такая уж и проблема. Сначала мы, двигаясь сверху вниз, находим нужный элемент. Меняем в нем информацию. А потом, двигаясь обратно снизу вверх к корню, просто пересчитываем значения параметров стандартной функцией — ведь ни на какие другие поддеревья это изменение не повлияет, кроме как на те, которые мы посетили по пути от корня к вершине. Исходник приводить, полагаю, нет особого смысла, задача тривиальна: решайте ее хоть рекурсией, хоть двумя циклами, время работы все равно O(log<sub>2</sub> N).<br>
+<br>
+Гораздо веселее становится жизнь, если надо поддерживать <em>множественные операции</em>. Пускай есть у нас декартово дерево, в каждой его вершине хранится пользовательская информация <code>Cost</code>. И мы хотим к каждому значению <code>Cost</code> в дереве (или поддереве — см. рассуждения об интервалах) прибавить какое-то одно и то же число A. Это пример множественной операции, в данном случае добавления константы на отрезке. И тут уже простым проходом к корню не обойдешься.<br>
+<br>
+Давайте заведем в каждой вершине дополнительный параметр, назовем его <code>Add</code>. Его суть следующая: он будет сигнализировать о том, что всему поддереву, растущему из данной вершине, <em>полагается</em> добавить константу, лежащую в <code>Add</code>. Получается такое себе запаздывающее прибавление: при необходимости изменить значения на А в некотором поддереве мы изменяем в этом поддереве только корневой <code>Add</code>, как бы давая обещание потомкам, что «когда-нибудь в будущем вам всем полагается еще дополнительное прибавление, но мы его пока выполнять фактически не будем, пока не потребуется».<br>
+<br>
+Тогда запрос <code>Cost</code> из корня дерева должен совершить еще одно дополнительное действие, прибавив к <code>Cost</code> корневой <code>Add</code>, и полученную сумму расценивать как фактический <code>Cost</code>, будто бы лежащий в корне дерева. То же самое с запросами дополнительных параметров, к примеру, суммы цен в дереве: у нас есть корректно (!) посчитанное значение <code>SumTreeCost</code> в корне, которое хранит сумму всех элементов дерева, но не учтя того, что ко всем этим элементам нам полагается прибавить некий <code>Add</code>. Для получения истинно правильного значения суммы с учетом всех отложенных операций достаточно прибавить к <code>SumTreeCost</code> значение <code>Add</code>, умноженное на <code>Size</code> — количество элементов в поддереве.<br>
+<br>
+Пока что не очень понятно, что делать со стандартными операциями декартова дерева — Split и Merge — и когда нам потребуется все-таки выполнить обещание и добавить потомкам обещанный им <code>Add</code>. Сейчас рассмотрю эти вопросы.<br>
+<br>
+Возьмемся снова за операцию Split. Поскольку исходное дерево разделяется на два новых, и исходное мы теряем, то отложенные прибавление придется частично выполнить. А именно: пускай рекурсивный вызов Split делит у нас правое поддерево T.Right. Тогда проведем такие манипуляции:<br>
+<br>
+• Выполним обещание в корне, прибавим к корневому <code>Cost</code> значение корневого <code>Add</code>.<br>
+<pre>  T.Cost += T.Add;</pre>• «Спустим» обещание влево: всему левому поддереву тоже полагается <code>Add</code>. Но поскольку рекурсия влево не идет, то активно трогать это поддерево нам не нужно. Просто запишем обещание.<br>
+<pre>  T.Left.Add += T.Add;</pre>• «Спустим» обещание вправо: всему правому поддереву тоже полагается <code>Add</code>. Это нужно сделать до рекурсивного вызова, чтобы операция Split манипулировала с корректным декартовым деревом. Дальнейшее обновление рекурсия сделает сама.<br>
+<pre>  T.Right.Add += T.Add;</pre>• Сделаем положенный рекурсивный вызов. Split вернула нам два корректных декартовых дерева.<br>
+• Поскольку обещание в корне мы честно выполнили, а обещания для потомков честно записали в памяти, то корневой <code>Add</code> стоит обнулить.<br>
+<pre>  T.Add = 0;</pre>• Дальнейшие прикрепления поддеревьев в Split выполняем как обычно. В итоге — два корректных декартовых дерева с актуальной информацией по обещаниям: где-то исполненным, где-то лишь отложенным, но актуальным.<br>
+<br>
+Все операции указаны на новой диаграмме Split.<br>
+<img src="./Декартово дерево  Часть 2. Ценная информация в дереве и множественные операции с ней   Алгоритмы   Хабрахабр_files/340d2f6b9c7fe51183ee5e481593c6a3.png"><br>
+Заметим, что <em>фактические</em> обновления проводятся лишь в тех вершинах, по которым будет рекурсивно идти операция Split, для остальных же мы в лучшем случае спустим обещание чуть ниже. Та же ситуация будет и с Merge.<br>
+<br>
+Новый Merge в принципе поступает аналогично. Пускай ему нужно рекурсивно объединить правое поддерево L.Right с правым входным деревом R. Тогда выполняем следующее:<br>
+<br>
+• Выполним обещание в корне L.<br>
+<pre>  L.Cost += L.Add;</pre>• «Спустим» обещание потомкам L — на будущее.<br>
+<pre>  L.Left.Add += L.Add;
+  L.Right.Add += L.Add;</pre>• Обещание в корне выполнено — можно про него забыть.<br>
+<pre>  L.Add = 0;</pre>• Делаем нужный рекурсивный вызов <nobr>Merge(L.Right, R)</nobr>, ведь теперь оба её аргумента — корректные декартовы деревья. И вернет она нам тоже корректное дерево.<br>
+• Подвешиваем возвращенное дерево правым сыном, как и раньше. В итоге — снова декартово дерево с актуальной информацией по обещаниям.<br>
+<br>
+<img src="./Декартово дерево  Часть 2. Ценная информация в дереве и множественные операции с ней   Алгоритмы   Хабрахабр_files/97a5a0285b885313661bc412c034a99c.png"><br>
+<br>
+Теперь, когда мы умеем делать запросы в корне и менять на всем дереве, не представляет труда промасштабировать это решение для подотрезков, просто применив тот же принцип, что и несколькими абзацами выше.<br>
+Сделаем два вызова Split, выделив поддерево, соответствующее нужному интервалу ключей, в отдельное дерево.<br>
+Увеличим у этого дерева корневое обещание <code>Add</code> на данное А. Получим корректное дерево с отложенным прибавлением.<br>
+Сольем снова все три дерева вместе двумя вызовами <code>Merge</code> и запишем на месте исходного. Теперь ключи на заданном интервале честно живут с обещанием, что всем им когда-нибудь в будущем полагается добавить А.<br>
+Исходный код данной манипуляции можно оставить как упражнение читателю :)<br>
+<br>
+<blockquote>Не забывайте после всех операций восстанавливать справедливость в корнях вызовом нового варианта функции <code>Recalc</code>. Этот новый вариант должен учитывать отложенные прибавления, как уже было описано при рассказе о запросах.</blockquote><br>
+<br>
+Напоследок замечу, что множественные операции, конечно же, не ограничиваются одним только прибавлением на отрезке. Можно также на отрезке «красить» — устанавливать всем элементам булевый параметр, изменять — устанавливать все значения <code>Cost</code> на отрезке в одно значение, и так далее, что только придумает фантазия программиста. Главное условие на операцию — чтобы ее можно было за <nobr>О(1)</nobr> протолкнуть вниз от корня к потомкам, передав отложенное обещание чуть ниже по дереву, как мы и поступали с Merge и Split. Ну и, конечно же, информация должна легко восстанавливаться из обещания во время запроса, иначе нет смысла и огород городить.<br>
+<br>
+<h4>Резюме</h4><br>
+Мы с вами научились поддерживать в декартовом дереве различную пользовательскую дополнительную информацию, и проводить с ней огромное количество множественных манипуляций, при этом каждый запрос или изменение, будь то в единственной вершине либо на отрезке, выполняется за логарифмическое время. Вкупе с элементарными свойствами декартового дерева, рассказанными в первой части, это уже представляет огромный простор для использования его на практике в любой системе, где требуется хранить значительные объемы данных, и периодически запрашивать у этих данных какие-нибудь статистики.<br>
+<br>
+Но в следующей части я сделаю декартовому дереву маленькую модификацию, которая превратит его в инструмент поистине колоссальной мощи для повседневных нужд. Именоваться это чудо будет «декартово дерево по неявному ключу».<br>
+<br>
+Всем спасибо за внимание.
+
+	
+
+	
+
+	
+</div>
+
+
+
+
+			
+<ul class="tags" title="Теги к записи">
+	<li><a href="http://habrahabr.ru/tag/%D0%B4%D0%B5%D0%BA%D0%B0%D1%80%D1%82%D0%BE%D0%B2%D0%BE%20%D0%B4%D0%B5%D1%80%D0%B5%D0%B2%D0%BE/" rel="tag">декартово дерево</a></li><li>, <a href="http://habrahabr.ru/tag/cartesian%20tree/" rel="tag">cartesian tree</a></li><li>, <a href="http://habrahabr.ru/tag/treap/" rel="tag">treap</a></li><li>, <a href="http://habrahabr.ru/tag/%D0%B4%D0%B5%D1%80%D0%B0%D0%BC%D0%B8%D0%B4%D0%B0/" rel="tag">дерамида</a></li><li>, <a href="http://habrahabr.ru/tag/%D0%B4%D1%83%D1%87%D0%B0/" rel="tag">дуча</a></li><li>, <a href="http://habrahabr.ru/tag/%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%82%D1%83%D1%80%D1%8B%20%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D1%85/" rel="tag">структуры данных</a></li><li>, <a href="http://habrahabr.ru/tag/%D0%B4%D0%B2%D0%BE%D0%B8%D1%87%D0%BD%D1%8B%D0%B5%20%D0%B4%D0%B5%D1%80%D0%B5%D0%B2%D1%8C%D1%8F/" rel="tag">двоичные деревья</a></li><li>, <a href="http://habrahabr.ru/tag/%D1%82%D0%B5%D0%B3%20%D0%BA%D0%BE%D1%82%D0%BE%D1%80%D1%8B%D0%B9%20%D0%BD%D0%B8%D0%BA%D1%82%D0%BE%20%D0%BD%D0%B5%20%D1%87%D0%B8%D1%82%D0%B0%D0%B5%D1%82/" rel="tag">тег который никто не читает</a></li><li>, <a href="http://habrahabr.ru/tag/%D0%B1%D0%B8%D0%BD%D0%B0%D1%80%D0%BD%D1%8B%D0%B5%20%D0%B4%D0%B5%D1%80%D0%B5%D0%B2%D1%8C%D1%8F/" rel="tag">бинарные деревья</a></li><li>, <a href="http://habrahabr.ru/tag/%D1%81%D0%B1%D0%B0%D0%BB%D0%B0%D0%BD%D1%81%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%BD%D1%8B%D0%B5%20%D0%B4%D0%B5%D1%80%D0%B5%D0%B2%D1%8C%D1%8F/" rel="tag">сбалансированные деревья</a></li><li>, <a href="http://habrahabr.ru/tag/C/" rel="tag">C</a></li>
+</ul>
+
+			
+<div class="entry-info vote_holder" id="infopanel102006">
+
+		<!--  Закруглённые уголки -->
+
+		<div class="corner tl"></div><div class="corner tr"></div>
+
+		<div class="entry-info-wrap">
+			
+			
+				<div class="voting positive  no_auth expired">
+					<div class="can-vote"><a title="Нравится" href="http://habrahabr.ru/blogs/algorithm/102006/#" class="vote_plus" onclick="return Voter.vote(event, this, &#39;post&#39;, &#39;plus&#39;);"></a></div>
+					<div class="cannot-vote"><span title="Нравится" class="vote_plus"></span></div>
+					<div class="mark"><span title="Всего 76 голосов: ↑72 и ↓4">+68</span></div>
+					<div class="can-vote"><a title="Не нравится" href="http://habrahabr.ru/blogs/algorithm/102006/#" class="vote_minus" onclick="return Voter.vote(event, this, &#39;post&#39;, &#39;minus&#39;);"></a></div>
+					<div class="cannot-vote"><span class="vote_minus"></span></div>
+				</div>
+			
+			<div class="published"><!-- Дата в формате ISO пихается в title -->
+				<span>18 августа 2010, 20:11</span>
+			</div>
+
+			
+			<div class="fav_added js-to_favs_holder">
+				<a class="js-to_favs_remove" href="http://habrahabr.ru/blogs/algorithm/102006/#" style="cursor: default" onclick="return false;"></a>
+			</div>
+			
+			
+			<div class="favs_count" title="Количество пользователей, добавивших пост в избранное">132</div>
+			
+			<div class="twitter">
+				<a href="http://twitter.com/intent/tweet?text=http://habr.ru/p/102006/+%D0%94%D0%B5%D0%BA%D0%B0%D1%80%D1%82%D0%BE%D0%B2%D0%BE+%D0%B4%D0%B5%D1%80%D0%B5%D0%B2%D0%BE:+%D0%A7%D0%B0%D1%81%D1%82%D1%8C+2.+%D0%A6%D0%B5%D0%BD%D0%BD%D0%B0%D1%8F+%D0%B8%D0%BD%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%86%D0%B8%D1%8F+%D0%B2+%D0%B4%D0%B5%D1%80%D0%B5%D0%B2%D0%B5+%D0%B8+%D0%BC%D0%BD%D0%BE%D0%B6%D0%B5%D1%81%D1%82%D0%B2%D0%B5%D0%BD%D0%BD%D1%8B%D0%B5+%D0%BE%D0%BF%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D0%B8+%D1%81+%D0%BD%D0%B5%D0%B9+%23habr" title="Опубликовать ссылку на пост в Twitter" target="_blank"></a>
+			</div>
+			<div class="vkontakte">
+				<a href="http://vkontakte.ru/share.php?url=http://habrahabr.ru/blogs/algorithm/102006/" title="Опубликовать ссылку на пост в ВКонтакте" onclick="window.open(this.href, &#39;Опубликовать ссылку на пост в Вконтакте&#39;, &#39;width=800,height=300&#39;); return false"></a>
+			</div>
+			<div class="facebook">
+				<a href="http://www.facebook.com/sharer.php?u=http://habrahabr.ru/blogs/algorithm/102006/" title="Опубликовать ссылку на пост в Facebook" onclick="window.open(this.href, &#39;Опубликовать ссылку на пост в Facebook&#39;, &#39;width=800,height=300&#39;); return false"></a>
+			</div>
+			
+			
+			
+
+			
+			
+
+			
+
+			
+			
+				<div class="vcard author full">
+					<a title="Автор текста" href="http://habrahabr.ru/users/Skiminok/" class="fn nickname url"><span>Skiminok</span></a>
+				</div>
+			
+			
+
+			
+
+			
+
+
+		</div>
+
+		<div class="corner bl"></div><div class="corner br"></div>
+</div>
+
+
+
+			
+		</div>
+	
+
+
+
+
+
+
+	
+
+
+
+	
+		
+		<div id="comments">
+			<h2 class="comments-header">комментарии (<span class="js-comments-count">14</span>)
+			 
+			</h2>
+			
+				<ul class="hentry">
+	
+		<li id="comment_3168661" class="comment_holder vote_holder">
+			
+				<div class="msg-meta">
+					<div class="folding-dot-holder"><div class="folding-dot"></div></div>
+					<ul class="menu info author hcard">
+						<li class="avatar">
+							<a href="http://habrahabr.ru/users/Lendis/" title="Lendis">
+								<img src="./Декартово дерево  Часть 2. Ценная информация в дереве и множественные операции с ней   Алгоритмы   Хабрахабр_files/stub-user-small.gif" alt="Lendis">
+								<b></b>
+							</a>
+						</li>
+						<li class="fn nickname username">
+							<a href="http://habrahabr.ru/users/Lendis/" class="url">Lendis</a>,
+						</li>
+						<li class="date">
+							<abbr class="published" title="2010-08-18T21:32:48+04:00">18 августа 2010, 21:32</abbr>
+						</li>
+						<li class="bookmark">
+							<a href="http://habrahabr.ru/blogs/algorithm/102006/#comment_3168661" title="Ссылка на комментарий" rel="bookmark">#</a>
+						</li>
+						
+						
+						<li class="down-to-child hidden"><a title="Обратно" onclick="return commentForm.goToChildComment(this);" href="http://habrahabr.ru/blogs/algorithm/102006/#">↓</a></li>
+						<!--<li class="single-tree">
+							<a class="js-serv js-single-tree" href=''>ветка</a>
+							<a class="js-serv js-multiplay-tree" href="#comment_3168661">восстановить</a>
+						</li>-->
+						
+						<li>
+							<ul class="vote voting positive no_auth expired">
+								<li class="mark"><span>+4</span></li>
+								<li class="buttons">
+									<a rev="voter-for-comment:3168661" class="vote_minus vote-for-comment" title="Плохой комментарий"></a>
+									<a rev="voter-for-comment:3168661" class="vote_plus vote-for-comment" title="Хороший комментарий"></a>
+								</li>
+							</ul>
+						</li>
+						
+					</ul>
+
+				</div>
+
+				<div class="entry-content">
+					<div class="entry-content-only">
+					    ха, а я прочитал (я про тег, а не про статью :) ).
+					</div>
+					
+				</div>
+
+				<div id="reply_form_3168661" class="reply_form">
+
+					
+				</div>
+			
+
+			
+			
+			
+
+			
+				<ul class="hentry">
+	
+		<li id="comment_3168665" class="comment_holder vote_holder">
+			
+				<div class="msg-meta">
+					<div class="folding-dot-holder"><div class="folding-dot"></div></div>
+					<ul class="menu info author hcard">
+						<li class="avatar">
+							<a href="http://habrahabr.ru/users/Skiminok/" title="Skiminok">
+								<img src="./Декартово дерево  Часть 2. Ценная информация в дереве и множественные операции с ней   Алгоритмы   Хабрахабр_files/21054_24x24.jpg" alt="Skiminok">
+								<b></b>
+							</a>
+						</li>
+						<li class="fn nickname username">
+							<a href="http://habrahabr.ru/users/Skiminok/" class="url">Skiminok</a>,
+						</li>
+						<li class="date">
+							<abbr class="published" title="2010-08-18T21:33:50+04:00">18 августа 2010, 21:33</abbr>
+						</li>
+						<li class="bookmark">
+							<a href="http://habrahabr.ru/blogs/algorithm/102006/#comment_3168665" title="Ссылка на комментарий" rel="bookmark">#</a>
+						</li>
+						
+						<li class="up-to-parent"><a title="Ответ на" onclick="return commentForm.goToParentComment(this);" href="http://habrahabr.ru/blogs/algorithm/102006/#comment_3168661">↑</a></li>
+						<li class="down-to-child hidden"><a title="Обратно" onclick="return commentForm.goToChildComment(this);" href="http://habrahabr.ru/blogs/algorithm/102006/#">↓</a></li>
+						<!--<li class="single-tree">
+							<a class="js-serv js-single-tree" href='#comment_3168661'>ветка</a>
+							<a class="js-serv js-multiplay-tree" href="#comment_3168665">восстановить</a>
+						</li>-->
+						
+						<li>
+							<ul class="vote voting positive no_auth expired">
+								<li class="mark"><span>+1</span></li>
+								<li class="buttons">
+									<a rev="voter-for-comment:3168665" class="vote_minus vote-for-comment" title="Плохой комментарий"></a>
+									<a rev="voter-for-comment:3168665" class="vote_plus vote-for-comment" title="Хороший комментарий"></a>
+								</li>
+							</ul>
+						</li>
+						
+					</ul>
+
+				</div>
+
+				<div class="entry-content">
+					<div class="entry-content-only">
+					    Ух ты. За трое суток первый человек заметил пасхалку.
+					</div>
+					
+				</div>
+
+				<div id="reply_form_3168665" class="reply_form">
+
+					
+				</div>
+			
+
+			
+			
+			
+
+			
+				<ul class="hentry">
+	
+		<li id="comment_3168679" class="comment_holder vote_holder">
+			
+				<div class="msg-meta">
+					<div class="folding-dot-holder"><div class="folding-dot"></div></div>
+					<ul class="menu info author hcard">
+						<li class="avatar">
+							<a href="http://habrahabr.ru/users/Lendis/" title="Lendis">
+								<img src="./Декартово дерево  Часть 2. Ценная информация в дереве и множественные операции с ней   Алгоритмы   Хабрахабр_files/stub-user-small.gif" alt="Lendis">
+								<b></b>
+							</a>
+						</li>
+						<li class="fn nickname username">
+							<a href="http://habrahabr.ru/users/Lendis/" class="url">Lendis</a>,
+						</li>
+						<li class="date">
+							<abbr class="published" title="2010-08-18T21:41:29+04:00">18 августа 2010, 21:41</abbr>
+						</li>
+						<li class="bookmark">
+							<a href="http://habrahabr.ru/blogs/algorithm/102006/#comment_3168679" title="Ссылка на комментарий" rel="bookmark">#</a>
+						</li>
+						
+						<li class="up-to-parent"><a title="Ответ на" onclick="return commentForm.goToParentComment(this);" href="http://habrahabr.ru/blogs/algorithm/102006/#comment_3168665">↑</a></li>
+						<li class="down-to-child hidden"><a title="Обратно" onclick="return commentForm.goToChildComment(this);" href="http://habrahabr.ru/blogs/algorithm/102006/#">↓</a></li>
+						<!--<li class="single-tree">
+							<a class="js-serv js-single-tree" href='#comment_3168665'>ветка</a>
+							<a class="js-serv js-multiplay-tree" href="#comment_3168679">восстановить</a>
+						</li>-->
+						
+						<li>
+							<ul class="vote voting  no_auth expired">
+								<li class="mark"><span>0</span></li>
+								<li class="buttons">
+									<a rev="voter-for-comment:3168679" class="vote_minus vote-for-comment" title="Плохой комментарий"></a>
+									<a rev="voter-for-comment:3168679" class="vote_plus vote-for-comment" title="Хороший комментарий"></a>
+								</li>
+							</ul>
+						</li>
+						
+					</ul>
+
+				</div>
+
+				<div class="entry-content">
+					<div class="entry-content-only">
+					    в статьях такого рода первым делом нужно читать теги), а то после уже не до них будет. А за статью спасибо, вкурил с трудом, но интересно.
+					</div>
+					
+				</div>
+
+				<div id="reply_form_3168679" class="reply_form">
+
+					
+				</div>
+			
+
+			
+			
+			
+
+			
+
+		</li>
+	
+		<li id="comment_3175847" class="comment_holder vote_holder">
+			
+				<div class="msg-meta">
+					<div class="folding-dot-holder"><div class="folding-dot"></div></div>
+					<ul class="menu info author hcard">
+						<li class="avatar">
+							<a href="http://habrahabr.ru/users/IDMan/" title="IDMan">
+								<img src="./Декартово дерево  Часть 2. Ценная информация в дереве и множественные операции с ней   Алгоритмы   Хабрахабр_files/stub-user-small.gif" alt="IDMan">
+								<b></b>
+							</a>
+						</li>
+						<li class="fn nickname username">
+							<a href="http://habrahabr.ru/users/IDMan/" class="url">IDMan</a>,
+						</li>
+						<li class="date">
+							<abbr class="published" title="2010-08-20T23:31:51+04:00">20 августа 2010, 23:31</abbr>
+						</li>
+						<li class="bookmark">
+							<a href="http://habrahabr.ru/blogs/algorithm/102006/#comment_3175847" title="Ссылка на комментарий" rel="bookmark">#</a>
+						</li>
+						
+						<li class="up-to-parent"><a title="Ответ на" onclick="return commentForm.goToParentComment(this);" href="http://habrahabr.ru/blogs/algorithm/102006/#comment_3168665">↑</a></li>
+						<li class="down-to-child hidden"><a title="Обратно" onclick="return commentForm.goToChildComment(this);" href="http://habrahabr.ru/blogs/algorithm/102006/#">↓</a></li>
+						<!--<li class="single-tree">
+							<a class="js-serv js-single-tree" href='#comment_3168665'>ветка</a>
+							<a class="js-serv js-multiplay-tree" href="#comment_3175847">восстановить</a>
+						</li>-->
+						
+						<li>
+							<ul class="vote voting  no_auth expired">
+								<li class="mark"><span>0</span></li>
+								<li class="buttons">
+									<a rev="voter-for-comment:3175847" class="vote_minus vote-for-comment" title="Плохой комментарий"></a>
+									<a rev="voter-for-comment:3175847" class="vote_plus vote-for-comment" title="Хороший комментарий"></a>
+								</li>
+							</ul>
+						</li>
+						
+					</ul>
+
+				</div>
+
+				<div class="entry-content">
+					<div class="entry-content-only">
+					    В первой части тоже такой был.
+					</div>
+					
+				</div>
+
+				<div id="reply_form_3175847" class="reply_form">
+
+					
+				</div>
+			
+
+			
+			
+			
+
+			
+
+		</li>
+	
+</ul>
+
+			
+
+		</li>
+	
+</ul>
+
+			
+
+		</li>
+	
+		<li id="comment_3168675" class="comment_holder vote_holder">
+			
+				<div class="msg-meta">
+					<div class="folding-dot-holder"><div class="folding-dot"></div></div>
+					<ul class="menu info author hcard">
+						<li class="avatar">
+							<a href="http://habrahabr.ru/users/Krovosos/" title="Krovosos">
+								<img src="./Декартово дерево  Часть 2. Ценная информация в дереве и множественные операции с ней   Алгоритмы   Хабрахабр_files/stub-user-small.gif" alt="Krovosos">
+								<b></b>
+							</a>
+						</li>
+						<li class="fn nickname username">
+							<a href="http://habrahabr.ru/users/Krovosos/" class="url">Krovosos</a>,
+						</li>
+						<li class="date">
+							<abbr class="published" title="2010-08-18T21:40:04+04:00">18 августа 2010, 21:40</abbr>
+						</li>
+						<li class="bookmark">
+							<a href="http://habrahabr.ru/blogs/algorithm/102006/#comment_3168675" title="Ссылка на комментарий" rel="bookmark">#</a>
+						</li>
+						
+						
+						<li class="down-to-child hidden"><a title="Обратно" onclick="return commentForm.goToChildComment(this);" href="http://habrahabr.ru/blogs/algorithm/102006/#">↓</a></li>
+						<!--<li class="single-tree">
+							<a class="js-serv js-single-tree" href=''>ветка</a>
+							<a class="js-serv js-multiplay-tree" href="#comment_3168675">восстановить</a>
+						</li>-->
+						
+						<li>
+							<ul class="vote voting  no_auth expired">
+								<li class="mark"><span>0</span></li>
+								<li class="buttons">
+									<a rev="voter-for-comment:3168675" class="vote_minus vote-for-comment" title="Плохой комментарий"></a>
+									<a rev="voter-for-comment:3168675" class="vote_plus vote-for-comment" title="Хороший комментарий"></a>
+								</li>
+							</ul>
+						</li>
+						
+					</ul>
+
+				</div>
+
+				<div class="entry-content">
+					<div class="entry-content-only">
+					    Прикольная штука. Кто их придумал?
+					</div>
+					
+				</div>
+
+				<div id="reply_form_3168675" class="reply_form">
+
+					
+				</div>
+			
+
+			
+			
+			
+
+			
+				<ul class="hentry">
+	
+		<li id="comment_3168695" class="comment_holder vote_holder">
+			
+				<div class="msg-meta">
+					<div class="folding-dot-holder"><div class="folding-dot"></div></div>
+					<ul class="menu info author hcard">
+						<li class="avatar">
+							<a href="http://habrahabr.ru/users/Skiminok/" title="Skiminok">
+								<img src="./Декартово дерево  Часть 2. Ценная информация в дереве и множественные операции с ней   Алгоритмы   Хабрахабр_files/21054_24x24.jpg" alt="Skiminok">
+								<b></b>
+							</a>
+						</li>
+						<li class="fn nickname username">
+							<a href="http://habrahabr.ru/users/Skiminok/" class="url">Skiminok</a>,
+						</li>
+						<li class="date">
+							<abbr class="published" title="2010-08-18T21:47:49+04:00">18 августа 2010, 21:47</abbr>
+						</li>
+						<li class="bookmark">
+							<a href="http://habrahabr.ru/blogs/algorithm/102006/#comment_3168695" title="Ссылка на комментарий" rel="bookmark">#</a>
+						</li>
+						
+						<li class="up-to-parent"><a title="Ответ на" onclick="return commentForm.goToParentComment(this);" href="http://habrahabr.ru/blogs/algorithm/102006/#comment_3168675">↑</a></li>
+						<li class="down-to-child hidden"><a title="Обратно" onclick="return commentForm.goToChildComment(this);" href="http://habrahabr.ru/blogs/algorithm/102006/#">↓</a></li>
+						<!--<li class="single-tree">
+							<a class="js-serv js-single-tree" href='#comment_3168675'>ветка</a>
+							<a class="js-serv js-multiplay-tree" href="#comment_3168695">восстановить</a>
+						</li>-->
+						
+						<li>
+							<ul class="vote voting  no_auth expired">
+								<li class="mark"><span>0</span></li>
+								<li class="buttons">
+									<a rev="voter-for-comment:3168695" class="vote_minus vote-for-comment" title="Плохой комментарий"></a>
+									<a rev="voter-for-comment:3168695" class="vote_plus vote-for-comment" title="Хороший комментарий"></a>
+								</li>
+							</ul>
+						</li>
+						
+					</ul>
+
+				</div>
+
+				<div class="entry-content">
+					<div class="entry-content-only">
+					    В сегодняшнем полном варианте — Зайдель и Арагон, в 1996 году (<a href="http://people.ischool.berkeley.edu/~aragon/pubs/rst96.pdf">link</a>). Идеи о том, как «квази-балансировать» дерево поиска приоритетами существовали и раньше, применения отложенных вычислений на отрезках — еще раньше, с успехом работали в одноименном «дереве отрезков».<br>
+После 1996 года главная модификация, которая произошла — переделка под неявный ключ. Что характерно, вроде бы сделана в России ACM-олимпийцами, потому что в западной литературе упоминаний об этой махинации — ноль =)
+					</div>
+					
+				</div>
+
+				<div id="reply_form_3168695" class="reply_form">
+
+					
+				</div>
+			
+
+			
+			
+			
+
+			
+
+		</li>
+	
+</ul>
+
+			
+
+		</li>
+	
+		<li id="comment_3168830" class="comment_holder vote_holder">
+			
+				<div class="msg-meta">
+					<div class="folding-dot-holder"><div class="folding-dot"></div></div>
+					<ul class="menu info author hcard">
+						<li class="avatar">
+							<a href="http://habrahabr.ru/users/Voviandr/" title="Voviandr">
+								<img src="./Декартово дерево  Часть 2. Ценная информация в дереве и множественные операции с ней   Алгоритмы   Хабрахабр_files/stub-user-small.gif" alt="Voviandr">
+								<b></b>
+							</a>
+						</li>
+						<li class="fn nickname username">
+							<a href="http://habrahabr.ru/users/Voviandr/" class="url">Voviandr</a>,
+						</li>
+						<li class="date">
+							<abbr class="published" title="2010-08-18T22:37:34+04:00">18 августа 2010, 22:37</abbr>
+						</li>
+						<li class="bookmark">
+							<a href="http://habrahabr.ru/blogs/algorithm/102006/#comment_3168830" title="Ссылка на комментарий" rel="bookmark">#</a>
+						</li>
+						
+						
+						<li class="down-to-child hidden"><a title="Обратно" onclick="return commentForm.goToChildComment(this);" href="http://habrahabr.ru/blogs/algorithm/102006/#">↓</a></li>
+						<!--<li class="single-tree">
+							<a class="js-serv js-single-tree" href=''>ветка</a>
+							<a class="js-serv js-multiplay-tree" href="#comment_3168830">восстановить</a>
+						</li>-->
+						
+						<li>
+							<ul class="vote voting  no_auth expired">
+								<li class="mark"><span>0</span></li>
+								<li class="buttons">
+									<a rev="voter-for-comment:3168830" class="vote_minus vote-for-comment" title="Плохой комментарий"></a>
+									<a rev="voter-for-comment:3168830" class="vote_plus vote-for-comment" title="Хороший комментарий"></a>
+								</li>
+							</ul>
+						</li>
+						
+					</ul>
+
+				</div>
+
+				<div class="entry-content">
+					<div class="entry-content-only">
+					    благодарю автора, чудесная статья. обожаю изучать новые алгоритмы и структуры данных, буду ждать продолжения.
+					</div>
+					
+				</div>
+
+				<div id="reply_form_3168830" class="reply_form">
+
+					
+				</div>
+			
+
+			
+			
+			
+
+			
+
+		</li>
+	
+		<li id="comment_3168832" class="comment_holder vote_holder">
+			
+				<div class="msg-meta">
+					<div class="folding-dot-holder"><div class="folding-dot"></div></div>
+					<ul class="menu info author hcard">
+						<li class="avatar">
+							<a href="http://habrahabr.ru/users/Krovosos/" title="Krovosos">
+								<img src="./Декартово дерево  Часть 2. Ценная информация в дереве и множественные операции с ней   Алгоритмы   Хабрахабр_files/stub-user-small.gif" alt="Krovosos">
+								<b></b>
+							</a>
+						</li>
+						<li class="fn nickname username">
+							<a href="http://habrahabr.ru/users/Krovosos/" class="url">Krovosos</a>,
+						</li>
+						<li class="date">
+							<abbr class="published" title="2010-08-18T22:39:49+04:00">18 августа 2010, 22:39</abbr>
+						</li>
+						<li class="bookmark">
+							<a href="http://habrahabr.ru/blogs/algorithm/102006/#comment_3168832" title="Ссылка на комментарий" rel="bookmark">#</a>
+						</li>
+						
+						
+						<li class="down-to-child hidden"><a title="Обратно" onclick="return commentForm.goToChildComment(this);" href="http://habrahabr.ru/blogs/algorithm/102006/#">↓</a></li>
+						<!--<li class="single-tree">
+							<a class="js-serv js-single-tree" href=''>ветка</a>
+							<a class="js-serv js-multiplay-tree" href="#comment_3168832">восстановить</a>
+						</li>-->
+						
+						<li>
+							<ul class="vote voting positive no_auth expired">
+								<li class="mark"><span>+1</span></li>
+								<li class="buttons">
+									<a rev="voter-for-comment:3168832" class="vote_minus vote-for-comment" title="Плохой комментарий"></a>
+									<a rev="voter-for-comment:3168832" class="vote_plus vote-for-comment" title="Хороший комментарий"></a>
+								</li>
+							</ul>
+						</li>
+						
+					</ul>
+
+				</div>
+
+				<div class="entry-content">
+					<div class="entry-content-only">
+					    Понятно.<br>
+<br>
+Напомнило как я однажды «изобрел» Б-деревья. Как-то я размышлял над таблицами и списками и решил, что их нужно творчески объединить, чтобы избавиться от недостатков (долгая вставка в таблицу и долгий поиск в списке). Полученный «список таблиц», разумеется, постепенно превратился в дерево, состоящее из «списков таблиц». Долго я сражался с реализацией и получил-таки работающий вариант. Радости моей не было предела и после оптимизаций я решился помериться производительностью с деревьями из stl библиотеки, на которых основан map.<br>
+<br>
+Увы, в среднем моя структура отставала на 50-70%. Хотя временами, для отдельных случаев — опережала. Тогда-то я и решил, наконец, поизучать вопрос поподробнее и узнал про красно-черные и про Б-деревья… :-)
+					</div>
+					
+				</div>
+
+				<div id="reply_form_3168832" class="reply_form">
+
+					
+				</div>
+			
+
+			
+			
+			
+
+			
+				<ul class="hentry">
+	
+		<li id="comment_3168834" class="comment_holder vote_holder">
+			
+				<div class="msg-meta">
+					<div class="folding-dot-holder"><div class="folding-dot"></div></div>
+					<ul class="menu info author hcard">
+						<li class="avatar">
+							<a href="http://habrahabr.ru/users/Krovosos/" title="Krovosos">
+								<img src="./Декартово дерево  Часть 2. Ценная информация в дереве и множественные операции с ней   Алгоритмы   Хабрахабр_files/stub-user-small.gif" alt="Krovosos">
+								<b></b>
+							</a>
+						</li>
+						<li class="fn nickname username">
+							<a href="http://habrahabr.ru/users/Krovosos/" class="url">Krovosos</a>,
+						</li>
+						<li class="date">
+							<abbr class="published" title="2010-08-18T22:40:22+04:00">18 августа 2010, 22:40</abbr>
+						</li>
+						<li class="bookmark">
+							<a href="http://habrahabr.ru/blogs/algorithm/102006/#comment_3168834" title="Ссылка на комментарий" rel="bookmark">#</a>
+						</li>
+						
+						<li class="up-to-parent"><a title="Ответ на" onclick="return commentForm.goToParentComment(this);" href="http://habrahabr.ru/blogs/algorithm/102006/#comment_3168832">↑</a></li>
+						<li class="down-to-child hidden"><a title="Обратно" onclick="return commentForm.goToChildComment(this);" href="http://habrahabr.ru/blogs/algorithm/102006/#">↓</a></li>
+						<!--<li class="single-tree">
+							<a class="js-serv js-single-tree" href='#comment_3168832'>ветка</a>
+							<a class="js-serv js-multiplay-tree" href="#comment_3168834">восстановить</a>
+						</li>-->
+						
+						<li>
+							<ul class="vote voting  no_auth expired">
+								<li class="mark"><span>0</span></li>
+								<li class="buttons">
+									<a rev="voter-for-comment:3168834" class="vote_minus vote-for-comment" title="Плохой комментарий"></a>
+									<a rev="voter-for-comment:3168834" class="vote_plus vote-for-comment" title="Хороший комментарий"></a>
+								</li>
+							</ul>
+						</li>
+						
+					</ul>
+
+				</div>
+
+				<div class="entry-content">
+					<div class="entry-content-only">
+					    Собственно, декартовы деревья поражают простотой кода модификации, вот я к чему :-)
+					</div>
+					
+				</div>
+
+				<div id="reply_form_3168834" class="reply_form">
+
+					
+				</div>
+			
+
+			
+			
+			
+
+			
+
+		</li>
+	
+</ul>
+
+			
+
+		</li>
+	
+		<li id="comment_3169535" class="comment_holder vote_holder">
+			
+				<div class="msg-meta">
+					<div class="folding-dot-holder"><div class="folding-dot"></div></div>
+					<ul class="menu info author hcard">
+						<li class="avatar">
+							<a href="http://habrahabr.ru/users/MikhailEdoshin/" title="MikhailEdoshin">
+								<img src="./Декартово дерево  Часть 2. Ценная информация в дереве и множественные операции с ней   Алгоритмы   Хабрахабр_files/stub-user-small.gif" alt="MikhailEdoshin">
+								<b></b>
+							</a>
+						</li>
+						<li class="fn nickname username">
+							<a href="http://habrahabr.ru/users/MikhailEdoshin/" class="url">MikhailEdoshin</a>,
+						</li>
+						<li class="date">
+							<abbr class="published" title="2010-08-19T07:34:30+04:00">19 августа 2010, 07:34</abbr>
+						</li>
+						<li class="bookmark">
+							<a href="http://habrahabr.ru/blogs/algorithm/102006/#comment_3169535" title="Ссылка на комментарий" rel="bookmark">#</a>
+						</li>
+						
+						
+						<li class="down-to-child hidden"><a title="Обратно" onclick="return commentForm.goToChildComment(this);" href="http://habrahabr.ru/blogs/algorithm/102006/#">↓</a></li>
+						<!--<li class="single-tree">
+							<a class="js-serv js-single-tree" href=''>ветка</a>
+							<a class="js-serv js-multiplay-tree" href="#comment_3169535">восстановить</a>
+						</li>-->
+						
+						<li>
+							<ul class="vote voting  no_auth expired">
+								<li class="mark"><span>0</span></li>
+								<li class="buttons">
+									<a rev="voter-for-comment:3169535" class="vote_minus vote-for-comment" title="Плохой комментарий"></a>
+									<a rev="voter-for-comment:3169535" class="vote_plus vote-for-comment" title="Хороший комментарий"></a>
+								</li>
+							</ul>
+						</li>
+						
+					</ul>
+
+				</div>
+
+				<div class="entry-content">
+					<div class="entry-content-only">
+					    Слушайте, замечательная структура эти декартовы деревья. Спасибо большое :) — хотя придётся еще раз (и не раз, чувствую) перечитать обе статьи. Заинтригован упоминаниями о третьей части.
+					</div>
+					
+				</div>
+
+				<div id="reply_form_3169535" class="reply_form">
+
+					
+				</div>
+			
+
+			
+			
+			
+
+			
+
+		</li>
+	
+		<li id="comment_3169728" class="comment_holder vote_holder">
+			
+				<div class="msg-meta">
+					<div class="folding-dot-holder"><div class="folding-dot"></div></div>
+					<ul class="menu info author hcard">
+						<li class="avatar">
+							<a href="http://habrahabr.ru/users/grep0/" title="grep0">
+								<img src="./Декартово дерево  Часть 2. Ценная информация в дереве и множественные операции с ней   Алгоритмы   Хабрахабр_files/9856_24x24.jpg" alt="grep0">
+								<b></b>
+							</a>
+						</li>
+						<li class="fn nickname username">
+							<a href="http://habrahabr.ru/users/grep0/" class="url">grep0</a>,
+						</li>
+						<li class="date">
+							<abbr class="published" title="2010-08-19T10:15:11+04:00">19 августа 2010, 10:15</abbr>
+						</li>
+						<li class="bookmark">
+							<a href="http://habrahabr.ru/blogs/algorithm/102006/#comment_3169728" title="Ссылка на комментарий" rel="bookmark">#</a>
+						</li>
+						
+						
+						<li class="down-to-child hidden"><a title="Обратно" onclick="return commentForm.goToChildComment(this);" href="http://habrahabr.ru/blogs/algorithm/102006/#">↓</a></li>
+						<!--<li class="single-tree">
+							<a class="js-serv js-single-tree" href=''>ветка</a>
+							<a class="js-serv js-multiplay-tree" href="#comment_3169728">восстановить</a>
+						</li>-->
+						
+						<li>
+							<ul class="vote voting positive no_auth expired">
+								<li class="mark"><span>+1</span></li>
+								<li class="buttons">
+									<a rev="voter-for-comment:3169728" class="vote_minus vote-for-comment" title="Плохой комментарий"></a>
+									<a rev="voter-for-comment:3169728" class="vote_plus vote-for-comment" title="Хороший комментарий"></a>
+								</li>
+							</ul>
+						</li>
+						
+					</ul>
+
+				</div>
+
+				<div class="entry-content">
+					<div class="entry-content-only">
+					    Вообще-то, для классических сбалансированных деревьев, например, AVL, тоже не представляет никакой трудности держать в узле вычисленные параметры поддерева — тот же размер левого потомка или max(cost). И преобразование этих величин при элементарных преобразованиях (для AVL это вставка/удаление листьев и поворот) ничуть не сложнее.
+					</div>
+					
+				</div>
+
+				<div id="reply_form_3169728" class="reply_form">
+
+					
+				</div>
+			
+
+			
+			
+			
+
+			
+
+		</li>
+	
+		<li id="comment_3178416" class="comment_holder vote_holder">
+			
+				<div class="msg-meta">
+					<div class="folding-dot-holder"><div class="folding-dot"></div></div>
+					<ul class="menu info author hcard">
+						<li class="avatar">
+							<a href="http://habrahabr.ru/users/AlMag/" title="AlMag">
+								<img src="./Декартово дерево  Часть 2. Ценная информация в дереве и множественные операции с ней   Алгоритмы   Хабрахабр_files/36447_24x24.jpg" alt="AlMag">
+								<b></b>
+							</a>
+						</li>
+						<li class="fn nickname username">
+							<a href="http://habrahabr.ru/users/AlMag/" class="url">AlMag</a>,
+						</li>
+						<li class="date">
+							<abbr class="published" title="2010-08-22T13:07:22+04:00">22 августа 2010, 13:07</abbr>
+						</li>
+						<li class="bookmark">
+							<a href="http://habrahabr.ru/blogs/algorithm/102006/#comment_3178416" title="Ссылка на комментарий" rel="bookmark">#</a>
+						</li>
+						
+						
+						<li class="down-to-child hidden"><a title="Обратно" onclick="return commentForm.goToChildComment(this);" href="http://habrahabr.ru/blogs/algorithm/102006/#">↓</a></li>
+						<!--<li class="single-tree">
+							<a class="js-serv js-single-tree" href=''>ветка</a>
+							<a class="js-serv js-multiplay-tree" href="#comment_3178416">восстановить</a>
+						</li>-->
+						
+						<li>
+							<ul class="vote voting positive no_auth expired">
+								<li class="mark"><span>+1</span></li>
+								<li class="buttons">
+									<a rev="voter-for-comment:3178416" class="vote_minus vote-for-comment" title="Плохой комментарий"></a>
+									<a rev="voter-for-comment:3178416" class="vote_plus vote-for-comment" title="Хороший комментарий"></a>
+								</li>
+							</ul>
+						</li>
+						
+					</ul>
+
+				</div>
+
+				<div class="entry-content">
+					<div class="entry-content-only">
+					    Небольшим недостатком декартового дерева есть то, что игреки нигде не используются практически, кроме балансировки дерева.<br>
+На самом деле, можно вместо Y брать реальную информацию, тоесть не случайно сгенерированные числа. Если после этого умножить все Y на некоторое простое число P и взять по модулю 2^64 (что очень удобно и быстро), то можно доказать, что Y будут распределены случайным образом. Для того, что бы при необходимости узнать Y, нужно будет просто домножить на обратный элемент к P по модулю 2^64.<br>
+Таким образом, память у декартового дерева не будет тратиться попусту и в ней можно хранить некоторую информацию, помимо ключей.
+					</div>
+					
+				</div>
+
+				<div id="reply_form_3178416" class="reply_form">
+
+					
+				</div>
+			
+
+			
+			
+			
+
+			
+				<ul class="hentry">
+	
+		<li id="comment_3186098" class="comment_holder vote_holder">
+			
+				<div class="msg-meta">
+					<div class="folding-dot-holder"><div class="folding-dot"></div></div>
+					<ul class="menu info author hcard">
+						<li class="avatar">
+							<a href="http://habrahabr.ru/users/kotehok/" title="kotehok">
+								<img src="./Декартово дерево  Часть 2. Ценная информация в дереве и множественные операции с ней   Алгоритмы   Хабрахабр_files/stub-user-small.gif" alt="kotehok">
+								<b></b>
+							</a>
+						</li>
+						<li class="fn nickname username">
+							<a href="http://habrahabr.ru/users/kotehok/" class="url">kotehok</a>,
+						</li>
+						<li class="date">
+							<abbr class="published" title="2010-08-24T22:26:14+04:00">24 августа 2010, 22:26</abbr>
+						</li>
+						<li class="bookmark">
+							<a href="http://habrahabr.ru/blogs/algorithm/102006/#comment_3186098" title="Ссылка на комментарий" rel="bookmark">#</a>
+						</li>
+						
+						<li class="up-to-parent"><a title="Ответ на" onclick="return commentForm.goToParentComment(this);" href="http://habrahabr.ru/blogs/algorithm/102006/#comment_3178416">↑</a></li>
+						<li class="down-to-child hidden"><a title="Обратно" onclick="return commentForm.goToChildComment(this);" href="http://habrahabr.ru/blogs/algorithm/102006/#">↓</a></li>
+						<!--<li class="single-tree">
+							<a class="js-serv js-single-tree" href='#comment_3178416'>ветка</a>
+							<a class="js-serv js-multiplay-tree" href="#comment_3186098">восстановить</a>
+						</li>-->
+						
+						<li>
+							<ul class="vote voting positive no_auth expired">
+								<li class="mark"><span>+1</span></li>
+								<li class="buttons">
+									<a rev="voter-for-comment:3186098" class="vote_minus vote-for-comment" title="Плохой комментарий"></a>
+									<a rev="voter-for-comment:3186098" class="vote_plus vote-for-comment" title="Хороший комментарий"></a>
+								</li>
+							</ul>
+						</li>
+						
+					</ul>
+
+				</div>
+
+				<div class="entry-content">
+					<div class="entry-content-only">
+					    Да, этот метод действительно может быть практически полезен.<br>
+Однако у него есть одна серьезная уязвимость, а именно, если кто-то сможет каким-то образом выяснить, какое число вы используете в качестве простого, то он сможет ваше дерево сделать очень некрасивым (с серьезными последствиями для работы вашей программы).<br>
+<br>
+Мне рассказывали, что недавно к нам приезжал Тарьян, и рассказывал грустную историю про людей, которые использовали подобные методы в красно-черном дереве, бездоказательно, и у них залажался какой-то серьезный проект, и их за это засудили и отсудили кучу денег…<br>
+<br>
+Поэтому реально гораздо более сильны следующие методы:<br>
+1) использование счётчиков для балансировки<br>
+ — если у вас в дереве всё равно хранятся счётчики, то можно, используя их, предсказать вероятность, с которой новый «y» будет больше текущего. Этим методом любила пользоваться ACM-команда SPb SU Drink Less, пока на очередном чемпионате СПбГУ им не попалась задачка, на которой они не смогли пробить TL с помощью такой балансировки. Действительно, если аккуратно написать формулу, то видно, что там нужно так или иначе взятие по модулю, которое не самая быстрая операция. Конечно, есть способы с этим бороться, но домножение на обратное было быстрее.<br>
+2) апгрейд исходного метода, придуманный мной совсем недавно, выглядит так:<br>
+пусть у нас в дереве нет никакой дополнительной информации, кроме x<br>
+тогда, казалось бы, на простое (по модулю) придётся домножать x<br>
+но легко доказать, что какая бы функция f(x) ни была, найдётся такая последовательность x длины не менее sqrt (M), где M — модуль, по которому происходит домножение на простое, что пары (x, f(x)) будут совместно монотонны — таким образом, используя x в качестве прототипа для y, мы никак не сможем добиться хорошей формы дерева<br>
+однако есть ещё одно непредусмотренное место, в которое легко засунуть рандом — это, собственно, указатель на структурку, в которой и хранится узел дерева<br>
+тут открывается простор для фантазии, как выделять структурки, чтобы указатель на них был случаен :) так или иначе с этой задачей можно справиться, и никакой y не нужен<br>
+ну или можно по первому методу использовать p в качестве дополнительных данных, если не боитесь злобных хакеров ;) или линейную комбинацию из x и p со случайными коэффициентами, так вернее :)
+					</div>
+					
+				</div>
+
+				<div id="reply_form_3186098" class="reply_form">
+
+					
+				</div>
+			
+
+			
+			
+			
+
+			
+
+		</li>
+	
+</ul>
+
+			
+
+		</li>
+	
+		<li id="comment_3197932" class="comment_holder vote_holder">
+			
+				<div class="msg-meta">
+					<div class="folding-dot-holder"><div class="folding-dot"></div></div>
+					<ul class="menu info author hcard">
+						<li class="avatar">
+							<a href="http://habrahabr.ru/users/IDMan/" title="IDMan">
+								<img src="./Декартово дерево  Часть 2. Ценная информация в дереве и множественные операции с ней   Алгоритмы   Хабрахабр_files/stub-user-small.gif" alt="IDMan">
+								<b></b>
+							</a>
+						</li>
+						<li class="fn nickname username">
+							<a href="http://habrahabr.ru/users/IDMan/" class="url">IDMan</a>,
+						</li>
+						<li class="date">
+							<abbr class="published" title="2010-08-28T00:16:42+04:00">28 августа 2010, 00:16</abbr>
+						</li>
+						<li class="bookmark">
+							<a href="http://habrahabr.ru/blogs/algorithm/102006/#comment_3197932" title="Ссылка на комментарий" rel="bookmark">#</a>
+						</li>
+						
+						
+						<li class="down-to-child hidden"><a title="Обратно" onclick="return commentForm.goToChildComment(this);" href="http://habrahabr.ru/blogs/algorithm/102006/#">↓</a></li>
+						<!--<li class="single-tree">
+							<a class="js-serv js-single-tree" href=''>ветка</a>
+							<a class="js-serv js-multiplay-tree" href="#comment_3197932">восстановить</a>
+						</li>-->
+						
+						<li>
+							<ul class="vote voting  no_auth expired">
+								<li class="mark"><span>0</span></li>
+								<li class="buttons">
+									<a rev="voter-for-comment:3197932" class="vote_minus vote-for-comment" title="Плохой комментарий"></a>
+									<a rev="voter-for-comment:3197932" class="vote_plus vote-for-comment" title="Хороший комментарий"></a>
+								</li>
+							</ul>
+						</li>
+						
+					</ul>
+
+				</div>
+
+				<div class="entry-content">
+					<div class="entry-content-only">
+					    Вы не пробовали писать книгу? У вас хороший стиль, как для технических текстов — не сухо, и в то же время не художественный рассказ. Картинки очень понравились. Даже если что не понятно в тексте, то после них вопросов не остается :).
+					</div>
+					
+				</div>
+
+				<div id="reply_form_3197932" class="reply_form">
+
+					
+				</div>
+			
+
+			
+			
+			
+
+			
+
+		</li>
+	
+</ul>
+
+			
+			
+
+			
+
+			
+				<div class="info-text">Только зарегистрированные пользователи могут оставлять комментарии. <a href="http://habrahabr.ru/login/">Войдите</a>, пожалуйста.</div>
+			
+		</div>
+	
+	
+
+
+
+	
+
+	
+
+	
+	
+	
+
+	</div>
+
+	<div id="sidebar">
+	  
+	
+<div class="live bloginfo">
+
+	<div class="bg-bott-r"><!-- for bottom rounded corners -->
+	<div class="bg-bott-l">
+
+	<h3>Информация о блоге</h3>
+
+	<div class="blog-about-text-content">
+	 
+		<div class="stats">
+      <div class="members_count" id="members_count">6379 читателей</div>
+      <div class="posts_count">238 постов</div>    
+    </div>
+     
+	</div>
+
+	</div>
+	</div><!-- // for bottom rounded corners -->
+</div>
+
+	
+
+
+
+
+	  
+		
+
+			
+			
+			
+
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+
+			
+
+			
+				<div class="banner">
+					<script>
+// <!--
+var mb_login = "HABRAHABR_INNER_240x400.HABRAHABR_INNER_240x400";
+var mb_options = "options=T";
+var mb_random = Math.round(Math.random() * 100000);
+document.write('<iframe src="http://pink.habralab.ru/cgi-bin/iframe/'+mb_login+'?'+mb_random+'&'+mb_options+'" width="240" height="400" marginwidth="0" marginheight="0" scrolling="no" frameborder="0"><a href="http://pink.habralab.ru/cgi-bin/href/'+mb_login+'?'+mb_random +'" target="_top"><img src="http://pink.habralab.ru/cgi-bin/banner/'+mb_login+'?'+mb_random +'&'+mb_options+'" alt="" width="240" height="400" border="0" ismap="ismap"></a></iframe>');
+// -->
+</script><iframe src="./Декартово дерево  Часть 2. Ценная информация в дереве и множественные операции с ней   Алгоритмы   Хабрахабр_files/HABRAHABR_INNER_240x400.htm" width="240" height="400" marginwidth="0" marginheight="0" scrolling="no" frameborder="0">&lt;a href="http://pink.habralab.ru/cgi-bin/href/HABRAHABR_INNER_240x400.HABRAHABR_INNER_240x400?14234" target="_top"&gt;&lt;img src="http://pink.habralab.ru/cgi-bin/banner/HABRAHABR_INNER_240x400.HABRAHABR_INNER_240x400?14234&amp;options=T" alt="" width="240" height="400" border="0" ismap="ismap"&gt;&lt;/a&gt;</iframe>
+<noscript>
+&lt;iframe src="http://pink.habralab.ru/cgi-bin/iframe/HABRAHABR_INNER_240x400.HABRAHABR_INNER_240x400?options=T" width="240" height="400" marginwidth="0" marginheight="0" scrolling="no" frameborder="0"&gt;&lt;a href="http://pink.habralab.ru/cgi-bin/href/HABRAHABR_INNER_240x400.HABRAHABR_INNER_240x400" target="_top"&gt;&lt;img src="http://pink.habralab.ru/cgi-bin/banner/HABRAHABR_INNER_240x400.HABRAHABR_INNER_240x400?options=T" alt="" width="240" height="400" border="0" ismap="ismap"&gt;&lt;/a&gt;&lt;/iframe&gt;
+</noscript>
+				</div>
+			
+
+			
+			
+			
+			
+						
+		
+
+		
+	
+		
+	
+	
+		<div class="live dailybest">
+
+			<div class="bg-bott-r"><!-- for bottom rounded corners -->
+			<div class="bg-bott-l">
+	
+			<h3>Лучшее <sup>за 24 часа</sup>&nbsp;↓</h3>
+
+			
+				<dl class="air-comment">
+					<dd>
+						<dl>						
+							<dt><a href="http://habrahabr.ru/company/bookmate/blog/120315/#gift"><img src="./Декартово дерево  Часть 2. Ценная информация в дереве и множественные операции с ней   Алгоритмы   Хабрахабр_files/big.png" alt="Bookmate" style="vertical-align:top;float:left;display:block;margin-right:10px;margin-top:4px;" title="" class="help-tip"></a>
+							<a class="where" href="http://habrahabr.ru/blogs/modding/">Моддинг</a>&nbsp;→</dt>
+							<dd><a class="topic" href="http://habrahabr.ru/blogs/modding/127824/">Поклонник Fallout воссоздал PIP-Boy 3000</a>&nbsp;</dd>
+						</dl>
+					</dd>
+				</dl>
+			
+				<dl class="air-comment">
+					<dd>
+						<dl>						
+							<dt>
+							<a class="where" href="http://habrahabr.ru/blogs/vkontakte/">ВКонтакте</a>&nbsp;→</dt>
+							<dd><a class="topic" href="http://habrahabr.ru/blogs/vkontakte/127920/">Вконтакте 2.0 + Радио вконтакте</a>&nbsp;</dd>
+						</dl>
+					</dd>
+				</dl>
+			
+				<dl class="air-comment">
+					<dd>
+						<dl>						
+							<dt>
+							<a class="where" href="http://habrahabr.ru/blogs/startup/">Стартапы</a>&nbsp;→</dt>
+							<dd><a class="topic" href="http://habrahabr.ru/blogs/startup/127883/">Генератор анимированных CSS для загрузки</a>&nbsp;</dd>
+						</dl>
+					</dd>
+				</dl>
+			
+				<dl class="air-comment">
+					<dd>
+						<dl>						
+							<dt>
+							<a class="where" href="http://habrahabr.ru/company/nomobile/blog/">Блог компании Nomobile.Ru</a>&nbsp;→</dt>
+							<dd><a class="topic" href="http://habrahabr.ru/company/nomobile/blog/127911/">Diablo 3 Beta доступна!</a>&nbsp;</dd>
+						</dl>
+					</dd>
+				</dl>
+			
+				<dl class="air-comment">
+					<dd>
+						<dl>						
+							<dt>
+							<a class="where" href="http://habrahabr.ru/blogs/crypto/">Криптография</a>&nbsp;→</dt>
+							<dd><a class="topic" href="http://habrahabr.ru/blogs/crypto/127878/">NTRUEncrypt криптосистема будущего?</a>&nbsp;</dd>
+						</dl>
+					</dd>
+				</dl>
+			
+				<dl class="air-comment">
+					<dd>
+						<dl>						
+							<dt>
+							<a class="where" href="http://habrahabr.ru/blogs/startup/">Стартапы</a>&nbsp;→</dt>
+							<dd><a class="topic" href="http://habrahabr.ru/blogs/startup/127948/">Создание и монетизация блога Фактрум</a>&nbsp;</dd>
+						</dl>
+					</dd>
+				</dl>
+			
+				<dl class="air-comment">
+					<dd>
+						<dl>						
+							<dt>
+							<a class="where" href="http://habrahabr.ru/blogs/android_development/">Разработка под Android</a>&nbsp;→</dt>
+							<dd><a class="topic" href="http://habrahabr.ru/blogs/android_development/127940/">Пишем виджет, использующий API Яндекс.Метрики</a>&nbsp;</dd>
+						</dl>
+					</dd>
+				</dl>
+			
+				<dl class="air-comment">
+					<dd>
+						<dl>						
+							<dt>
+							<a class="where" href="http://habrahabr.ru/blogs/hardware/">Железо</a>&nbsp;→</dt>
+							<dd><a class="topic" href="http://habrahabr.ru/blogs/hardware/127946/">Nvidia, Tegra forums и OpenMAX</a>&nbsp;</dd>
+						</dl>
+					</dd>
+				</dl>
+			
+				<dl class="air-comment">
+					<dd>
+						<dl>						
+							<dt>
+							<a class="where" href="http://habrahabr.ru/blogs/video/">Работа с видео</a>&nbsp;→</dt>
+							<dd><a class="topic" href="http://habrahabr.ru/blogs/video/127910/">Кодирование видео для веб-проектов</a>&nbsp;</dd>
+						</dl>
+					</dd>
+				</dl>
+			
+				<dl class="air-comment">
+					<dd>
+						<dl>						
+							<dt>
+							<a class="where" href="http://habrahabr.ru/blogs/nodejs/">Node.JS</a>&nbsp;→</dt>
+							<dd><a class="topic" href="http://habrahabr.ru/blogs/nodejs/127876/">90 модулей Node.js в общественное пользование</a>&nbsp;</dd>
+						</dl>
+					</dd>
+				</dl>
+			
+			<div class="all">« <a href="http://habrahabr.ru/top/">все лучшие</a></div>
+
+			</div>
+			</div><!-- // for bottom rounded corners -->
+		</div>
+	
+
+
+		
+
+
+<div class="live new-feedbacks">
+
+	<div class="bg-bott-r">
+	<div class="bg-bott-l similar-posts">
+
+	<h3>Похожие посты&nbsp;↓</h3>
+
+			<div>
+				
+				<dl>
+					<dd>
+						<dl>
+							<dt><span class="when">16.08.2010</span>&nbsp;→ <a class="where" href="http://habrahabr.ru/blogs/algorithm/">Алгоритмы</a>&nbsp;→</dt>
+							<dd><a class="topic" href="http://habrahabr.ru/blogs/algorithm/101818/">Декартово дерево: Часть 1. Описание, операции, применения</a></dd>
+						</dl>
+					</dd>
+				</dl>
+				
+				<dl>
+					<dd>
+						<dl>
+							<dt><span class="when">23.08.2010</span>&nbsp;→ <a class="where" href="http://habrahabr.ru/blogs/algorithm/">Алгоритмы</a>&nbsp;→</dt>
+							<dd><a class="topic" href="http://habrahabr.ru/blogs/algorithm/102364/">Декартово дерево: Часть 3. Декартово дерево по неявному ключу</a></dd>
+						</dl>
+					</dd>
+				</dl>
+				
+				<dl>
+					<dd>
+						<dl>
+							<dt><span class="when">26.01.2011</span>&nbsp;→ <a class="where" href="http://habrahabr.ru/blogs/algorithm/">Алгоритмы</a>&nbsp;→</dt>
+							<dd><a class="topic" href="http://habrahabr.ru/blogs/algorithm/112222/">Структуры данных: двоичная куча (binary heap)</a></dd>
+						</dl>
+					</dd>
+				</dl>
+				
+				<dl>
+					<dd>
+						<dl>
+							<dt><span class="when">03.05.2011</span>&nbsp;→ <a class="where" href="http://habrahabr.ru/blogs/algorithm/">Алгоритмы</a>&nbsp;→</dt>
+							<dd><a class="topic" href="http://habrahabr.ru/blogs/algorithm/118554/">Еще одна визуализация ряда алгоритмов и структур данных</a></dd>
+						</dl>
+					</dd>
+				</dl>
+				
+				<dl>
+					<dd>
+						<dl>
+							<dt><span class="when">02.06.2010</span>&nbsp;→ <a class="where" href="http://habrahabr.ru/blogs/apple/">Apple</a>&nbsp;→</dt>
+							<dd><a class="topic" href="http://habrahabr.ru/blogs/apple/95271/">Заметки о внутреннем софте Apple, который никто не видел</a></dd>
+						</dl>
+					</dd>
+				</dl>
+				
+				<dl>
+					<dd>
+						<dl>
+							<dt><span class="when">23.12.2009</span>&nbsp;→ <a class="where" href="http://habrahabr.ru/blogs/algorithm/">Алгоритмы</a>&nbsp;→</dt>
+							<dd><a class="topic" href="http://habrahabr.ru/blogs/algorithm/79078/">Школа Microsoft по структурам данных и алгоритмам</a></dd>
+						</dl>
+					</dd>
+				</dl>
+				
+				<dl>
+					<dd>
+						<dl>
+							<dt><span class="when">12.08.2009</span>&nbsp;→ <a class="where" href="http://habrahabr.ru/blogs/algorithm/">Алгоритмы</a>&nbsp;→</dt>
+							<dd><a class="topic" href="http://habrahabr.ru/blogs/algorithm/66926/">Структуры данных: бинарные деревья. Часть 2: обзор сбалансированных деревьев</a></dd>
+						</dl>
+					</dd>
+				</dl>
+				
+				<dl>
+					<dd>
+						<dl>
+							<dt><span class="when">09.08.2009</span>&nbsp;→ <a class="where" href="http://habrahabr.ru/blogs/algorithm/">Алгоритмы</a>&nbsp;→</dt>
+							<dd><a class="topic" href="http://habrahabr.ru/blogs/algorithm/65617/">Структуры данных: бинарные деревья. Часть 1</a></dd>
+						</dl>
+					</dd>
+				</dl>
+				
+				<dl>
+					<dd>
+						<dl>
+							<dt><span class="when">12.05.2009</span>&nbsp;→ <a class="where" href="http://habrahabr.ru/blogs/webdev/">Веб-разработка</a>&nbsp;→</dt>
+							<dd><a class="topic" href="http://habrahabr.ru/blogs/webdev/59365/">Онлайн База Данных, сервис структур данных, динамическая объектно-реляционная проекция (Dynamic ORM)</a></dd>
+						</dl>
+					</dd>
+				</dl>
+				
+				<dl>
+					<dd>
+						<dl>
+							<dt><span class="when">20.04.2009</span>&nbsp;→ <a class="where" href="http://habrahabr.ru/blogs/personal/">Персональные блоги</a>&nbsp;→</dt>
+							<dd><a class="topic" href="http://habrahabr.ru/blogs/personal/57749/">Как составить листовку, которую никто не прочитает</a></dd>
+						</dl>
+					</dd>
+				</dl>
+				
+			</div>
+	</div>
+	</div>
+</div>
+
+
+		
+		
+
+<div class="live new-feedbacks">
+	
+		<div class="bg-bott-r"><!-- for bottom rounded corners -->
+		<div class="bg-bott-l">
+	
+		<h3>Прямой эфир&nbsp;↓</h3>
+		
+		<!-- Строчка в прямом эфире -->
+		
+		<dl class="air-comment">
+			<dt class="who"><a href="http://habrahabr.ru/users/EPX/">EPX</a>&nbsp;→</dt>
+			<dd>
+				<dl>
+					<dt><a class="where" href="http://habrahabr.ru/blogs/startup/">Стартапы</a>&nbsp;→</dt>
+					<dd><a class="topic" href="http://habrahabr.ru/blogs/startup/127948/#comment_4226040">Создание и монетизация блога Фактрум</a>&nbsp;<span class="total">46</span></dd>
+				</dl>
+			</dd>
+		</dl>
+		
+		<dl class="air-comment">
+			<dt class="who"><a href="http://habrahabr.ru/users/barker/">barker</a>&nbsp;→</dt>
+			<dd>
+				<dl>
+					<dt><a class="where" href="http://habrahabr.ru/blogs/java/">JAVA</a>&nbsp;→</dt>
+					<dd><a class="topic" href="http://habrahabr.ru/blogs/java/127840/#comment_4226039">Звук в Java</a>&nbsp;<span class="total">45</span></dd>
+				</dl>
+			</dd>
+		</dl>
+		
+		<dl class="air-comment">
+			<dt class="who"><a href="http://habrahabr.ru/users/nighthawk/">nighthawk</a>&nbsp;→</dt>
+			<dd>
+				<dl>
+					<dt><a class="where" href="http://habrahabr.ru/blogs/javascript/">JavaScript</a>&nbsp;→</dt>
+					<dd><a class="topic" href="http://habrahabr.ru/blogs/javascript/127955/#comment_4226034">Мини-библиотека compatibility.js</a>&nbsp;<span class="total">2</span></dd>
+				</dl>
+			</dd>
+		</dl>
+		
+		<dl class="air-comment">
+			<dt class="who"><a href="http://habrahabr.ru/users/Mezomish/">Mezomish</a>&nbsp;→</dt>
+			<dd>
+				<dl>
+					<dt><a class="where" href="http://habrahabr.ru/blogs/kde/">KDE</a>&nbsp;→</dt>
+					<dd><a class="topic" href="http://habrahabr.ru/blogs/kde/127668/#comment_4226032">Вышел KDE 4.7 для Windows</a>&nbsp;<span class="total">118</span></dd>
+				</dl>
+			</dd>
+		</dl>
+		
+		<dl class="air-comment">
+			<dt class="who"><a href="http://habrahabr.ru/users/ClubInno/">ClubInno</a>&nbsp;→</dt>
+			<dd>
+				<dl>
+					<dt><a class="where" href="http://habrahabr.ru/company/club_inno/blog/">Блог компании Клуб Инноваторов</a>&nbsp;→</dt>
+					<dd><a class="topic" href="http://habrahabr.ru/company/club_inno/blog/127825/#comment_4226030">SumIT — итоги, интриги, расследования</a>&nbsp;<span class="total">5</span></dd>
+				</dl>
+			</dd>
+		</dl>
+		
+		<dl class="air-comment">
+			<dt class="who"><a href="http://habrahabr.ru/users/AndreyDmitriev/">AndreyDmitriev</a>&nbsp;→</dt>
+			<dd>
+				<dl>
+					<dt><a class="where" href="http://habrahabr.ru/blogs/robot/">Роботы</a>&nbsp;→</dt>
+					<dd><a class="topic" href="http://habrahabr.ru/blogs/robot/127954/#comment_4226029">Touch Z-Distance — первая в мире онлайн фотостудия</a>&nbsp;<span class="total">16</span></dd>
+				</dl>
+			</dd>
+		</dl>
+		
+		<dl class="air-comment">
+			<dt class="who"><a href="http://habrahabr.ru/users/Hemdall/">Hemdall</a>&nbsp;→</dt>
+			<dd>
+				<dl>
+					<dt><a class="where" href="http://habrahabr.ru/blogs/research/">Исследования и прогнозы в IT</a>&nbsp;→</dt>
+					<dd><a class="topic" href="http://habrahabr.ru/blogs/research/127805/#comment_4226028">Почему рушатся IT-компании</a>&nbsp;<span class="total">68</span></dd>
+				</dl>
+			</dd>
+		</dl>
+		
+		<dl class="air-comment">
+			<dt class="who"><a href="http://habrahabr.ru/users/mr47/">mr47</a>&nbsp;→</dt>
+			<dd>
+				<dl>
+					<dt><a class="where" href="http://habrahabr.ru/blogs/DIY/">DIY или Сделай Сам</a>&nbsp;→</dt>
+					<dd><a class="topic" href="http://habrahabr.ru/blogs/DIY/127951/#comment_4226027">Как мы создавали стенд лабораторный для дисциплины заморской «Информатика»</a>&nbsp;<span class="total">25</span></dd>
+				</dl>
+			</dd>
+		</dl>
+		
+		<dl class="air-comment">
+			<dt class="who"><a href="http://habrahabr.ru/users/dikarik/">dikarik</a>&nbsp;→</dt>
+			<dd>
+				<dl>
+					<dt><a class="where" href="http://habrahabr.ru/blogs/ebooks/">Электронные книги</a>&nbsp;→</dt>
+					<dd><a class="topic" href="http://habrahabr.ru/blogs/ebooks/124220/#comment_4226026">Несколько тезисов об электронном чтении</a>&nbsp;<span class="total">42</span></dd>
+				</dl>
+			</dd>
+		</dl>
+		
+		<dl class="air-comment">
+			<dt class="who"><a href="http://habrahabr.ru/users/hoack/">hoack</a>&nbsp;→</dt>
+			<dd>
+				<dl>
+					<dt><a class="where" href="http://habrahabr.ru/blogs/complete_code/">Совершенный код</a>&nbsp;→</dt>
+					<dd><a class="topic" href="http://habrahabr.ru/blogs/complete_code/127874/#comment_4226022">Как правильно писать код?</a>&nbsp;<span class="total">122</span></dd>
+				</dl>
+			</dd>
+		</dl>
+		
+		<dl class="air-comment">
+			<dt class="who"><a href="http://habrahabr.ru/users/barker/">barker</a>&nbsp;→</dt>
+			<dd>
+				<dl>
+					<dt><a class="where" href="http://habrahabr.ru/blogs/programming/">Программирование</a>&nbsp;→</dt>
+					<dd><a class="topic" href="http://habrahabr.ru/blogs/programming/111450/#comment_4226020">Dos Box для программирования</a>&nbsp;<span class="total">5</span></dd>
+				</dl>
+			</dd>
+		</dl>
+		
+		<dl class="air-comment">
+			<dt class="who"><a href="http://habrahabr.ru/users/yaremko/">yaremko</a>&nbsp;→</dt>
+			<dd>
+				<dl>
+					<dt><a class="where" href="http://habrahabr.ru/company/moedelo/blog/">Блог компании Мое дело</a>&nbsp;→</dt>
+					<dd><a class="topic" href="http://habrahabr.ru/company/moedelo/blog/125064/#comment_4226016">Anti Rework: Путь от стартапа до бизнеса</a>&nbsp;<span class="total">207</span></dd>
+				</dl>
+			</dd>
+		</dl>
+		
+		<dl class="air-comment">
+			<dt class="who"><a href="http://habrahabr.ru/users/Colobock/">Colobock</a>&nbsp;→</dt>
+			<dd>
+				<dl>
+					<dt><a class="where" href="http://habrahabr.ru/company/sonyericsson/blog/">Блог компании Sony Ericsson</a>&nbsp;→</dt>
+					<dd><a class="topic" href="http://habrahabr.ru/company/sonyericsson/blog/126161/#comment_4226014">Sony Ericsson обновила прошивку моделей 2011 года</a>&nbsp;<span class="total">36</span></dd>
+				</dl>
+			</dd>
+		</dl>
+		
+		<dl class="air-comment">
+			<dt class="who"><a href="http://habrahabr.ru/users/blabla/">blabla</a>&nbsp;→</dt>
+			<dd>
+				<dl>
+					<dt><a class="where" href="http://habrahabr.ru/blogs/algorithm/">Алгоритмы</a>&nbsp;→</dt>
+					<dd><a class="topic" href="http://habrahabr.ru/blogs/algorithm/127868/#comment_4226013">Неблокируемая очередь сообщений для двух потоков</a>&nbsp;<span class="total">24</span></dd>
+				</dl>
+			</dd>
+		</dl>
+		
+		<dl class="air-comment">
+			<dt class="who"><a href="http://habrahabr.ru/users/BeLove/">BeLove</a>&nbsp;→</dt>
+			<dd>
+				<dl>
+					<dt><a class="where" href="http://habrahabr.ru/company/banki/blog/">Блог компании Банки.ру</a>&nbsp;→</dt>
+					<dd><a class="topic" href="http://habrahabr.ru/company/banki/blog/126979/#comment_4226012">Facebook страницы: бренд или не бренд —&nbsp;вот в чем вопрос!</a>&nbsp;<span class="total">9</span></dd>
+				</dl>
+			</dd>
+		</dl>
+		
+		<!-- // Строчка в прямом эфире -->
+		<div class="all">« <a href="http://habrahabr.ru/live/">весь прямой эфир</a></div>
+		
+			
+		</div>
+		</div><!-- // for bottom rounded corners -->
+</div>
+
+ 
+
+
+
+
+	  
+
+	<div class="live best_company">
+
+		<div class="bg-bott-r"><!-- for bottom rounded corners -->
+		<div class="bg-bott-l">
+
+		<h3>Компания дня <img src="./Декартово дерево  Часть 2. Ценная информация в дереве и множественные операции с ней   Алгоритмы   Хабрахабр_files/bg_cicle_help.png" title="" class="help-tip"></h3>
+		<div class="company_info">
+			<div class="name">
+			 <img class="favicon" src="./Декартово дерево  Часть 2. Ценная информация в дереве и множественные операции с ней   Алгоритмы   Хабрахабр_files/favicon_68.ico" alt="Microsoft" height="16" width="16">
+			 <a href="http://habrahabr.ru/company/microsoft/" class="title">Microsoft</a>
+			</div>
+
+			<p>Последний пост:
+				<a href="http://habrahabr.ru/company/microsoft/blog/127929/">Задайте вопрос и выиграйте билет на Patterns &amp; Practices Summit Russia</a>
+			</p>
+			<div class="like">
+  			<div id="fans_count">1411 поклонников</div>
+  			
+			</div>
+		</div>
+
+
+		</div>
+		</div><!-- // for bottom rounded corners -->
+	</div>
+
+
+
+
+		
+<div class="live new-feedbacks">
+	
+		<div class="bg-bott-r"><!-- for bottom rounded corners -->
+		<div class="bg-bott-l">
+	
+		<h3>Q&amp;A&nbsp;↓</h3>
+		
+		<!-- Строчка в прямом эфире -->
+		
+		<dl class="air-comment">
+			<dt class="who"><a href="http://habrahabr.ru/users/Kruazzan/">Kruazzan</a>&nbsp;→</dt>
+			<dd>
+				<dl>
+					<dd><a class="topic" href="http://habrahabr.ru/qa/11149/#answer_47934">Фриланс/HLSL</a>&nbsp;<span class="total">2</span></dd>
+				</dl>
+			</dd>
+		</dl>
+		
+		<dl class="air-comment">
+			<dt class="who"><a href="http://habrahabr.ru/users/gerion/">gerion</a>&nbsp;→</dt>
+			<dd>
+				<dl>
+					<dd><a class="topic" href="http://habrahabr.ru/qa/9937/#comment_57735">Инвайты на Google Music</a>&nbsp;<span class="total">359</span></dd>
+				</dl>
+			</dd>
+		</dl>
+		
+		<dl class="air-comment">
+			<dt class="who"><a href="http://habrahabr.ru/users/DuDlik/">DuDlik</a>&nbsp;→</dt>
+			<dd>
+				<dl>
+					<dd><a class="topic" href="http://habrahabr.ru/qa/11142/#comment_57730">Нужен плеер для проигрывания m3u потока, который работает на iOS браузере и на большинстве десктопных браузеров</a>&nbsp;<span class="total">3</span></dd>
+				</dl>
+			</dd>
+		</dl>
+		
+		<dl class="air-comment">
+			<dt class="who"><a href="http://habrahabr.ru/users/VenomBlood/">VenomBlood</a>&nbsp;→</dt>
+			<dd>
+				<dl>
+					<dd><a class="topic" href="http://habrahabr.ru/qa/11146/#comment_57729">Звонят на домашний и предлагают свой ванючий интернет!</a>&nbsp;<span class="total">9</span></dd>
+				</dl>
+			</dd>
+		</dl>
+		
+		<dl class="air-comment">
+			<dt class="who"><a href="http://habrahabr.ru/users/t3sc0/">t3sc0</a>&nbsp;→</dt>
+			<dd>
+				<dl>
+					<dd><a class="topic" href="http://habrahabr.ru/qa/11027/#answer_47932">Разный масштаб для двух мониторов</a>&nbsp;<span class="total">4</span></dd>
+				</dl>
+			</dd>
+		</dl>
+		
+		<dl class="air-comment">
+			<dt class="who"><a href="http://habrahabr.ru/users/NikMelnikov/">NikMelnikov</a>&nbsp;→</dt>
+			<dd>
+				<dl>
+					<dd><a class="topic" href="http://habrahabr.ru/qa/11123/#comment_57728">Посоветуйте электронный архив</a>&nbsp;<span class="total">4</span></dd>
+				</dl>
+			</dd>
+		</dl>
+		
+		<dl class="air-comment">
+			<dt class="who"><a href="http://habrahabr.ru/users/sonriente/">sonriente</a>&nbsp;→</dt>
+			<dd>
+				<dl>
+					<dd><a class="topic" href="http://habrahabr.ru/qa/11148/#answer_47931">ПДД, изучение</a>&nbsp;<span class="total">4</span></dd>
+				</dl>
+			</dd>
+		</dl>
+		
+		<dl class="air-comment">
+			<dt class="who"><a href="http://habrahabr.ru/users/Flanker_4/">Flanker_4</a>&nbsp;→</dt>
+			<dd>
+				<dl>
+					<dd><a class="topic" href="http://habrahabr.ru/qa/11017/#comment_57727">Установка simulator iphone 3.0 на xcode 4</a>&nbsp;<span class="total">2</span></dd>
+				</dl>
+			</dd>
+		</dl>
+		
+		<dl class="air-comment">
+			<dt class="who"><a href="http://habrahabr.ru/users/Damaskus/">Damaskus</a>&nbsp;→</dt>
+			<dd>
+				<dl>
+					<dd><a class="topic" href="http://habrahabr.ru/qa/10345/#answer_47929">Кому инвайты на music.google и workhack.ru - FREE ?</a>&nbsp;<span class="total">43</span></dd>
+				</dl>
+			</dd>
+		</dl>
+		
+		<dl class="air-comment">
+			<dt class="who"><a href="http://habrahabr.ru/users/unconnected/">unconnected</a>&nbsp;→</dt>
+			<dd>
+				<dl>
+					<dd><a class="topic" href="http://habrahabr.ru/qa/11137/#answer_47928">Программа для учета доходов/расходов стартапа</a>&nbsp;<span class="total">3</span></dd>
+				</dl>
+			</dd>
+		</dl>
+		
+
+		<div class="all">« <a href="http://habrahabr.ru/qa/">все вопросы</a></div>
+		</div>
+		</div><!-- // for bottom rounded corners -->
+</div>
+
+		
+	
+	
+	<div class="rating live blogs category_blogs">
+		
+	<div class="bg-bott-r"><!-- for bottom rounded corners -->
+	<div class="bg-bott-l">
+	
+		<h3>Программирование ↓</h3>
+	
+		<table>
+		
+			<tbody><tr>
+				<!-- <th width="5%"></th> //-->
+				<th></th>
+				<th width="22%">Рейтинг</th>
+			</tr>
+			
+			<tr>
+				<!-- <td class="rating-dyn up"></td> //-->
+				<td class="title">
+					<a href="http://habrahabr.ru/blogs/crazydev/">Ненормальное программирование</a>
+				</td>
+				<td class="value">
+					<span>283,74</span>
+				</td>
+			</tr>
+			
+			<tr>
+				<!-- <td class="rating-dyn up"></td> //-->
+				<td class="title">
+					<a href="http://habrahabr.ru/blogs/regex/">Регулярные выражения</a>
+				</td>
+				<td class="value">
+					<span>265,52</span>
+				</td>
+			</tr>
+			
+			<tr>
+				<!-- <td class="rating-dyn up"></td> //-->
+				<td class="title">
+					<a href="http://habrahabr.ru/blogs/Git/">Git</a>
+				</td>
+				<td class="value">
+					<span>254,12</span>
+				</td>
+			</tr>
+			
+			<tr>
+				<!-- <td class="rating-dyn up"></td> //-->
+				<td class="title">
+					<a href="http://habrahabr.ru/blogs/webdev/">Веб-разработка</a>
+				</td>
+				<td class="value">
+					<span>231,24</span>
+				</td>
+			</tr>
+			
+			<tr>
+				<!-- <td class="rating-dyn up"></td> //-->
+				<td class="title">
+					<a href="http://habrahabr.ru/blogs/system_programming/">Системное программирование</a>
+				</td>
+				<td class="value">
+					<span>214,48</span>
+				</td>
+			</tr>
+			
+			<tr>
+				<!-- <td class="rating-dyn up"></td> //-->
+				<td class="title">
+					<a href="http://habrahabr.ru/blogs/sphinx/">Sphinx</a>
+				</td>
+				<td class="value">
+					<span>211,87</span>
+				</td>
+			</tr>
+			
+			<tr>
+				<!-- <td class="rating-dyn up"></td> //-->
+				<td class="title">
+					<a href="http://habrahabr.ru/blogs/controllers/">Программинг микроконтроллеров</a>
+				</td>
+				<td class="value">
+					<span>210,94</span>
+				</td>
+			</tr>
+			
+			<tr>
+				<!-- <td class="rating-dyn up"></td> //-->
+				<td class="title">
+					<a href="http://habrahabr.ru/blogs/hi/">Высокая производительность</a>
+				</td>
+				<td class="value">
+					<span>203,31</span>
+				</td>
+			</tr>
+			
+			<tr>
+				<!-- <td class="rating-dyn up"></td> //-->
+				<td class="title">
+					<a href="http://habrahabr.ru/blogs/development/">Разработка</a>
+				</td>
+				<td class="value">
+					<span>201,94</span>
+				</td>
+			</tr>
+			
+			<tr>
+				<!-- <td class="rating-dyn up"></td> //-->
+				<td class="title">
+					<a href="http://habrahabr.ru/blogs/gdev/">Game Development</a>
+				</td>
+				<td class="value">
+					<span>199,75</span>
+				</td>
+			</tr>
+			
+		</tbody></table>
+		
+		<div class="all">« <a href="http://habrahabr.ru/bloglist/programming/">все  блоги</a></div>
+	
+	</div>
+	</div><!-- // for bottom rounded corners -->
+
+  </div>
+	
+
+
+		
+
+
+			
+		
+
+		
+<div class="live best_company">
+
+	<div class="bg-bott-r"><!-- for bottom rounded corners -->
+	<div class="bg-bott-l">
+		  <h3>Ближайшие события</h3>
+      <div class="block similar_events">
+        
+        <div class="events">
+          
+          <div class="event">
+      			
+      			<div class="date">
+      				<div class="dayname dayname_4" title="чт"></div>
+      				<div class="day">08</div>
+      				<div class="month">сентября</div>				
+      			</div>
+      			
+      			<div class="title">
+      			 <a href="http://habrahabr.ru/events/26/">ИТ-Форум 2011</a>			 
+      			</div>
+      		</div>
+      		
+          <div class="event">
+      			
+      			<div class="date">
+      				<div class="dayname dayname_4" title="чт"></div>
+      				<div class="day">08</div>
+      				<div class="month">сентября</div>				
+      			</div>
+      			
+      			<div class="title">
+      			 <a href="http://habrahabr.ru/events/60/">Mobilefest 2011. Санкт-Петербург.</a>			 
+      			</div>
+      		</div>
+      		
+          <div class="event">
+      			
+      			<div class="date">
+      				<div class="dayname dayname_4" title="чт"></div>
+      				<div class="day">08</div>
+      				<div class="month">сентября</div>				
+      			</div>
+      			
+      			<div class="title">
+      			 <a href="http://habrahabr.ru/events/79/">Семинар по IP-АТС Asterisk</a>			 
+      			</div>
+      		</div>
+      		
+          <div class="event">
+      			
+      			<div class="date">
+      				<div class="dayname dayname_5" title="пт"></div>
+      				<div class="day">09</div>
+      				<div class="month">сентября</div>				
+      			</div>
+      			
+      			<div class="title">
+      			 <a href="http://habrahabr.ru/events/43/">Startup Weekend в Москве</a>			 
+      			</div>
+      		</div>
+      		
+          <div class="event">
+      			
+      			<div class="date">
+      				<div class="dayname dayname_5" title="пт"></div>
+      				<div class="day">09</div>
+      				<div class="month">сентября</div>				
+      			</div>
+      			
+      			<div class="title">
+      			 <a href="http://habrahabr.ru/events/74/">11-ая встреча Kyiv ALT.NET</a>			 
+      			</div>
+      		</div>
+      		
+        </div>
+      </div>
+      
+  		<div class="all">« <a href="http://habrahabr.ru/events/coming/">все события</a></div>
+
+	</div>
+	</div><!-- // for bottom rounded corners -->
+</div>
+
+		
+
+
+
+<div class="live help">
+		
+	<div class="bg-bott-r"><!-- for bottom rounded corners -->
+	<div class="bg-bott-l">
+	 <div class="side-side">
+		<h3>Ссылки ↓</h3>  	
+  	<ul>
+			
+			<li><a href="http://habrahabr.ru/links/go/126719">Идея создания Android принадлежит Apple</a>
+			<a href="http://habrahabr.ru/links/126719/#comments" class="count">0</a> 
+			<br><small>www.youhtc.ru/2011/09/ideya-so...</small></li>
+			
+			<li><a href="http://habrahabr.ru/links/go/126718">Генерация Word документов (DOC) из PHP на лету</a>
+			<a href="http://habrahabr.ru/links/126718/#comments" class="count">0</a> 
+			<br><small>www.phpclasses.org/package/276...</small></li>
+			
+			<li><a href="http://habrahabr.ru/links/go/126717">VK API: публикация статусов от имени публичных страниц</a>
+			<a href="http://habrahabr.ru/links/126717/#comments" class="count">0</a> 
+			<br><small>vkontakte.ru/developers.php?oi...</small></li>
+			
+			<li><a href="http://habrahabr.ru/links/go/126716">Про пиратство и фантастику</a>
+			<a href="http://habrahabr.ru/links/126716/#comments" class="count">0</a> 
+			<br><small>users.livejournal.com/magister...</small></li>
+			
+			<li><a href="http://habrahabr.ru/links/go/126715">Зеркало с новостями и встроенным Kinect</a>
+			<a href="http://habrahabr.ru/links/126715/#comments" class="count">0</a> 
+			<br><small>blogs.computerra.ru/17191</small></li>
+			
+			<li><a href="http://habrahabr.ru/links/go/126714">Synology DiskStationManager обновился до версии 3.2</a>
+			<a href="http://habrahabr.ru/links/126714/#comments" class="count">0</a> 
+			<br><small>www.synology.com/dsm/index.php...</small></li>
+			
+			<li><a href="http://habrahabr.ru/links/go/126713">Планшет «Роснано» будет продаваться за 20-25 тыс. руб</a>
+			<a href="http://habrahabr.ru/links/126713/#comments" class="count">1</a> 
+			<br><small>www.rbcdaily.ru/2011/09/06/med...</small></li>
+			
+			<li><a href="http://habrahabr.ru/links/go/126712">Статья на TechCrunch: новая информация о планшете Amazon</a>
+			<a href="http://habrahabr.ru/links/126712/#comments" class="count">0</a> 
+			<br><small>techcrunch.com/2011/09/02/amaz...</small></li>
+			
+			<li><a href="http://habrahabr.ru/links/go/126711">30 лет с QNX: Первый сетевой учебный компьютер</a>
+			<a href="http://habrahabr.ru/links/126711/#comments" class="count">0</a> 
+			<br><small>forum.kpda.ru/index.php?topic=...</small></li>
+			
+			<li><a href="http://habrahabr.ru/links/go/126710">Total Commander для Android</a>
+			<a href="http://habrahabr.ru/links/126710/#comments" class="count">0</a> 
+			<br><small>www.ghisler.com/android.htm</small></li>
+			
+		</ul>
+  	
+   </div>
+   <div class="all">« <a href="http://habrahabr.ru/links/">все ссылки</a></div>
+	</div>
+	</div><!-- // for bottom rounded corners -->
+
+</div>
+	
+
+
+	
+	
+
+	</div>
+
+</div>
+</div>
+
+<div id="footer">
+	<div class="footer-conttent">
+		<div class="bottom_menu">
+			
+			
+			<dl>
+				<dd><a href="http://habrahabr.ru/login/">Войти</a></dd>
+				<dd><a href="http://habrahabr.ru/register/">Регистрация</a></dd>
+			</dl>
+			
+			<dl class="sections">
+				<dt>Разделы</dt>
+				
+				<dd><a href="http://habrahabr.ru/qa/">Q&amp;A</a></dd>
+				<dd><a href="http://habrahabr.ru/events/">События</a></dd>
+				<dd><a href="http://habrahabr.ru/links/">Ссылки</a></dd>
+				<dd><a href="http://habrahabr.ru/job/">Работа</a></dd>
+				<dd><a href="http://habrahabr.ru/bloglist/">Блоги</a></dd>
+				<dd><a href="http://habrahabr.ru/companies/">Компании</a></dd>
+				<dd><a href="http://habrahabr.ru/people/">Люди</a></dd>
+				<dd><a href="http://habrahabr.ru/top/">↑↓↑↓</a></dd>
+			</dl>
+			<dl>
+				<dt>Блоги</dt>
+				<dd><a href="http://habrahabr.ru/">Все</a></dd>
+				<dd><a href="http://habrahabr.ru/blogs/">Тематические</a></dd>
+				<dd><a href="http://habrahabr.ru/corporative/">Корпоративные</a></dd>
+				<!--dd><a href="http://habrahabr.ru/personal/">Личные</a></dd-->
+				<dd><a href="http://habrahabr.ru/sandbox/">Песочница</a></dd>
+			</dl>
+			<dl>
+				<dt>Инфо</dt>
+				<dd><a href="http://habrahabr.ru/info/about/">О сайте</a></dd>
+				<dd><a href="http://habrahabr.ru/info/help/rules/">Правила</a></dd>
+				<dd><a href="http://habrahabr.ru/info/help/">Помощь</a></dd>
+				<dd><a href="http://habrahabr.ru/info/agreement/">Соглашение</a></dd>
+				<dd><a href="http://habrahabr.ru/info/stats/">Статистика</a></dd>
+			</dl>
+			<dl>
+				<dt>Услуги</dt>
+				<dd><a href="http://habrahabr.ru/info/advertising/">Реклама</a></dd>
+				<dd><a href="http://habrahabr.ru/info/advertising/corporate/">Корпоративные пакеты</a></dd>
+				<dd><a href="http://habrahabr.ru/info/advertising/workshops/">Семинары</a></dd>
+			</dl>
+		</div>
+
+		<a class="footer_logo" href="http://thematicmedia.ru/">Тематические Медиа</a>
+		<div id="about">
+			<span style="margin-left:4px;">© 2006–2011</span> <br>«<a href="http://www.thematicmedia.ru/">Тематические Медиа</a>»<br>
+			<div style="margin-top: 10px; margin-left:6px;">
+				Служба поддержки:<br>
+				<a href="mailto:support@habrahabr.ru" title="адрес службы поддержки пользователей">support@habrahabr.ru</a><br><br><br>
+				<a href="http://m.habrahabr.ru/">Мобильная версия</a>
+			</div> 
+		</div>
+		
+	</div>
+	
+</div>
+
+
+
+	
+
+
+	
+
+<script type="text/javascript">
+/*<![CDATA[*/
+var _gaq = _gaq || [];
+_gaq.push(
+    ['_setAccount', 'UA-726094-1'],
+    ['_setDomainName', '.habrahabr.ru'],
+    ["_addOrganic", "mail.ru", "q"],
+    ["_addOrganic","rambler.ru", "words"],
+    ["_addOrganic","nigma.ru", "s"],
+    ["_addOrganic","blogs.yandex.ru", "text"],
+    ["_addOrganic","webalta.ru", "q"],
+    ["_addOrganic","aport.ru", "r"],
+    ["_addOrganic","akavita.by", "z"],
+    ["_addOrganic","meta.ua", "q"],
+    ["_addOrganic","bigmir.net", "q"],
+    ["_addOrganic","tut.by", "query"],
+    ["_addOrganic","all.by", "query"],
+    ["_addOrganic","i.ua", "q"],
+    ["_addOrganic","online.ua", "q"],
+    ["_addOrganic","a.ua", "s"],
+    ["_addOrganic","ukr.net", "search_query"],
+    ["_addOrganic","search.com.ua", "q"],
+    ["_addOrganic","search.ua", "query"],
+    ["_addOrganic","poisk.ru", "text"],
+    ["_addOrganic","km.ru", "sq"],
+    ["_addOrganic","liveinternet.ru", "ask"],
+    ["_addOrganic","gogo.ru", "q"],
+    ["_addOrganic","gde.ru", "keywords"],
+    ["_addOrganic","quintura.ru", "request"],
+    ['_trackPageview']
+);
+document.documentElement.firstChild.appendChild(ga);
+/* ]]>*/
+</script>
+
+
+
+
+
+
+<script>
+var mb_random = Math.round(Math.random() * 100000);
+document.write("<script src='http://pink.habralab.ru/cgi-bin/iframe/Gemius_other?"+mb_random+"&options=FT'></scr"+"ipt>");
+</script><script src="./Декартово дерево  Часть 2. Ценная информация в дереве и множественные операции с ней   Алгоритмы   Хабрахабр_files/Gemius_other"></script><a href="http://pink.habralab.ru/cgi-bin/href/0?35223&login=Gemius_other&options=FT&referer=http%3A//habrahabr.ru/blogs/algorithm/102006/" target="_top"><img src="./Декартово дерево  Часть 2. Ценная информация в дереве и множественные операции с ней   Алгоритмы   Хабрахабр_files/0" width="0" height="0" title="http://" alt="" border="0" style="display: none !important; visibility: hidden !important; opacity: 0 !important; "></a>
+
+
+
+
+  <div id="help-tip-text" class="">
+		<div id="help-tip-text-content"></div>
+		<div id="help-tip-text-arrow"></div>
+	</div>
+	
+
+
+</body></html>

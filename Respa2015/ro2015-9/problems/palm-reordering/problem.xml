@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<problem revision="18" short-name="palm-reordering" url="https://polygon.codeforces.com/p/ADJA/palm-reordering">
+    <names>
+        <name language="kazakh" value="Пальмаларды көшіру"/>
+        <name language="russian" value="Пересадка пальм"/>
+    </names>
+    <statements>
+        <statement charset="UTF-8" language="kazakh" path="statements/kazakh/problem.tex" type="application/x-tex"/>
+        <statement language="kazakh" path="statements/.pdf/kazakh/problem.pdf" type="application/pdf"/>
+        <statement charset="UTF-8" language="russian" path="statements/russian/problem.tex" type="application/x-tex"/>
+        <statement language="russian" path="statements/.pdf/russian/problem.pdf" type="application/pdf"/>
+    </statements>
+    <judging cpu-name="Intel(R) Core(TM) i5-3470 CPU @ 3.20GHz" cpu-speed="3600" input-file="F.in" output-file="F.out">
+        <testset name="tests">
+            <time-limit>500</time-limit>
+            <memory-limit>268435456</memory-limit>
+            <test-count>40</test-count>
+            <input-path-pattern>tests/%02d</input-path-pattern>
+            <answer-path-pattern>tests/%02d.a</answer-path-pattern>
+            <tests>
+                <test method="manual" sample="true"/>
+                <test method="manual"/>
+                <test method="manual"/>
+                <test method="manual"/>
+                <test method="manual"/>
+                <test method="manual"/>
+                <test method="manual"/>
+                <test method="manual"/>
+                <test method="manual"/>
+                <test method="manual"/>
+                <test cmd="generator 100 1" method="generated"/>
+                <test cmd="generator 250 7" method="generated"/>
+                <test cmd="generator 500 5" method="generated"/>
+                <test cmd="generator 787 28" method="generated"/>
+                <test cmd="generator 1000 8" method="generated"/>
+                <test cmd="generator-bignums 100 1" method="generated"/>
+                <test cmd="generator-bignums 250 34" method="generated"/>
+                <test cmd="generator-bignums 500 42" method="generated"/>
+                <test cmd="generator-bignums 787 13" method="generated"/>
+                <test cmd="generator-bignums 1000 27" method="generated"/>
+                <test cmd="generator 50000 1" method="generated"/>
+                <test cmd="generator 53927 7" method="generated"/>
+                <test cmd="generator 66666 5" method="generated"/>
+                <test cmd="generator 50001 28" method="generated"/>
+                <test cmd="generator 60028 8" method="generated"/>
+                <test cmd="generator-bignums 50000 1" method="generated"/>
+                <test cmd="generator-bignums 53927 34" method="generated"/>
+                <test cmd="generator-bignums 66666 42" method="generated"/>
+                <test cmd="generator-bignums 50001 13" method="generated"/>
+                <test cmd="generator-bignums 60028 27" method="generated"/>
+                <test cmd="generator 70523 1" method="generated"/>
+                <test cmd="generator 90000 7" method="generated"/>
+                <test cmd="generator 100000 5" method="generated"/>
+                <test cmd="generator 100000 28" method="generated"/>
+                <test cmd="generator 100000 8" method="generated"/>
+                <test cmd="generator-bignums 70523 1" method="generated"/>
+                <test cmd="generator-bignums 90000 34" method="generated"/>
+                <test cmd="generator-bignums 100000 42" method="generated"/>
+                <test cmd="generator-bignums 100000 13" method="generated"/>
+                <test cmd="generator-bignums 100000 27" method="generated"/>
+            </tests>
+        </testset>
+    </judging>
+    <files>
+        <resources>
+            <file path="files/olymp.sty"/>
+            <file path="files/problem.tex"/>
+            <file path="files/statements.ftl"/>
+            <file path="files/testlib.h" type="h.g++"/>
+        </resources>
+        <attachments>
+            <file path="files/cms_conf.py" type="python.2"/>
+        </attachments>
+        <executables>
+            <executable>
+                <source path="files/generator-bignums.cpp" type="cpp.g++"/>
+                <binary path="files/generator-bignums.exe" type="exe.win32"/>
+            </executable>
+            <executable>
+                <source path="files/generator.cpp" type="cpp.g++"/>
+                <binary path="files/generator.exe" type="exe.win32"/>
+            </executable>
+            <executable>
+                <source path="files/validator.cpp" type="cpp.g++"/>
+                <binary path="files/validator.exe" type="exe.win32"/>
+            </executable>
+        </executables>
+    </files>
+    <assets>
+        <checker name="std::hcmp.cpp" type="testlib">
+            <source path="files/check.cpp" type="cpp.g++"/>
+            <binary path="check.exe" type="exe.win32"/>
+            <copy path="check.cpp"/>
+            <testset>
+                <test-count>0</test-count>
+                <input-path-pattern>files/tests/checker-tests/%02d</input-path-pattern>
+                <output-path-pattern>files/tests/checker-tests/%02d.o</output-path-pattern>
+                <answer-path-pattern>files/tests/checker-tests/%02d.a</answer-path-pattern>
+                <tests/>
+            </testset>
+        </checker>
+        <validators>
+            <validator>
+                <source path="files/validator.cpp" type="cpp.g++"/>
+                <binary path="files/validator.exe" type="exe.win32"/>
+                <testset>
+                    <test-count>8</test-count>
+                    <input-path-pattern>files/tests/validator-tests/%02d</input-path-pattern>
+                    <tests>
+                        <test verdict="valid"/>
+                        <test verdict="valid"/>
+                        <test verdict="valid"/>
+                        <test verdict="invalid"/>
+                        <test verdict="invalid"/>
+                        <test verdict="invalid"/>
+                        <test verdict="invalid"/>
+                        <test verdict="invalid"/>
+                    </tests>
+                </testset>
+            </validator>
+        </validators>
+        <solutions>
+            <solution tag="accepted">
+                <source path="solutions/a.cpp" type="cpp.g++"/>
+                <binary path="solutions/a.exe" type="exe.win32"/>
+            </solution>
+            <solution tag="wrong-answer">
+                <source path="solutions/solution-wa-2.cpp" type="cpp.g++"/>
+                <binary path="solutions/solution-wa-2.exe" type="exe.win32"/>
+            </solution>
+            <solution tag="wrong-answer">
+                <source path="solutions/solution-wa-3.cpp" type="cpp.g++"/>
+                <binary path="solutions/solution-wa-3.exe" type="exe.win32"/>
+            </solution>
+            <solution tag="wrong-answer">
+                <source path="solutions/solution-wa-ll.cpp" type="cpp.g++"/>
+                <binary path="solutions/solution-wa-ll.exe" type="exe.win32"/>
+            </solution>
+            <solution tag="wrong-answer">
+                <source path="solutions/solution-wa.cpp" type="cpp.g++"/>
+                <binary path="solutions/solution-wa.exe" type="exe.win32"/>
+            </solution>
+            <solution tag="main">
+                <source path="solutions/solution.cpp" type="cpp.g++"/>
+                <binary path="solutions/solution.exe" type="exe.win32"/>
+            </solution>
+            <solution tag="rejected">
+                <source path="solutions/stupid-2-wa-ll.cpp" type="cpp.g++"/>
+                <binary path="solutions/stupid-2-wa-ll.exe" type="exe.win32"/>
+            </solution>
+            <solution tag="time-limit-exceeded">
+                <source path="solutions/stupid-2.cpp" type="cpp.g++"/>
+                <binary path="solutions/stupid-2.exe" type="exe.win32"/>
+            </solution>
+            <solution tag="rejected">
+                <source path="solutions/stupid-wa.cpp" type="cpp.g++"/>
+                <binary path="solutions/stupid-wa.exe" type="exe.win32"/>
+            </solution>
+            <solution tag="rejected">
+                <source path="solutions/stupid.cpp" type="cpp.g++"/>
+                <binary path="solutions/stupid.exe" type="exe.win32"/>
+            </solution>
+        </solutions>
+    </assets>
+    <properties>
+        <property name="tests-wellformed" value="true"/>
+    </properties>
+    <stresses>
+        <stress-count>0</stress-count>
+        <stress-path-pattern>stresses/%03d</stress-path-pattern>
+        <list/>
+    </stresses>
+    <tags>
+        <tag value="data structures"/>
+    </tags>
+</problem>

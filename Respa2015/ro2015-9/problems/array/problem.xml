@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<problem revision="27" short-name="array" url="https://polygon.codeforces.com/p/NurlashKO/array">
+    <names>
+        <name language="kazakh" value="Контейнерлер мен қораптар"/>
+        <name language="russian" value="Контейнеры и отсеки"/>
+    </names>
+    <statements>
+        <statement charset="UTF-8" language="kazakh" path="statements/kazakh/problem.tex" type="application/x-tex"/>
+        <statement language="kazakh" path="statements/.pdf/kazakh/problem.pdf" type="application/pdf"/>
+        <statement charset="UTF-8" language="russian" path="statements/russian/problem.tex" type="application/x-tex"/>
+        <statement language="russian" path="statements/.pdf/russian/problem.pdf" type="application/pdf"/>
+    </statements>
+    <judging cpu-name="Intel(R) Core(TM) i5-3470 CPU @ 3.20GHz" cpu-speed="3600" input-file="A.in" output-file="A.out">
+        <testset name="tests">
+            <time-limit>500</time-limit>
+            <memory-limit>268435456</memory-limit>
+            <test-count>21</test-count>
+            <input-path-pattern>tests/%02d</input-path-pattern>
+            <answer-path-pattern>tests/%02d.a</answer-path-pattern>
+            <tests>
+                <test method="manual" sample="true"/>
+                <test cmd="gen 1000 1000 5 4353 1000000000" method="generated"/>
+                <test cmd="gen 1000 1000 100 6353 1000000000" method="generated"/>
+                <test cmd="gen 1000 1000 1 1353 1000000000" method="generated"/>
+                <test cmd="gen 1000 1000 25 4753 1000000000" method="generated"/>
+                <test cmd="gen 1000 1000 50 4553 10" method="generated"/>
+                <test cmd="gen 1000 1000 1000000 6565 1000000000" method="generated"/>
+                <test cmd="gen 1000 1000 2 4383 10" method="generated"/>
+                <test cmd="gen 1000 1000 434 4353 1" method="generated"/>
+                <test cmd="gen 1000 1000 3 4353 10" method="generated"/>
+                <test cmd="gen 1000 1000 10 4353 1000000000" method="generated"/>
+                <test cmd="gen 100000 100000 5 4353 1000000000" method="generated"/>
+                <test cmd="gen 100000 100000 100 6353 1000000000" method="generated"/>
+                <test cmd="gen 100000 100000 1 1353 1000000000" method="generated"/>
+                <test cmd="gen 100000 100000 25 4753 1000000000" method="generated"/>
+                <test cmd="gen 100000 100000 50 4553 10" method="generated"/>
+                <test cmd="gen 100000 100000 1000000 6565 1000000000" method="generated"/>
+                <test cmd="gen 100000 100000 2 4383 10" method="generated"/>
+                <test cmd="gen 100000 100000 434 4353 1" method="generated"/>
+                <test cmd="gen 100000 100000 3 4353 10" method="generated"/>
+                <test cmd="gen 100000 100000 10 4353 1000000000" method="generated"/>
+            </tests>
+        </testset>
+    </judging>
+    <files>
+        <resources>
+            <file path="files/olymp.sty"/>
+            <file path="files/problem.tex"/>
+            <file path="files/statements.ftl"/>
+            <file path="files/testlib.h" type="h.g++"/>
+        </resources>
+        <attachments>
+            <file path="files/cms_conf.py" type="python.2"/>
+        </attachments>
+        <executables>
+            <executable>
+                <source path="files/Validate.java" type="java7"/>
+                <binary path="files/Validate.jar7" type="jar7"/>
+            </executable>
+            <executable>
+                <source path="files/gen.cpp" type="cpp.g++"/>
+                <binary path="files/gen.exe" type="exe.win32"/>
+            </executable>
+        </executables>
+    </files>
+    <assets>
+        <checker name="std::ncmp.cpp" type="testlib">
+            <source path="files/check.cpp" type="cpp.g++"/>
+            <binary path="check.exe" type="exe.win32"/>
+            <copy path="check.cpp"/>
+            <testset>
+                <test-count>0</test-count>
+                <input-path-pattern>files/tests/checker-tests/%02d</input-path-pattern>
+                <output-path-pattern>files/tests/checker-tests/%02d.o</output-path-pattern>
+                <answer-path-pattern>files/tests/checker-tests/%02d.a</answer-path-pattern>
+                <tests/>
+            </testset>
+        </checker>
+        <validators>
+            <validator>
+                <source path="files/Validate.java" type="java7"/>
+                <binary path="files/Validate.jar7" type="jar7"/>
+                <testset>
+                    <test-count>0</test-count>
+                    <input-path-pattern>files/tests/validator-tests/%02d</input-path-pattern>
+                    <tests/>
+                </testset>
+            </validator>
+        </validators>
+        <solutions>
+            <solution tag="main">
+                <source path="solutions/correct.cpp" type="cpp.g++"/>
+                <binary path="solutions/correct.exe" type="exe.win32"/>
+            </solution>
+            <solution tag="rejected">
+                <source path="solutions/ml_mk.cpp" type="cpp.g++"/>
+                <binary path="solutions/ml_mk.exe" type="exe.win32"/>
+            </solution>
+            <solution tag="rejected">
+                <source path="solutions/stupML.cpp" type="cpp.g++"/>
+                <binary path="solutions/stupML.exe" type="exe.win32"/>
+            </solution>
+            <solution tag="rejected">
+                <source path="solutions/stupWA.cpp" type="cpp.g++"/>
+                <binary path="solutions/stupWA.exe" type="exe.win32"/>
+            </solution>
+            <solution tag="rejected">
+                <source path="solutions/stupWA2.cpp" type="cpp.g++"/>
+                <binary path="solutions/stupWA2.exe" type="exe.win32"/>
+            </solution>
+        </solutions>
+    </assets>
+    <properties>
+        <property name="tests-wellformed" value="true"/>
+    </properties>
+    <stresses>
+        <stress-count>0</stress-count>
+        <stress-path-pattern>stresses/%03d</stress-path-pattern>
+        <list/>
+    </stresses>
+    <tags>
+        <tag value="offline"/>
+        <tag value="ro"/>
+        <tag value="segment tree"/>
+    </tags>
+</problem>

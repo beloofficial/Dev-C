@@ -1,0 +1,10 @@
+while(k<n)k*=2;
+for(i...n)t[i+k-1]=a[i];
+for(int i=k-1;i>=1;i--)
+t[i]=t[i*2]+[i*2+1];
+sum(int l,int r)
+i+=k-1;r+=k-i;
+int res=0;
+while(l<=r)
+if(r%2!=0){res+=t[l]+l++;}
+r/=l;l/=2;

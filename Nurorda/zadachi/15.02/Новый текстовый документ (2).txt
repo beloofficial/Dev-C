@@ -1,0 +1,12 @@
+
+int sz=sqrt(n*1.0);
+if(n%sz!=0)sz++;
+for(int i=0...n)
+b[i/sz]+=a[i];
+for(i...m)
+cin>>l>>r;
+for(int i=l;i<;=r;i++)
+if(i+sz-1<=r&&a[i]%sz==0)
+{sum+=b[i/sz];
+i+=sz();}
+else {sum+=a[i];i++;}

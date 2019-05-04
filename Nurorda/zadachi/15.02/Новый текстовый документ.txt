@@ -1,0 +1,19 @@
+void add(int i,int x)
+for(i=1;i<n;i=())
+t[i]+=x;
+int sum(int r)
+int res=0;
+
+
+
+
+
+
+
+
+
+
+
+
+
+

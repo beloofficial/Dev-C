@@ -1,0 +1,17 @@
+for(int i=1;i<=n;i++)
+{
+p[i]=a[i]+p[i+1];
+}
+for(int i=1;i<=n;i++)
+d[i][i]=a[i];}
+for(int len=2;len<=n;++len)
+{
+for(int i=1;i<=n;++i)
+{
+int j=i+len-1;
+d[i][j]=max(a[i]+p[i])-d[i+1][j],a[j]+(p[j-1]-p[i-1])-a[i][j]);
+
+}
+}
+cout<<d[1][n]<<" "<<a[n]-d[1][n];
+orynbayev210899

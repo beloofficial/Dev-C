@@ -1,0 +1,56 @@
+#include<string>
+#include<cstring>
+#include<cstdio>
+#include<cstdlib>
+#include<iostream>
+ 
+using namespace std;
+int i,n,a[1000001],b[1000001],c[1000001];
+string s,ss,q;
+char tmp[1000001],tmk[1000001];
+int main()
+{
+    freopen("input.txt","r",stdin);
+    freopen("output.txt","w",stdout);
+ 
+    scanf("%s",&tmp); s = string(tmp);
+    scanf("%s",&tmk);ss = string(tmk);
+ 
+    if (s.size() < ss.size()) {
+        printf("-");
+        q = s;  s = ss; ss = q;
+    }
+    if (s < ss && s.size() == ss.size()) {printf("-");q = s;    s = ss; ss= q;}
+    /*if (s.size() == ss.size())
+    {
+            if (s[0] == ss[0])
+                for (i = 0; i < s.size(); i++)
+                    if (s[i] < ss[i])
+                    {
+                        printf("-");
+                        q = s;  s = ss; ss= q;
+                        break;
+                    }
+    }*/
+ 
+    n = max(s.size() , ss.size());
+ 
+    for (i = 0; i < s.size(); i++)
+        a[s.size() - i] = s[i] - '0';
+ 
+    for (i = 0; i < ss.size(); i++)
+        b[ss.size() - i] = ss[i] - '0';
+ 
+    for (i = 1; i <= n; i++){
+                c[i] = a[i] - b[i];
+             if (c[i] < 0){
+                a[i + 1] = a[i + 1] - 1;
+                c[i] = c[i] + 10;
+             }
+    }
+    while (c[n] == 0 && n > 1)
+        n--;
+    for (i = n; i >= 1 ; i--)
+        printf("%d",c[i]);
+    return 0;
+}

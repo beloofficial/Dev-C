@@ -1,0 +1,1000 @@
+Case 1: The minimal number of roads is 3.
+Case 2: The minimal number of roads is 4.
+Case 3: The minimal number of roads is 4.
+Case 4: The system is already connected.
+Case 5: The system is already connected.
+Case 6: The system is already connected.
+Case 7: The minimal number of roads is 1.
+Case 8: The minimal number of roads is 9.
+Case 9: The minimal number of roads is 2.
+Case 10: The minimal number of roads is 2.
+Case 11: The system is already connected.
+Case 12: The minimal number of roads is 4.
+Case 13: The system is already connected.
+Case 14: The minimal number of roads is 8.
+Case 15: The minimal number of roads is 3.
+Case 16: The minimal number of roads is 2.
+Case 17: The minimal number of roads is 5.
+Case 18: The system is already connected.
+Case 19: The minimal number of roads is 6.
+Case 20: The minimal number of roads is 1.
+Case 21: The minimal number of roads is 1.
+Case 22: The minimal number of roads is 3.
+Case 23: The minimal number of roads is 11.
+Case 24: The minimal number of roads is 1.
+Case 25: The system is already connected.
+Case 26: The system is already connected.
+Case 27: The minimal number of roads is 1.
+Case 28: The minimal number of roads is 1.
+Case 29: The minimal number of roads is 5.
+Case 30: The minimal number of roads is 8.
+Case 31: The minimal number of roads is 6.
+Case 32: The minimal number of roads is 9.
+Case 33: The system is already connected.
+Case 34: The system is already connected.
+Case 35: The minimal number of roads is 2.
+Case 36: The system is already connected.
+Case 37: The minimal number of roads is 8.
+Case 38: The minimal number of roads is 2.
+Case 39: The minimal number of roads is 1.
+Case 40: The system is already connected.
+Case 41: The system is already connected.
+Case 42: The minimal number of roads is 1.
+Case 43: The minimal number of roads is 2.
+Case 44: The minimal number of roads is 3.
+Case 45: The minimal number of roads is 1.
+Case 46: The minimal number of roads is 9.
+Case 47: The system is already connected.
+Case 48: The minimal number of roads is 5.
+Case 49: The minimal number of roads is 1.
+Case 50: The minimal number of roads is 3.
+Case 51: The minimal number of roads is 3.
+Case 52: The system is already connected.
+Case 53: The system is already connected.
+Case 54: The minimal number of roads is 10.
+Case 55: The minimal number of roads is 2.
+Case 56: The minimal number of roads is 3.
+Case 57: The minimal number of roads is 8.
+Case 58: The minimal number of roads is 1.
+Case 59: The minimal number of roads is 9.
+Case 60: The system is already connected.
+Case 61: The minimal number of roads is 4.
+Case 62: The system is already connected.
+Case 63: The minimal number of roads is 7.
+Case 64: The minimal number of roads is 1.
+Case 65: The system is already connected.
+Case 66: The system is already connected.
+Case 67: The minimal number of roads is 2.
+Case 68: The minimal number of roads is 2.
+Case 69: The minimal number of roads is 7.
+Case 70: The minimal number of roads is 1.
+Case 71: The minimal number of roads is 4.
+Case 72: The minimal number of roads is 4.
+Case 73: The system is already connected.
+Case 74: The minimal number of roads is 11.
+Case 75: The minimal number of roads is 2.
+Case 76: The system is already connected.
+Case 77: The system is already connected.
+Case 78: The minimal number of roads is 2.
+Case 79: The system is already connected.
+Case 80: The system is already connected.
+Case 81: The minimal number of roads is 2.
+Case 82: The minimal number of roads is 2.
+Case 83: The minimal number of roads is 1.
+Case 84: The minimal number of roads is 5.
+Case 85: The minimal number of roads is 6.
+Case 86: The minimal number of roads is 1.
+Case 87: The minimal number of roads is 1.
+Case 88: The minimal number of roads is 2.
+Case 89: The minimal number of roads is 4.
+Case 90: The minimal number of roads is 2.
+Case 91: The minimal number of roads is 7.
+Case 92: The system is already connected.
+Case 93: The minimal number of roads is 1.
+Case 94: The minimal number of roads is 2.
+Case 95: The minimal number of roads is 6.
+Case 96: The system is already connected.
+Case 97: The system is already connected.
+Case 98: The minimal number of roads is 6.
+Case 99: The system is already connected.
+Case 100: The system is already connected.
+Case 101: The minimal number of roads is 1.
+Case 102: The minimal number of roads is 1.
+Case 103: The system is already connected.
+Case 104: The minimal number of roads is 2.
+Case 105: The minimal number of roads is 7.
+Case 106: The minimal number of roads is 3.
+Case 107: The minimal number of roads is 1.
+Case 108: The system is already connected.
+Case 109: The minimal number of roads is 2.
+Case 110: The system is already connected.
+Case 111: The system is already connected.
+Case 112: The minimal number of roads is 1.
+Case 113: The system is already connected.
+Case 114: The minimal number of roads is 1.
+Case 115: The minimal number of roads is 4.
+Case 116: The minimal number of roads is 1.
+Case 117: The minimal number of roads is 2.
+Case 118: The minimal number of roads is 2.
+Case 119: The minimal number of roads is 1.
+Case 120: The system is already connected.
+Case 121: The system is already connected.
+Case 122: The minimal number of roads is 1.
+Case 123: The minimal number of roads is 2.
+Case 124: The minimal number of roads is 2.
+Case 125: The minimal number of roads is 1.
+Case 126: The minimal number of roads is 1.
+Case 127: The minimal number of roads is 7.
+Case 128: The minimal number of roads is 2.
+Case 129: The minimal number of roads is 1.
+Case 130: The minimal number of roads is 3.
+Case 131: The minimal number of roads is 2.
+Case 132: The minimal number of roads is 2.
+Case 133: The minimal number of roads is 6.
+Case 134: The minimal number of roads is 7.
+Case 135: The minimal number of roads is 2.
+Case 136: The minimal number of roads is 5.
+Case 137: The system is already connected.
+Case 138: The minimal number of roads is 1.
+Case 139: The system is already connected.
+Case 140: The minimal number of roads is 4.
+Case 141: The system is already connected.
+Case 142: The minimal number of roads is 3.
+Case 143: The system is already connected.
+Case 144: The system is already connected.
+Case 145: The minimal number of roads is 2.
+Case 146: The minimal number of roads is 2.
+Case 147: The minimal number of roads is 1.
+Case 148: The system is already connected.
+Case 149: The minimal number of roads is 10.
+Case 150: The minimal number of roads is 3.
+Case 151: The minimal number of roads is 12.
+Case 152: The minimal number of roads is 10.
+Case 153: The system is already connected.
+Case 154: The system is already connected.
+Case 155: The minimal number of roads is 3.
+Case 156: The minimal number of roads is 2.
+Case 157: The minimal number of roads is 12.
+Case 158: The minimal number of roads is 8.
+Case 159: The system is already connected.
+Case 160: The minimal number of roads is 9.
+Case 161: The minimal number of roads is 1.
+Case 162: The minimal number of roads is 4.
+Case 163: The minimal number of roads is 1.
+Case 164: The minimal number of roads is 5.
+Case 165: The system is already connected.
+Case 166: The minimal number of roads is 5.
+Case 167: The minimal number of roads is 4.
+Case 168: The minimal number of roads is 2.
+Case 169: The system is already connected.
+Case 170: The minimal number of roads is 1.
+Case 171: The minimal number of roads is 4.
+Case 172: The minimal number of roads is 7.
+Case 173: The minimal number of roads is 5.
+Case 174: The system is already connected.
+Case 175: The minimal number of roads is 4.
+Case 176: The minimal number of roads is 1.
+Case 177: The minimal number of roads is 5.
+Case 178: The minimal number of roads is 6.
+Case 179: The system is already connected.
+Case 180: The minimal number of roads is 1.
+Case 181: The minimal number of roads is 7.
+Case 182: The minimal number of roads is 5.
+Case 183: The system is already connected.
+Case 184: The minimal number of roads is 4.
+Case 185: The minimal number of roads is 1.
+Case 186: The system is already connected.
+Case 187: The minimal number of roads is 11.
+Case 188: The system is already connected.
+Case 189: The minimal number of roads is 2.
+Case 190: The minimal number of roads is 3.
+Case 191: The minimal number of roads is 2.
+Case 192: The minimal number of roads is 6.
+Case 193: The system is already connected.
+Case 194: The minimal number of roads is 3.
+Case 195: The system is already connected.
+Case 196: The minimal number of roads is 1.
+Case 197: The minimal number of roads is 3.
+Case 198: The minimal number of roads is 4.
+Case 199: The minimal number of roads is 6.
+Case 200: The system is already connected.
+Case 201: The system is already connected.
+Case 202: The minimal number of roads is 2.
+Case 203: The minimal number of roads is 3.
+Case 204: The minimal number of roads is 1.
+Case 205: The system is already connected.
+Case 206: The minimal number of roads is 1.
+Case 207: The minimal number of roads is 10.
+Case 208: The minimal number of roads is 2.
+Case 209: The minimal number of roads is 13.
+Case 210: The minimal number of roads is 2.
+Case 211: The minimal number of roads is 2.
+Case 212: The system is already connected.
+Case 213: The minimal number of roads is 6.
+Case 214: The minimal number of roads is 6.
+Case 215: The minimal number of roads is 2.
+Case 216: The minimal number of roads is 8.
+Case 217: The minimal number of roads is 4.
+Case 218: The system is already connected.
+Case 219: The system is already connected.
+Case 220: The minimal number of roads is 3.
+Case 221: The minimal number of roads is 5.
+Case 222: The minimal number of roads is 2.
+Case 223: The minimal number of roads is 1.
+Case 224: The minimal number of roads is 5.
+Case 225: The minimal number of roads is 1.
+Case 226: The minimal number of roads is 1.
+Case 227: The minimal number of roads is 1.
+Case 228: The minimal number of roads is 4.
+Case 229: The minimal number of roads is 3.
+Case 230: The minimal number of roads is 2.
+Case 231: The minimal number of roads is 10.
+Case 232: The minimal number of roads is 8.
+Case 233: The system is already connected.
+Case 234: The system is already connected.
+Case 235: The minimal number of roads is 2.
+Case 236: The minimal number of roads is 7.
+Case 237: The system is already connected.
+Case 238: The minimal number of roads is 2.
+Case 239: The minimal number of roads is 7.
+Case 240: The system is already connected.
+Case 241: The system is already connected.
+Case 242: The system is already connected.
+Case 243: The minimal number of roads is 2.
+Case 244: The minimal number of roads is 4.
+Case 245: The minimal number of roads is 1.
+Case 246: The minimal number of roads is 2.
+Case 247: The minimal number of roads is 4.
+Case 248: The minimal number of roads is 3.
+Case 249: The minimal number of roads is 1.
+Case 250: The system is already connected.
+Case 251: The minimal number of roads is 2.
+Case 252: The minimal number of roads is 6.
+Case 253: The system is already connected.
+Case 254: The minimal number of roads is 1.
+Case 255: The system is already connected.
+Case 256: The minimal number of roads is 2.
+Case 257: The system is already connected.
+Case 258: The minimal number of roads is 6.
+Case 259: The minimal number of roads is 1.
+Case 260: The minimal number of roads is 3.
+Case 261: The minimal number of roads is 1.
+Case 262: The minimal number of roads is 2.
+Case 263: The minimal number of roads is 2.
+Case 264: The system is already connected.
+Case 265: The minimal number of roads is 8.
+Case 266: The minimal number of roads is 3.
+Case 267: The system is already connected.
+Case 268: The minimal number of roads is 6.
+Case 269: The minimal number of roads is 2.
+Case 270: The minimal number of roads is 2.
+Case 271: The system is already connected.
+Case 272: The minimal number of roads is 1.
+Case 273: The minimal number of roads is 5.
+Case 274: The minimal number of roads is 9.
+Case 275: The system is already connected.
+Case 276: The minimal number of roads is 12.
+Case 277: The minimal number of roads is 2.
+Case 278: The system is already connected.
+Case 279: The minimal number of roads is 1.
+Case 280: The minimal number of roads is 5.
+Case 281: The minimal number of roads is 3.
+Case 282: The minimal number of roads is 8.
+Case 283: The system is already connected.
+Case 284: The system is already connected.
+Case 285: The minimal number of roads is 1.
+Case 286: The minimal number of roads is 3.
+Case 287: The minimal number of roads is 1.
+Case 288: The minimal number of roads is 1.
+Case 289: The minimal number of roads is 2.
+Case 290: The system is already connected.
+Case 291: The system is already connected.
+Case 292: The system is already connected.
+Case 293: The minimal number of roads is 3.
+Case 294: The system is already connected.
+Case 295: The system is already connected.
+Case 296: The system is already connected.
+Case 297: The system is already connected.
+Case 298: The minimal number of roads is 3.
+Case 299: The minimal number of roads is 8.
+Case 300: The minimal number of roads is 3.
+Case 301: The system is already connected.
+Case 302: The minimal number of roads is 9.
+Case 303: The minimal number of roads is 2.
+Case 304: The system is already connected.
+Case 305: The minimal number of roads is 1.
+Case 306: The system is already connected.
+Case 307: The system is already connected.
+Case 308: The system is already connected.
+Case 309: The minimal number of roads is 5.
+Case 310: The system is already connected.
+Case 311: The minimal number of roads is 3.
+Case 312: The system is already connected.
+Case 313: The system is already connected.
+Case 314: The minimal number of roads is 1.
+Case 315: The minimal number of roads is 1.
+Case 316: The system is already connected.
+Case 317: The system is already connected.
+Case 318: The minimal number of roads is 5.
+Case 319: The minimal number of roads is 7.
+Case 320: The system is already connected.
+Case 321: The minimal number of roads is 4.
+Case 322: The minimal number of roads is 1.
+Case 323: The minimal number of roads is 1.
+Case 324: The minimal number of roads is 2.
+Case 325: The minimal number of roads is 1.
+Case 326: The minimal number of roads is 3.
+Case 327: The minimal number of roads is 3.
+Case 328: The minimal number of roads is 1.
+Case 329: The minimal number of roads is 4.
+Case 330: The minimal number of roads is 6.
+Case 331: The system is already connected.
+Case 332: The minimal number of roads is 8.
+Case 333: The minimal number of roads is 2.
+Case 334: The minimal number of roads is 1.
+Case 335: The system is already connected.
+Case 336: The minimal number of roads is 1.
+Case 337: The system is already connected.
+Case 338: The system is already connected.
+Case 339: The minimal number of roads is 4.
+Case 340: The minimal number of roads is 1.
+Case 341: The minimal number of roads is 9.
+Case 342: The system is already connected.
+Case 343: The minimal number of roads is 3.
+Case 344: The system is already connected.
+Case 345: The minimal number of roads is 2.
+Case 346: The system is already connected.
+Case 347: The minimal number of roads is 4.
+Case 348: The minimal number of roads is 1.
+Case 349: The minimal number of roads is 4.
+Case 350: The minimal number of roads is 1.
+Case 351: The minimal number of roads is 1.
+Case 352: The minimal number of roads is 2.
+Case 353: The system is already connected.
+Case 354: The system is already connected.
+Case 355: The minimal number of roads is 7.
+Case 356: The minimal number of roads is 1.
+Case 357: The minimal number of roads is 7.
+Case 358: The minimal number of roads is 2.
+Case 359: The minimal number of roads is 4.
+Case 360: The minimal number of roads is 3.
+Case 361: The minimal number of roads is 1.
+Case 362: The minimal number of roads is 1.
+Case 363: The minimal number of roads is 4.
+Case 364: The minimal number of roads is 1.
+Case 365: The minimal number of roads is 2.
+Case 366: The minimal number of roads is 3.
+Case 367: The minimal number of roads is 1.
+Case 368: The minimal number of roads is 7.
+Case 369: The minimal number of roads is 9.
+Case 370: The minimal number of roads is 9.
+Case 371: The minimal number of roads is 7.
+Case 372: The minimal number of roads is 3.
+Case 373: The minimal number of roads is 5.
+Case 374: The minimal number of roads is 1.
+Case 375: The system is already connected.
+Case 376: The minimal number of roads is 3.
+Case 377: The minimal number of roads is 1.
+Case 378: The system is already connected.
+Case 379: The minimal number of roads is 1.
+Case 380: The minimal number of roads is 3.
+Case 381: The minimal number of roads is 2.
+Case 382: The minimal number of roads is 1.
+Case 383: The system is already connected.
+Case 384: The minimal number of roads is 1.
+Case 385: The system is already connected.
+Case 386: The minimal number of roads is 2.
+Case 387: The minimal number of roads is 4.
+Case 388: The system is already connected.
+Case 389: The system is already connected.
+Case 390: The minimal number of roads is 7.
+Case 391: The minimal number of roads is 4.
+Case 392: The minimal number of roads is 4.
+Case 393: The minimal number of roads is 3.
+Case 394: The minimal number of roads is 4.
+Case 395: The system is already connected.
+Case 396: The minimal number of roads is 7.
+Case 397: The minimal number of roads is 1.
+Case 398: The system is already connected.
+Case 399: The minimal number of roads is 13.
+Case 400: The minimal number of roads is 1.
+Case 401: The system is already connected.
+Case 402: The minimal number of roads is 1.
+Case 403: The minimal number of roads is 2.
+Case 404: The system is already connected.
+Case 405: The minimal number of roads is 5.
+Case 406: The minimal number of roads is 1.
+Case 407: The minimal number of roads is 8.
+Case 408: The minimal number of roads is 5.
+Case 409: The minimal number of roads is 2.
+Case 410: The minimal number of roads is 4.
+Case 411: The minimal number of roads is 2.
+Case 412: The minimal number of roads is 2.
+Case 413: The minimal number of roads is 4.
+Case 414: The system is already connected.
+Case 415: The minimal number of roads is 3.
+Case 416: The minimal number of roads is 9.
+Case 417: The minimal number of roads is 1.
+Case 418: The minimal number of roads is 3.
+Case 419: The system is already connected.
+Case 420: The minimal number of roads is 2.
+Case 421: The minimal number of roads is 3.
+Case 422: The minimal number of roads is 3.
+Case 423: The minimal number of roads is 5.
+Case 424: The system is already connected.
+Case 425: The minimal number of roads is 1.
+Case 426: The system is already connected.
+Case 427: The minimal number of roads is 2.
+Case 428: The minimal number of roads is 8.
+Case 429: The system is already connected.
+Case 430: The minimal number of roads is 4.
+Case 431: The minimal number of roads is 1.
+Case 432: The minimal number of roads is 6.
+Case 433: The minimal number of roads is 3.
+Case 434: The minimal number of roads is 3.
+Case 435: The system is already connected.
+Case 436: The minimal number of roads is 2.
+Case 437: The system is already connected.
+Case 438: The system is already connected.
+Case 439: The minimal number of roads is 1.
+Case 440: The minimal number of roads is 2.
+Case 441: The minimal number of roads is 1.
+Case 442: The minimal number of roads is 1.
+Case 443: The system is already connected.
+Case 444: The system is already connected.
+Case 445: The system is already connected.
+Case 446: The system is already connected.
+Case 447: The minimal number of roads is 2.
+Case 448: The minimal number of roads is 5.
+Case 449: The minimal number of roads is 3.
+Case 450: The minimal number of roads is 6.
+Case 451: The minimal number of roads is 2.
+Case 452: The system is already connected.
+Case 453: The system is already connected.
+Case 454: The system is already connected.
+Case 455: The minimal number of roads is 3.
+Case 456: The system is already connected.
+Case 457: The minimal number of roads is 2.
+Case 458: The system is already connected.
+Case 459: The minimal number of roads is 1.
+Case 460: The minimal number of roads is 4.
+Case 461: The minimal number of roads is 3.
+Case 462: The minimal number of roads is 4.
+Case 463: The minimal number of roads is 4.
+Case 464: The system is already connected.
+Case 465: The minimal number of roads is 11.
+Case 466: The minimal number of roads is 9.
+Case 467: The minimal number of roads is 6.
+Case 468: The minimal number of roads is 13.
+Case 469: The minimal number of roads is 3.
+Case 470: The minimal number of roads is 4.
+Case 471: The minimal number of roads is 4.
+Case 472: The system is already connected.
+Case 473: The minimal number of roads is 3.
+Case 474: The minimal number of roads is 2.
+Case 475: The minimal number of roads is 12.
+Case 476: The minimal number of roads is 3.
+Case 477: The system is already connected.
+Case 478: The minimal number of roads is 1.
+Case 479: The minimal number of roads is 2.
+Case 480: The system is already connected.
+Case 481: The minimal number of roads is 5.
+Case 482: The minimal number of roads is 2.
+Case 483: The minimal number of roads is 1.
+Case 484: The minimal number of roads is 1.
+Case 485: The minimal number of roads is 6.
+Case 486: The system is already connected.
+Case 487: The minimal number of roads is 6.
+Case 488: The minimal number of roads is 4.
+Case 489: The minimal number of roads is 8.
+Case 490: The minimal number of roads is 1.
+Case 491: The minimal number of roads is 1.
+Case 492: The minimal number of roads is 6.
+Case 493: The minimal number of roads is 9.
+Case 494: The minimal number of roads is 7.
+Case 495: The system is already connected.
+Case 496: The minimal number of roads is 5.
+Case 497: The minimal number of roads is 1.
+Case 498: The minimal number of roads is 1.
+Case 499: The minimal number of roads is 3.
+Case 500: The minimal number of roads is 1.
+Case 501: The minimal number of roads is 2.
+Case 502: The minimal number of roads is 1.
+Case 503: The minimal number of roads is 1.
+Case 504: The system is already connected.
+Case 505: The system is already connected.
+Case 506: The system is already connected.
+Case 507: The system is already connected.
+Case 508: The minimal number of roads is 1.
+Case 509: The minimal number of roads is 2.
+Case 510: The minimal number of roads is 1.
+Case 511: The system is already connected.
+Case 512: The minimal number of roads is 1.
+Case 513: The system is already connected.
+Case 514: The system is already connected.
+Case 515: The minimal number of roads is 3.
+Case 516: The minimal number of roads is 2.
+Case 517: The minimal number of roads is 6.
+Case 518: The system is already connected.
+Case 519: The system is already connected.
+Case 520: The system is already connected.
+Case 521: The minimal number of roads is 1.
+Case 522: The minimal number of roads is 4.
+Case 523: The system is already connected.
+Case 524: The system is already connected.
+Case 525: The system is already connected.
+Case 526: The minimal number of roads is 2.
+Case 527: The minimal number of roads is 2.
+Case 528: The minimal number of roads is 1.
+Case 529: The system is already connected.
+Case 530: The minimal number of roads is 2.
+Case 531: The minimal number of roads is 7.
+Case 532: The minimal number of roads is 3.
+Case 533: The minimal number of roads is 2.
+Case 534: The minimal number of roads is 7.
+Case 535: The minimal number of roads is 7.
+Case 536: The minimal number of roads is 2.
+Case 537: The system is already connected.
+Case 538: The minimal number of roads is 1.
+Case 539: The system is already connected.
+Case 540: The minimal number of roads is 4.
+Case 541: The minimal number of roads is 2.
+Case 542: The minimal number of roads is 10.
+Case 543: The system is already connected.
+Case 544: The minimal number of roads is 1.
+Case 545: The minimal number of roads is 2.
+Case 546: The minimal number of roads is 1.
+Case 547: The minimal number of roads is 2.
+Case 548: The minimal number of roads is 6.
+Case 549: The system is already connected.
+Case 550: The minimal number of roads is 2.
+Case 551: The minimal number of roads is 5.
+Case 552: The minimal number of roads is 3.
+Case 553: The system is already connected.
+Case 554: The system is already connected.
+Case 555: The minimal number of roads is 9.
+Case 556: The minimal number of roads is 1.
+Case 557: The minimal number of roads is 7.
+Case 558: The minimal number of roads is 2.
+Case 559: The minimal number of roads is 1.
+Case 560: The system is already connected.
+Case 561: The minimal number of roads is 3.
+Case 562: The minimal number of roads is 3.
+Case 563: The minimal number of roads is 1.
+Case 564: The minimal number of roads is 2.
+Case 565: The minimal number of roads is 3.
+Case 566: The system is already connected.
+Case 567: The minimal number of roads is 5.
+Case 568: The minimal number of roads is 5.
+Case 569: The minimal number of roads is 1.
+Case 570: The system is already connected.
+Case 571: The minimal number of roads is 2.
+Case 572: The minimal number of roads is 1.
+Case 573: The minimal number of roads is 1.
+Case 574: The minimal number of roads is 3.
+Case 575: The minimal number of roads is 5.
+Case 576: The system is already connected.
+Case 577: The minimal number of roads is 3.
+Case 578: The system is already connected.
+Case 579: The minimal number of roads is 4.
+Case 580: The minimal number of roads is 2.
+Case 581: The minimal number of roads is 2.
+Case 582: The system is already connected.
+Case 583: The minimal number of roads is 2.
+Case 584: The minimal number of roads is 1.
+Case 585: The minimal number of roads is 4.
+Case 586: The minimal number of roads is 2.
+Case 587: The minimal number of roads is 7.
+Case 588: The minimal number of roads is 6.
+Case 589: The minimal number of roads is 1.
+Case 590: The system is already connected.
+Case 591: The system is already connected.
+Case 592: The minimal number of roads is 4.
+Case 593: The system is already connected.
+Case 594: The minimal number of roads is 1.
+Case 595: The minimal number of roads is 2.
+Case 596: The system is already connected.
+Case 597: The minimal number of roads is 4.
+Case 598: The system is already connected.
+Case 599: The minimal number of roads is 2.
+Case 600: The system is already connected.
+Case 601: The minimal number of roads is 1.
+Case 602: The minimal number of roads is 3.
+Case 603: The minimal number of roads is 1.
+Case 604: The system is already connected.
+Case 605: The minimal number of roads is 5.
+Case 606: The minimal number of roads is 10.
+Case 607: The minimal number of roads is 2.
+Case 608: The minimal number of roads is 4.
+Case 609: The system is already connected.
+Case 610: The minimal number of roads is 2.
+Case 611: The minimal number of roads is 1.
+Case 612: The system is already connected.
+Case 613: The minimal number of roads is 3.
+Case 614: The minimal number of roads is 10.
+Case 615: The minimal number of roads is 2.
+Case 616: The minimal number of roads is 3.
+Case 617: The system is already connected.
+Case 618: The minimal number of roads is 2.
+Case 619: The minimal number of roads is 3.
+Case 620: The system is already connected.
+Case 621: The minimal number of roads is 1.
+Case 622: The minimal number of roads is 2.
+Case 623: The system is already connected.
+Case 624: The minimal number of roads is 1.
+Case 625: The minimal number of roads is 6.
+Case 626: The system is already connected.
+Case 627: The minimal number of roads is 3.
+Case 628: The minimal number of roads is 2.
+Case 629: The minimal number of roads is 1.
+Case 630: The minimal number of roads is 8.
+Case 631: The minimal number of roads is 2.
+Case 632: The minimal number of roads is 5.
+Case 633: The system is already connected.
+Case 634: The minimal number of roads is 2.
+Case 635: The minimal number of roads is 1.
+Case 636: The minimal number of roads is 6.
+Case 637: The system is already connected.
+Case 638: The minimal number of roads is 2.
+Case 639: The minimal number of roads is 3.
+Case 640: The system is already connected.
+Case 641: The minimal number of roads is 2.
+Case 642: The system is already connected.
+Case 643: The minimal number of roads is 3.
+Case 644: The minimal number of roads is 1.
+Case 645: The minimal number of roads is 2.
+Case 646: The minimal number of roads is 2.
+Case 647: The minimal number of roads is 4.
+Case 648: The system is already connected.
+Case 649: The system is already connected.
+Case 650: The minimal number of roads is 3.
+Case 651: The minimal number of roads is 2.
+Case 652: The minimal number of roads is 1.
+Case 653: The system is already connected.
+Case 654: The minimal number of roads is 1.
+Case 655: The minimal number of roads is 1.
+Case 656: The minimal number of roads is 3.
+Case 657: The minimal number of roads is 5.
+Case 658: The minimal number of roads is 2.
+Case 659: The system is already connected.
+Case 660: The minimal number of roads is 1.
+Case 661: The system is already connected.
+Case 662: The minimal number of roads is 1.
+Case 663: The minimal number of roads is 5.
+Case 664: The minimal number of roads is 2.
+Case 665: The system is already connected.
+Case 666: The system is already connected.
+Case 667: The minimal number of roads is 2.
+Case 668: The minimal number of roads is 3.
+Case 669: The minimal number of roads is 4.
+Case 670: The minimal number of roads is 12.
+Case 671: The minimal number of roads is 8.
+Case 672: The minimal number of roads is 2.
+Case 673: The system is already connected.
+Case 674: The system is already connected.
+Case 675: The minimal number of roads is 1.
+Case 676: The minimal number of roads is 2.
+Case 677: The minimal number of roads is 1.
+Case 678: The minimal number of roads is 2.
+Case 679: The minimal number of roads is 6.
+Case 680: The minimal number of roads is 2.
+Case 681: The minimal number of roads is 1.
+Case 682: The system is already connected.
+Case 683: The minimal number of roads is 4.
+Case 684: The minimal number of roads is 1.
+Case 685: The minimal number of roads is 5.
+Case 686: The minimal number of roads is 12.
+Case 687: The minimal number of roads is 1.
+Case 688: The minimal number of roads is 5.
+Case 689: The minimal number of roads is 1.
+Case 690: The minimal number of roads is 4.
+Case 691: The system is already connected.
+Case 692: The minimal number of roads is 2.
+Case 693: The minimal number of roads is 3.
+Case 694: The minimal number of roads is 5.
+Case 695: The minimal number of roads is 9.
+Case 696: The system is already connected.
+Case 697: The minimal number of roads is 5.
+Case 698: The system is already connected.
+Case 699: The minimal number of roads is 4.
+Case 700: The minimal number of roads is 4.
+Case 701: The minimal number of roads is 7.
+Case 702: The minimal number of roads is 12.
+Case 703: The system is already connected.
+Case 704: The minimal number of roads is 1.
+Case 705: The minimal number of roads is 1.
+Case 706: The minimal number of roads is 4.
+Case 707: The system is already connected.
+Case 708: The minimal number of roads is 1.
+Case 709: The system is already connected.
+Case 710: The minimal number of roads is 2.
+Case 711: The minimal number of roads is 4.
+Case 712: The minimal number of roads is 1.
+Case 713: The minimal number of roads is 2.
+Case 714: The system is already connected.
+Case 715: The minimal number of roads is 3.
+Case 716: The system is already connected.
+Case 717: The system is already connected.
+Case 718: The minimal number of roads is 7.
+Case 719: The minimal number of roads is 6.
+Case 720: The minimal number of roads is 6.
+Case 721: The minimal number of roads is 4.
+Case 722: The system is already connected.
+Case 723: The minimal number of roads is 4.
+Case 724: The minimal number of roads is 7.
+Case 725: The minimal number of roads is 4.
+Case 726: The minimal number of roads is 2.
+Case 727: The minimal number of roads is 2.
+Case 728: The minimal number of roads is 3.
+Case 729: The minimal number of roads is 1.
+Case 730: The minimal number of roads is 6.
+Case 731: The minimal number of roads is 2.
+Case 732: The minimal number of roads is 2.
+Case 733: The system is already connected.
+Case 734: The minimal number of roads is 1.
+Case 735: The minimal number of roads is 3.
+Case 736: The system is already connected.
+Case 737: The minimal number of roads is 2.
+Case 738: The minimal number of roads is 1.
+Case 739: The minimal number of roads is 2.
+Case 740: The minimal number of roads is 3.
+Case 741: The minimal number of roads is 1.
+Case 742: The minimal number of roads is 2.
+Case 743: The minimal number of roads is 1.
+Case 744: The minimal number of roads is 5.
+Case 745: The minimal number of roads is 1.
+Case 746: The minimal number of roads is 4.
+Case 747: The system is already connected.
+Case 748: The minimal number of roads is 5.
+Case 749: The minimal number of roads is 2.
+Case 750: The system is already connected.
+Case 751: The minimal number of roads is 2.
+Case 752: The system is already connected.
+Case 753: The minimal number of roads is 4.
+Case 754: The system is already connected.
+Case 755: The minimal number of roads is 1.
+Case 756: The system is already connected.
+Case 757: The minimal number of roads is 4.
+Case 758: The minimal number of roads is 2.
+Case 759: The minimal number of roads is 2.
+Case 760: The minimal number of roads is 3.
+Case 761: The system is already connected.
+Case 762: The system is already connected.
+Case 763: The system is already connected.
+Case 764: The minimal number of roads is 5.
+Case 765: The minimal number of roads is 6.
+Case 766: The minimal number of roads is 9.
+Case 767: The minimal number of roads is 1.
+Case 768: The minimal number of roads is 1.
+Case 769: The minimal number of roads is 1.
+Case 770: The minimal number of roads is 1.
+Case 771: The minimal number of roads is 1.
+Case 772: The minimal number of roads is 1.
+Case 773: The minimal number of roads is 2.
+Case 774: The minimal number of roads is 1.
+Case 775: The minimal number of roads is 2.
+Case 776: The system is already connected.
+Case 777: The minimal number of roads is 1.
+Case 778: The minimal number of roads is 9.
+Case 779: The minimal number of roads is 3.
+Case 780: The system is already connected.
+Case 781: The minimal number of roads is 1.
+Case 782: The minimal number of roads is 4.
+Case 783: The minimal number of roads is 1.
+Case 784: The minimal number of roads is 5.
+Case 785: The minimal number of roads is 2.
+Case 786: The minimal number of roads is 12.
+Case 787: The minimal number of roads is 1.
+Case 788: The minimal number of roads is 3.
+Case 789: The system is already connected.
+Case 790: The minimal number of roads is 1.
+Case 791: The minimal number of roads is 2.
+Case 792: The minimal number of roads is 1.
+Case 793: The minimal number of roads is 2.
+Case 794: The minimal number of roads is 3.
+Case 795: The minimal number of roads is 3.
+Case 796: The minimal number of roads is 3.
+Case 797: The minimal number of roads is 7.
+Case 798: The minimal number of roads is 5.
+Case 799: The minimal number of roads is 2.
+Case 800: The system is already connected.
+Case 801: The minimal number of roads is 3.
+Case 802: The minimal number of roads is 1.
+Case 803: The minimal number of roads is 1.
+Case 804: The system is already connected.
+Case 805: The system is already connected.
+Case 806: The minimal number of roads is 2.
+Case 807: The minimal number of roads is 1.
+Case 808: The minimal number of roads is 2.
+Case 809: The minimal number of roads is 7.
+Case 810: The minimal number of roads is 4.
+Case 811: The minimal number of roads is 1.
+Case 812: The system is already connected.
+Case 813: The minimal number of roads is 2.
+Case 814: The minimal number of roads is 7.
+Case 815: The system is already connected.
+Case 816: The system is already connected.
+Case 817: The minimal number of roads is 3.
+Case 818: The system is already connected.
+Case 819: The system is already connected.
+Case 820: The minimal number of roads is 5.
+Case 821: The system is already connected.
+Case 822: The minimal number of roads is 1.
+Case 823: The minimal number of roads is 1.
+Case 824: The minimal number of roads is 5.
+Case 825: The minimal number of roads is 1.
+Case 826: The system is already connected.
+Case 827: The minimal number of roads is 6.
+Case 828: The system is already connected.
+Case 829: The minimal number of roads is 2.
+Case 830: The minimal number of roads is 7.
+Case 831: The minimal number of roads is 4.
+Case 832: The minimal number of roads is 1.
+Case 833: The minimal number of roads is 4.
+Case 834: The minimal number of roads is 12.
+Case 835: The minimal number of roads is 1.
+Case 836: The system is already connected.
+Case 837: The minimal number of roads is 7.
+Case 838: The minimal number of roads is 1.
+Case 839: The system is already connected.
+Case 840: The minimal number of roads is 10.
+Case 841: The minimal number of roads is 1.
+Case 842: The minimal number of roads is 1.
+Case 843: The minimal number of roads is 3.
+Case 844: The minimal number of roads is 1.
+Case 845: The system is already connected.
+Case 846: The minimal number of roads is 8.
+Case 847: The minimal number of roads is 2.
+Case 848: The system is already connected.
+Case 849: The system is already connected.
+Case 850: The minimal number of roads is 1.
+Case 851: The system is already connected.
+Case 852: The minimal number of roads is 3.
+Case 853: The system is already connected.
+Case 854: The minimal number of roads is 1.
+Case 855: The minimal number of roads is 10.
+Case 856: The system is already connected.
+Case 857: The minimal number of roads is 2.
+Case 858: The minimal number of roads is 6.
+Case 859: The system is already connected.
+Case 860: The minimal number of roads is 4.
+Case 861: The minimal number of roads is 1.
+Case 862: The minimal number of roads is 7.
+Case 863: The system is already connected.
+Case 864: The system is already connected.
+Case 865: The minimal number of roads is 1.
+Case 866: The minimal number of roads is 2.
+Case 867: The minimal number of roads is 2.
+Case 868: The minimal number of roads is 3.
+Case 869: The minimal number of roads is 4.
+Case 870: The minimal number of roads is 9.
+Case 871: The system is already connected.
+Case 872: The minimal number of roads is 4.
+Case 873: The minimal number of roads is 1.
+Case 874: The minimal number of roads is 6.
+Case 875: The minimal number of roads is 1.
+Case 876: The minimal number of roads is 2.
+Case 877: The minimal number of roads is 3.
+Case 878: The system is already connected.
+Case 879: The system is already connected.
+Case 880: The minimal number of roads is 7.
+Case 881: The minimal number of roads is 1.
+Case 882: The minimal number of roads is 2.
+Case 883: The minimal number of roads is 1.
+Case 884: The minimal number of roads is 5.
+Case 885: The minimal number of roads is 3.
+Case 886: The system is already connected.
+Case 887: The minimal number of roads is 2.
+Case 888: The minimal number of roads is 1.
+Case 889: The minimal number of roads is 2.
+Case 890: The minimal number of roads is 6.
+Case 891: The minimal number of roads is 2.
+Case 892: The minimal number of roads is 2.
+Case 893: The minimal number of roads is 12.
+Case 894: The minimal number of roads is 1.
+Case 895: The minimal number of roads is 1.
+Case 896: The minimal number of roads is 9.
+Case 897: The minimal number of roads is 8.
+Case 898: The minimal number of roads is 1.
+Case 899: The minimal number of roads is 2.
+Case 900: The minimal number of roads is 5.
+Case 901: The minimal number of roads is 2.
+Case 902: The system is already connected.
+Case 903: The minimal number of roads is 2.
+Case 904: The minimal number of roads is 6.
+Case 905: The system is already connected.
+Case 906: The minimal number of roads is 2.
+Case 907: The minimal number of roads is 1.
+Case 908: The minimal number of roads is 8.
+Case 909: The minimal number of roads is 6.
+Case 910: The system is already connected.
+Case 911: The system is already connected.
+Case 912: The minimal number of roads is 7.
+Case 913: The minimal number of roads is 3.
+Case 914: The minimal number of roads is 12.
+Case 915: The system is already connected.
+Case 916: The minimal number of roads is 1.
+Case 917: The minimal number of roads is 6.
+Case 918: The minimal number of roads is 5.
+Case 919: The minimal number of roads is 4.
+Case 920: The system is already connected.
+Case 921: The minimal number of roads is 1.
+Case 922: The system is already connected.
+Case 923: The minimal number of roads is 6.
+Case 924: The minimal number of roads is 1.
+Case 925: The minimal number of roads is 1.
+Case 926: The system is already connected.
+Case 927: The minimal number of roads is 5.
+Case 928: The minimal number of roads is 3.
+Case 929: The minimal number of roads is 3.
+Case 930: The minimal number of roads is 6.
+Case 931: The minimal number of roads is 9.
+Case 932: The minimal number of roads is 3.
+Case 933: The minimal number of roads is 2.
+Case 934: The system is already connected.
+Case 935: The minimal number of roads is 2.
+Case 936: The minimal number of roads is 1.
+Case 937: The system is already connected.
+Case 938: The system is already connected.
+Case 939: The minimal number of roads is 5.
+Case 940: The minimal number of roads is 1.
+Case 941: The minimal number of roads is 5.
+Case 942: The system is already connected.
+Case 943: The minimal number of roads is 2.
+Case 944: The minimal number of roads is 5.
+Case 945: The system is already connected.
+Case 946: The minimal number of roads is 1.
+Case 947: The minimal number of roads is 9.
+Case 948: The minimal number of roads is 5.
+Case 949: The minimal number of roads is 1.
+Case 950: The minimal number of roads is 5.
+Case 951: The system is already connected.
+Case 952: The minimal number of roads is 1.
+Case 953: The minimal number of roads is 6.
+Case 954: The minimal number of roads is 2.
+Case 955: The minimal number of roads is 1.
+Case 956: The minimal number of roads is 2.
+Case 957: The minimal number of roads is 1.
+Case 958: The system is already connected.
+Case 959: The minimal number of roads is 4.
+Case 960: The minimal number of roads is 6.
+Case 961: The minimal number of roads is 4.
+Case 962: The minimal number of roads is 6.
+Case 963: The minimal number of roads is 4.
+Case 964: The minimal number of roads is 5.
+Case 965: The minimal number of roads is 2.
+Case 966: The minimal number of roads is 9.
+Case 967: The minimal number of roads is 4.
+Case 968: The minimal number of roads is 2.
+Case 969: The minimal number of roads is 9.
+Case 970: The minimal number of roads is 7.
+Case 971: The system is already connected.
+Case 972: The minimal number of roads is 1.
+Case 973: The system is already connected.
+Case 974: The minimal number of roads is 2.
+Case 975: The minimal number of roads is 8.
+Case 976: The minimal number of roads is 3.
+Case 977: The minimal number of roads is 1.
+Case 978: The minimal number of roads is 2.
+Case 979: The system is already connected.
+Case 980: The minimal number of roads is 3.
+Case 981: The minimal number of roads is 5.
+Case 982: The minimal number of roads is 2.
+Case 983: The minimal number of roads is 1.
+Case 984: The system is already connected.
+Case 985: The system is already connected.
+Case 986: The system is already connected.
+Case 987: The minimal number of roads is 7.
+Case 988: The minimal number of roads is 7.
+Case 989: The minimal number of roads is 8.
+Case 990: The minimal number of roads is 2.
+Case 991: The minimal number of roads is 3.
+Case 992: The minimal number of roads is 4.
+Case 993: The minimal number of roads is 3.
+Case 994: The minimal number of roads is 2.
+Case 995: The system is already connected.
+Case 996: The minimal number of roads is 5.
+Case 997: The minimal number of roads is 2.
+Case 998: The system is already connected.
+Case 999: The minimal number of roads is 4.
+Case 1000: The minimal number of roads is 3.

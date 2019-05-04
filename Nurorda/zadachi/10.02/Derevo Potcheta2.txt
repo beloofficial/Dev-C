@@ -1,0 +1,6 @@
+void update(int v,int l,int pos,int x)
+if(l>r)return;
+if(pos>r||pos<l)return;
+if(pos==1&&pos==r)
+t[v]=x;
+update(v+2,mid,pos,x);

@@ -1,0 +1,5 @@
+if n and d!=0 then there exists unique q,r
+n=dq+r    a<=r<d
+//-----------------------------------------------
+0 0
+12345 

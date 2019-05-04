@@ -1,0 +1,27 @@
+Uses math, Sysutils;
+var
+  x,b,i,k : longint;
+  c  :  array[1..10000000]of longint;
+  ss ,s :  ansistring;
+begin
+  assign(input,'input.txt');
+  assign(output,'output.txt');
+    readln(s);
+      readln(b);
+        k:=0;
+        x:=0;
+     ss:=inttostr(b);
+         for i:=1 to length(s) do begin
+            x:=x*10+strtoint(s[i]);
+            if (x<b)and(k>=1)then begin inc(k); c[k]:=0; end;
+          if x>=b then begin
+ 
+             inc(k);
+             c[k]:=x div b;
+              end;
+              x:=x mod b;
+              end;
+         for i:=1 to k do
+           write(c[i]);
+              if k=0 then write(0);
+end.

@@ -1,0 +1,39 @@
+\documentclass [11pt, a4paper, oneside] {article}
+
+\usepackage [T2A] {fontenc}
+\usepackage [utf8] {inputenc}
+\usepackage [english, russian] {babel}
+\usepackage {amsmath}
+\usepackage {amssymb}
+\usepackage [russian]{olymp}
+\usepackage {comment}
+\usepackage {epigraph}
+\usepackage {expdlist}
+\usepackage {graphicx}
+
+\begin {document}
+
+\contest
+{4-й этап Республиканской олимпиады по информатике 2015, 9 класс}%
+{Уральск}%
+{13-18 марта, 2015}%
+
+\binoppenalty=10000
+\relpenalty=10000
+
+\renewcommand{\t}{\texttt}
+
+\graphicspath{{../../problems/array/statements/russian/}}
+\input ../../problems/array/statements/russian/problem.tex
+\graphicspath{{../../problems/char/statements/russian/}}
+\input ../../problems/char/statements/russian/problem.tex
+\graphicspath{{../../problems/pair-of-nonintersected-intervals/statements/russian/}}
+\input ../../problems/pair-of-nonintersected-intervals/statements/russian/problem.tex
+\graphicspath{{../../problems/goodnumbers/statements/russian/}}
+\input ../../problems/goodnumbers/statements/russian/problem.tex
+\graphicspath{{../../problems/2n-matching/statements/russian/}}
+\input ../../problems/2n-matching/statements/russian/problem.tex
+\graphicspath{{../../problems/palm-reordering/statements/russian/}}
+\input ../../problems/palm-reordering/statements/russian/problem.tex
+
+\end {document}
